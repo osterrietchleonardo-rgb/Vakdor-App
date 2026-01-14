@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   AlertCircle, MessageSquare, CheckCheck, TrendingUp, UserCheck, ShieldCheck,
-  RotateCcw, Play, Pause, Search, Zap, Database, ChevronRight, Calendar, PhoneCall
+  RotateCcw, Play, Pause, Search, Zap, Database, ChevronRight, Calendar, PhoneCall,
+  ArrowLeft, Video, Phone, MoreVertical
 } from 'lucide-react';
 import { SALES_SCRIPT, PROSPECTS, CAPTACION_SCRIPT } from './data/mockData';
 import { Header } from './components/Header';
