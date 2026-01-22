@@ -1,3 +1,4 @@
 {
-  "outputDirectory": "frontend/dist"
+    "framework": "nextjs",
+    "buildCommand": "cd website && npm install && npm run build"
 }
