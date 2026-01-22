@@ -271,6 +271,9 @@ export default function AsesorTopPage() {
                                         </div>
                                     </div>
                                 )}
+                                <p className="text-center text-[10px] text-slate-400 mt-4 italic">
+                                    * Simulación con fines demostrativos.
+                                </p>
                             </div>
                         </div>
                     </div>
