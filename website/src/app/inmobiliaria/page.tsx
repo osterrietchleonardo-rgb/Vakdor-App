@@ -284,56 +284,61 @@ export default function InmobiliariaPage() {
                                 {activeTab === 'rastreo' && <ScrapingMockup />}
 
                                 {activeTab === 'contacto' && (
-                                    <div className="relative w-full h-full bg-gray-900 rounded-[3rem] shadow-2xl border-[8px] border-gray-800 overflow-hidden flex flex-col">
-                                        <div className="bg-[#075e54] h-8 w-full flex items-center justify-center relative z-20">
-                                            <div className="w-24 h-4 bg-black rounded-b-xl absolute top-0"></div>
-                                        </div>
-
-                                        <div className="bg-[#075e54] text-white p-3 flex items-center justify-between shadow-md z-10">
-                                            <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold">
-                                                    C
-                                                </div>
-                                                <div className="leading-tight">
-                                                    <h3 className="font-semibold text-sm">Carlos Méndez (Propietario)</h3>
-                                                    <p className="text-xs text-green-100 opacity-90">en línea</p>
-                                                </div>
+                                    <>
+                                        <div className="relative w-full h-full bg-gray-900 rounded-[3rem] shadow-2xl border-[8px] border-gray-800 overflow-hidden flex flex-col">
+                                            <div className="bg-[#075e54] h-8 w-full flex items-center justify-center relative z-20">
+                                                <div className="w-24 h-4 bg-black rounded-b-xl absolute top-0"></div>
                                             </div>
-                                        </div>
 
-                                        <div
-                                            className="flex-1 overflow-y-auto p-3 bg-[#e5ddd5]"
-                                            style={{
-                                                backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
-                                                backgroundRepeat: 'repeat',
-                                                backgroundSize: '400px'
-                                            }}
-                                        >
-                                            {messages.map((msg, idx) => (
-                                                <ChatBubble key={idx} message={msg} />
-                                            ))}
-                                            {isTyping && (
-                                                <div className="flex justify-start mb-2">
-                                                    <div className="bg-white p-2 rounded-lg shadow-sm">
-                                                        <div className="flex gap-1">
-                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
-                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
-                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
-                                                        </div>
+                                            <div className="bg-[#075e54] text-white p-3 flex items-center justify-between shadow-md z-10">
+                                                <div className="flex items-center gap-3">
+                                                    <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold">
+                                                        C
+                                                    </div>
+                                                    <div className="leading-tight">
+                                                        <h3 className="font-semibold text-sm">Carlos Méndez (Propietario)</h3>
+                                                        <p className="text-xs text-green-100 opacity-90">en línea</p>
                                                     </div>
                                                 </div>
-                                            )}
-                                            <div ref={chatEndRef} />
-                                        </div>
+                                            </div>
 
-                                        <div className="z-10">
-                                            <WhatsAppInput />
-                                        </div>
+                                            <div
+                                                className="flex-1 overflow-y-auto p-3 bg-[#e5ddd5]"
+                                                style={{
+                                                    backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
+                                                    backgroundRepeat: 'repeat',
+                                                    backgroundSize: '400px'
+                                                }}
+                                            >
+                                                {messages.map((msg, idx) => (
+                                                    <ChatBubble key={idx} message={msg} />
+                                                ))}
+                                                {isTyping && (
+                                                    <div className="flex justify-start mb-2">
+                                                        <div className="bg-white p-2 rounded-lg shadow-sm">
+                                                            <div className="flex gap-1">
+                                                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                                                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                <div ref={chatEndRef} />
+                                            </div>
 
-                                        <div className="bg-white h-6 w-full flex justify-center items-center">
-                                            <div className="w-32 h-1 bg-gray-300 rounded-full"></div>
+                                            <div className="z-10">
+                                                <WhatsAppInput />
+                                            </div>
+
+                                            <div className="bg-white h-6 w-full flex justify-center items-center">
+                                                <div className="w-32 h-1 bg-gray-300 rounded-full"></div>
+                                            </div>
                                         </div>
-                                    </div>
+                                        <p className="text-center text-[10px] text-slate-400 mt-2 italic">
+                                            * Simulación con fines demostrativos.
+                                        </p>
+                                    </>
                                 )}
 
                                 {activeTab === 'tracking' && <AdvisorDashboardMockup />}
@@ -384,6 +389,6 @@ export default function InmobiliariaPage() {
             </main>
 
             <Footer />
-        </div>
+        </div >
     );
 }
