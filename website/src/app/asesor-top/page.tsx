@@ -1,0 +1,357 @@
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { ChatBubble } from '@/components/mockups/ChatBubble';
+import { WhatsAppInput } from '@/components/mockups/WhatsAppInput';
+import { CrmMockup } from '@/components/mockups/CrmMockup';
+import { Play, Pause, RotateCcw, CheckCircle2, Calendar, MessageSquare, Database, TrendingUp } from 'lucide-react';
+import { SALES_SCRIPT, FOLLOW_UP_SCRIPT } from '@/data/mockData';
+import type { ChatMessage } from '@/data/mockData';
+
+export default function AsesorTopPage() {
+    const [salesScenario, setSalesScenario] = useState<'initial' | 'crm' | 'followup'>('initial');
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [stepIndex, setStepIndex] = useState(0);
+    const [isTyping, setIsTyping] = useState(false);
+    const chatEndRef = useRef<HTMLDivElement>(null);
+
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    // Scroll Fix: Manually scroll the container
+    useEffect(() => {
+        if (chatEndRef.current) {
+            const chatContainer = chatEndRef.current.parentElement;
+            if (chatContainer) {
+                chatContainer.scrollTo({
+                    top: chatContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }, [messages, isTyping]);
+
+    // Cleanup timers
+    useEffect(() => {
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, []);
+
+    // Reset when scenario changes
+    useEffect(() => {
+        handleReset();
+    }, [salesScenario]);
+
+    // Script Runner
+    useEffect(() => {
+        const currentScript = salesScenario === 'followup' ? FOLLOW_UP_SCRIPT : SALES_SCRIPT;
+
+        if (!isPlaying || stepIndex >= currentScript.length) return;
+
+        const currentMessage = currentScript[stepIndex];
+
+        // Calculate typing delay
+        const typingDelay = currentMessage.sender === 'ai'
+            ? Math.min(Math.max((currentMessage.text?.length || 0) * 40, 1000), 3000)
+            : 0;
+
+        timerRef.current = setTimeout(() => {
+            if (currentMessage.sender === 'ai') {
+                setIsTyping(true);
+                timerRef.current = setTimeout(() => {
+                    setMessages(prev => [...prev, currentMessage]);
+                    setIsTyping(false);
+                    setStepIndex(prev => prev + 1);
+                }, typingDelay);
+            } else {
+                setMessages(prev => [...prev, currentMessage]);
+                setStepIndex(prev => prev + 1);
+            }
+        }, currentMessage.delay);
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, [isPlaying, stepIndex, salesScenario]);
+
+    const handleReset = () => {
+        if (timerRef.current) clearTimeout(timerRef.current);
+        setIsPlaying(false);
+        setMessages([]);
+        setStepIndex(0);
+        setIsTyping(false);
+    };
+
+    return (
+        <div className="min-h-screen flex flex-col bg-gray-50">
+            <Header />
+
+            <main className="flex-1">
+                {/* Hero Section */}
+                <section className="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-12 md:py-20 px-4">
+                    <div className="max-w-6xl mx-auto text-center">
+                        <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
+                            ¿Y Si Pudieras Dejar de Responder WhatsApps a las 11 PM y Aun Así Cerrar Más Ventas?
+                        </h1>
+                        <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-4xl mx-auto">
+                            No es magia. Es un asistente de IA que responde consultas, filtra leads, agenda visitas y actualiza tu CRM mientras vos estás en otra cosa. Así de simple.
+                        </p>
+                    </div>
+                </section>
+
+                {/* Interactive Demo */}
+                <section className="py-12 md:py-20 px-4 bg-white">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid lg:grid-cols-2 gap-8 items-start">
+                            {/* Left: Description & Controls */}
+                            <div>
+                                <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                                    Mirá Cómo Funciona en Vivo
+                                </h2>
+                                <p className="text-slate-600 mb-6">
+                                    Este es el flujo real que tu asistente de IA ejecuta cuando llega un lead. Responde, filtra, recomienda propiedades y agenda visitas automáticamente.
+                                </p>
+
+                                {/* Scenario Tabs */}
+                                <div className="bg-slate-50 p-2 rounded-xl inline-flex gap-2 mb-8 border border-slate-200">
+                                    <button
+                                        onClick={() => setSalesScenario('initial')}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${salesScenario === 'initial'
+                                            ? 'bg-white text-emerald-600 shadow-sm border border-emerald-100'
+                                            : 'text-slate-500 hover:text-slate-700'
+                                            }`}
+                                    >
+                                        <MessageSquare size={16} />
+                                        1. Chat Inicial
+                                    </button>
+                                    <button
+                                        onClick={() => setSalesScenario('crm')}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${salesScenario === 'crm'
+                                            ? 'bg-white text-blue-600 shadow-sm border border-blue-100'
+                                            : 'text-slate-500 hover:text-slate-700'
+                                            }`}
+                                    >
+                                        <Database size={16} />
+                                        2. Registro CRM
+                                    </button>
+                                    <button
+                                        onClick={() => setSalesScenario('followup')}
+                                        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${salesScenario === 'followup'
+                                            ? 'bg-white text-amber-600 shadow-sm border border-amber-100'
+                                            : 'text-slate-500 hover:text-slate-700'
+                                            }`}
+                                    >
+                                        <TrendingUp size={16} />
+                                        3. Reactivación
+                                    </button>
+                                </div>
+
+                                {salesScenario !== 'crm' && (
+                                    <div className="flex gap-3 mb-6">
+                                        <button
+                                            onClick={handleReset}
+                                            className="p-3 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+                                            title="Reiniciar"
+                                        >
+                                            <RotateCcw size={20} />
+                                        </button>
+                                        <button
+                                            onClick={() => setIsPlaying(!isPlaying)}
+                                            className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all shadow-md active:scale-95 ${isPlaying ? 'bg-amber-500 hover:bg-amber-600' : 'bg-blue-600 hover:bg-blue-700'
+                                                }`}
+                                        >
+                                            {isPlaying ? (
+                                                <>
+                                                    <Pause size={18} /> Pausar Demo
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Play size={18} /> Iniciar Demo
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                )}
+
+                                {/* Scenario Descriptions */}
+                                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                                    {salesScenario === 'initial' && (
+                                        <>
+                                            <h3 className="font-bold text-lg mb-2">Paso 1: Filtrado y Agenda</h3>
+                                            <p className="text-sm text-slate-600">
+                                                La IA recibe mensajes por WhatsApp, liquida las consultas (presupuesto, zona, urgencia), recomienda propiedades específicas de tu stock y agenda una visita.
+                                            </p>
+                                        </>
+                                    )}
+                                    {salesScenario === 'crm' && (
+                                        <>
+                                            <h3 className="font-bold text-lg mb-2">Paso 2: Registro Automático</h3>
+                                            <p className="text-sm text-slate-600">
+                                                Toda la data recolectada se carga sola en tu CRM. Estado, clasificación, historial de chat y próxima acción definida.
+                                            </p>
+                                        </>
+                                    )}
+                                    {salesScenario === 'followup' && (
+                                        <>
+                                            <h3 className="font-bold text-lg mb-2">Paso 3: Reactivación de Base</h3>
+                                            <p className="text-sm text-slate-600">
+                                                El sistema detecta leads viejos que no compraron y les avisa cuando entra una propiedad que matchea con su búsqueda.
+                                            </p>
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+
+                            {/* Right: Mockup Display */}
+                            <div className="relative w-full max-w-[380px] mx-auto">
+                                {salesScenario === 'crm' ? (
+                                    <div className="w-full h-[650px] animate-fade-in">
+                                        <CrmMockup />
+                                    </div>
+                                ) : (
+                                    <div className="relative w-full h-[650px] bg-gray-900 rounded-[3rem] shadow-2xl border-[8px] border-gray-800 overflow-hidden flex flex-col">
+                                        {/* Phone Notch */}
+                                        <div className="bg-[#075e54] h-8 w-full flex items-center justify-center relative z-20">
+                                            <div className="w-24 h-4 bg-black rounded-b-xl absolute top-0"></div>
+                                        </div>
+
+                                        {/* WhatsApp Header */}
+                                        <div className="bg-[#075e54] text-white p-3 flex items-center justify-between shadow-md z-10">
+                                            <div className="flex items-center gap-3">
+                                                <div className="relative">
+                                                    <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold">
+                                                        C
+                                                    </div>
+                                                    <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-[#075e54]"></div>
+                                                </div>
+                                                <div className="leading-tight">
+                                                    <h3 className="font-semibold text-sm">Cliente Potencial</h3>
+                                                    <p className="text-xs text-green-100 opacity-90">en línea</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Chat Messages */}
+                                        <div
+                                            className="flex-1 overflow-y-auto p-3 bg-[#e5ddd5]"
+                                            style={{
+                                                backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
+                                                backgroundRepeat: 'repeat',
+                                                backgroundSize: '400px'
+                                            }}
+                                        >
+                                            {messages.map((msg, idx) => (
+                                                <ChatBubble key={idx} message={msg} />
+                                            ))}
+                                            {isTyping && (
+                                                <div className="flex justify-start mb-2">
+                                                    <div className="bg-white p-2 rounded-lg shadow-sm">
+                                                        <div className="flex gap-1">
+                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <div ref={chatEndRef} />
+                                        </div>
+
+                                        {/* Input */}
+                                        <div className="z-10">
+                                            <WhatsAppInput />
+                                        </div>
+
+                                        {/* Phone Bottom Bar */}
+                                        <div className="bg-white h-6 w-full flex justify-center items-center">
+                                            <div className="w-32 h-1 bg-gray-300 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Benefits - 6 Pillars */}
+                <section className="py-12 md:py-20 px-4 bg-slate-50">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                            Lo Que Hace el Asistente de IA (Sin Humo)
+                        </h2>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            {[
+                                {
+                                    icon: '🌙',
+                                    title: 'Responde Consultas 24/7',
+                                    description: 'Un lead te escribe a las 11 PM. La IA responde en segundos, hace preguntas y manda opciones. Vos te enterás al otro día.'
+                                },
+                                {
+                                    icon: '🎯',
+                                    title: 'Filtra Curiosos de Compradores Reales',
+                                    description: 'La IA analiza presupuesto, zona y urgencia. Ya no perdés tiempo con gente que solo está mirando.'
+                                },
+                                {
+                                    icon: '🏠',
+                                    title: 'Recomienda las Propiedades Correctas',
+                                    description: 'Busca en tu inventario y manda las 2-3 opciones que mejor calzan. Automáticamente.'
+                                },
+                                {
+                                    icon: '📅',
+                                    title: 'Agenda las Visitas por Vos',
+                                    description: 'Propone horarios, el lead elige, y queda agendado en tu CRM. Sin intercambio de mensajes.'
+                                },
+                                {
+                                    icon: '📊',
+                                    title: 'Actualiza tu CRM Automáticamente',
+                                    description: 'Cada conversación se registra sola. No más copy-paste ni olvidarte de actualizar.'
+                                },
+                                {
+                                    icon: '♾️',
+                                    title: 'Retoma Contacto con Leads Viejos',
+                                    description: 'Tenés leads de hace 6 meses. La IA los vuelve a contactar con nuevas propiedades.'
+                                }
+                            ].map((benefit, idx) => (
+                                <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                                    <div className="text-4xl mb-4">{benefit.icon}</div>
+                                    <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
+                                    <p className="text-slate-600">{benefit.description}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* CTA Final */}
+                <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                            ¿Querés Ver Cómo Funciona en tu Caso Específico?
+                        </h2>
+                        <p className="text-lg text-slate-300 mb-8">
+                            No es una demo genérica. Es una llamada de 15 minutos donde vemos cómo se integra con tu CRM y cuánto tiempo te ahorrarías.
+                        </p>
+                        <a
+                            href="https://vakdor.com/call_vsl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/50 active:scale-95"
+                        >
+                            <Calendar size={20} />
+                            Agendar Llamada de 15 Min
+                        </a>
+                        <p className="text-sm text-slate-400 mt-6">
+                            ✅ 90 días de garantía - Si no funciona, te devolvemos todo
+                        </p>
+                    </div>
+                </section>
+            </main>
+
+            <Footer />
+        </div>
+    );
+}

@@ -1,0 +1,389 @@
+'use client';
+
+import React, { useState, useEffect, useRef } from 'react';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { ScrapingMockup } from '@/components/mockups/ScrapingMockup';
+import { AdvisorDashboardMockup } from '@/components/mockups/AdvisorDashboardMockup';
+import { ChatBubble } from '@/components/mockups/ChatBubble';
+import { WhatsAppInput } from '@/components/mockups/WhatsAppInput';
+import { Search, MessageSquare, TrendingUp, Calendar, CheckCircle2, Play, Pause, RotateCcw } from 'lucide-react';
+import { RoiCalculator } from '@/components/RoiCalculator';
+import { CAPTACION_SCRIPT } from '@/data/mockData';
+import type { ChatMessage } from '@/data/mockData';
+
+export default function InmobiliariaPage() {
+    const [activeTab, setActiveTab] = useState<'rastreo' | 'contacto' | 'tracking'>('rastreo');
+
+    // Chat State for "Contacto Prioritario"
+    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [stepIndex, setStepIndex] = useState(0);
+    const [isTyping, setIsTyping] = useState(false);
+    const chatEndRef = useRef<HTMLDivElement>(null);
+    const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    // Scroll Fix
+    useEffect(() => {
+        if (chatEndRef.current) {
+            const chatContainer = chatEndRef.current.parentElement;
+            if (chatContainer) {
+                chatContainer.scrollTo({
+                    top: chatContainer.scrollHeight,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    }, [messages, isTyping]);
+
+    // Timer Cleanup
+    useEffect(() => {
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, []);
+
+    // Script Runner
+    useEffect(() => {
+        if (activeTab !== 'contacto' || !isPlaying || stepIndex >= CAPTACION_SCRIPT.length) return;
+
+        const currentMessage = CAPTACION_SCRIPT[stepIndex];
+
+        const typingDelay = currentMessage.sender === 'ai'
+            ? Math.min(Math.max((currentMessage.text?.length || 0) * 40, 1000), 3000)
+            : 0;
+
+        timerRef.current = setTimeout(() => {
+            if (currentMessage.sender === 'ai') {
+                setIsTyping(true);
+                timerRef.current = setTimeout(() => {
+                    setMessages(prev => [...prev, currentMessage]);
+                    setIsTyping(false);
+                    setStepIndex(prev => prev + 1);
+                }, typingDelay);
+            } else {
+                setMessages(prev => [...prev, currentMessage]);
+                setStepIndex(prev => prev + 1);
+            }
+        }, currentMessage.delay);
+
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, [isPlaying, stepIndex, activeTab]);
+
+    const handleReset = () => {
+        if (timerRef.current) clearTimeout(timerRef.current);
+        setIsPlaying(false);
+        setMessages([]);
+        setStepIndex(0);
+        setIsTyping(false);
+    };
+
+    // Reset when tab changes
+    useEffect(() => {
+        if (activeTab === 'contacto') {
+            handleReset();
+        }
+    }, [activeTab]);
+
+    return (
+        <div className="min-h-screen flex flex-col bg-gray-50">
+            <Header />
+
+            <main className="flex-1">
+                {/* Hero Section */}
+                <section className="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 md:py-20 px-4">
+                    <div className="max-w-6xl mx-auto text-center">
+                        <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
+                            Tu Inmobiliaria Pierde $120,000 al Año por No Tener un Sistema de Captación, Tracking y Capacitación Automático
+                        </h1>
+                        <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-5xl mx-auto">
+                            El Partner Tecnológico que Automatiza la Prospección de Propiedades Exclusivas, Rastrea la Performance Real de tus Asesores y Capacita a tu Equipo con IA en 7 Días (Sin Contratar un Solo Desarrollador).
+                        </p>
+                    </div>
+                </section>
+
+                {/* 3-Tab Mockup System */}
+                <section className="py-12 md:py-20 px-4 bg-white">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                            Los 3 Sistemas que Implementamos
+                        </h2>
+
+                        {/* Tab Navigation */}
+                        <div className="flex flex-wrap justify-center gap-3 mb-8">
+                            <button
+                                onClick={() => setActiveTab('rastreo')}
+                                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'rastreo'
+                                    ? 'bg-blue-600 text-white shadow-lg'
+                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    }`}
+                            >
+                                <Search size={18} />
+                                1. Rastreo Automático
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('contacto')}
+                                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'contacto'
+                                    ? 'bg-emerald-600 text-white shadow-lg'
+                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    }`}
+                            >
+                                <MessageSquare size={18} />
+                                2. Contacto Prioritario
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('tracking')}
+                                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'tracking'
+                                    ? 'bg-indigo-600 text-white shadow-lg'
+                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    }`}
+                            >
+                                <TrendingUp size={18} />
+                                3. Tracking de Equipo
+                            </button>
+                        </div>
+
+                        {/* Tab Content */}
+                        <div className="grid lg:grid-cols-2 gap-8 items-start">
+                            {/* Left: Description */}
+                            <div>
+                                {activeTab === 'rastreo' && (
+                                    <>
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                                            Captación Automática 24/7
+                                        </h3>
+                                        <p className="text-slate-600 mb-6">
+                                            La IA escanea ZonaProp, ArgenProp y Mercado Libre cada 6 horas, detecta propiedades de dueños directos y extrae sus contactos antes que tu competencia.
+                                        </p>
+                                        <div className="space-y-4">
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">5+ Propiedades Exclusivas al Mes</h4>
+                                                    <p className="text-sm text-slate-600">En promedio, sin que tus asesores salgan a buscar</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Llegás Primero</h4>
+                                                    <p className="text-sm text-slate-600">El sistema contacta en menos de 30 minutos desde que se publica</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Se Integra con tu CRM</h4>
+                                                    <p className="text-sm text-slate-600">Todos los contactos se registran automáticamente</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+
+                                {activeTab === 'contacto' && (
+                                    <>
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                                            Outreach Automático a Dueños
+                                        </h3>
+                                        <p className="text-slate-600 mb-6">
+                                            Una vez detectado el dueño directo, la IA le envía un mensaje por WhatsApp ofreciendo una tasación gratuita y agenda la visita automáticamente.
+                                        </p>
+
+                                        {/* Playback Controls */}
+                                        <div className="flex gap-3 mb-8">
+                                            <button
+                                                onClick={handleReset}
+                                                className="p-3 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+                                                title="Reiniciar Conv"
+                                            >
+                                                <RotateCcw size={20} />
+                                            </button>
+                                            <button
+                                                onClick={() => setIsPlaying(!isPlaying)}
+                                                className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all shadow-md active:scale-95 ${isPlaying ? 'bg-emerald-500 hover:bg-emerald-600' : 'bg-slate-700 hover:bg-slate-800'
+                                                    }`}
+                                            >
+                                                {isPlaying ? (
+                                                    <>
+                                                        <Pause size={18} /> Pausar
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <Play size={18} /> Ver Conversación
+                                                    </>
+                                                )}
+                                            </button>
+                                        </div>
+
+                                        <div className="space-y-4">
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Mensaje Personalizado</h4>
+                                                    <p className="text-sm text-slate-600">La IA adapta el tono según el perfil del dueño</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Agenda Automática</h4>
+                                                    <p className="text-sm text-slate-600">Si acepta, coordina fecha y hora sin intervención manual</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Tasa de Respuesta 40%</h4>
+                                                    <p className="text-sm text-slate-600">4 de cada 10 dueños contactados responden positivamente</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+
+                                {activeTab === 'tracking' && (
+                                    <>
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                                            Dashboard de Performance Real
+                                        </h3>
+                                        <p className="text-slate-600 mb-6">
+                                            Ve en tiempo real quién responde rápido, quién convierte y quién está a punto de irse. El sistema te alerta antes de que renuncien.
+                                        </p>
+                                        <div className="space-y-4">
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Métricas en Tiempo Real</h4>
+                                                    <p className="text-sm text-slate-600">Tasa de respuesta, conversión y leads perdidos por asesor</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Alertas Predictivas</h4>
+                                                    <p className="text-sm text-slate-600">Te avisa cuando detecta patrones de riesgo de rotación</p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-start gap-3">
+                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <div>
+                                                    <h4 className="font-bold">Reducción 50% Rotación</h4>
+                                                    <p className="text-sm text-slate-600">Intervención temprana = asesores más felices y productivos</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+
+                            {/* Right: Mockup */}
+                            <div className="w-full h-[650px]">
+                                {activeTab === 'rastreo' && <ScrapingMockup />}
+
+                                {activeTab === 'contacto' && (
+                                    <div className="relative w-full h-full bg-gray-900 rounded-[3rem] shadow-2xl border-[8px] border-gray-800 overflow-hidden flex flex-col">
+                                        <div className="bg-[#075e54] h-8 w-full flex items-center justify-center relative z-20">
+                                            <div className="w-24 h-4 bg-black rounded-b-xl absolute top-0"></div>
+                                        </div>
+
+                                        <div className="bg-[#075e54] text-white p-3 flex items-center justify-between shadow-md z-10">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-10 h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold">
+                                                    C
+                                                </div>
+                                                <div className="leading-tight">
+                                                    <h3 className="font-semibold text-sm">Carlos Méndez (Propietario)</h3>
+                                                    <p className="text-xs text-green-100 opacity-90">en línea</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            className="flex-1 overflow-y-auto p-3 bg-[#e5ddd5]"
+                                            style={{
+                                                backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
+                                                backgroundRepeat: 'repeat',
+                                                backgroundSize: '400px'
+                                            }}
+                                        >
+                                            {messages.map((msg, idx) => (
+                                                <ChatBubble key={idx} message={msg} />
+                                            ))}
+                                            {isTyping && (
+                                                <div className="flex justify-start mb-2">
+                                                    <div className="bg-white p-2 rounded-lg shadow-sm">
+                                                        <div className="flex gap-1">
+                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                                                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            <div ref={chatEndRef} />
+                                        </div>
+
+                                        <div className="z-10">
+                                            <WhatsAppInput />
+                                        </div>
+
+                                        <div className="bg-white h-6 w-full flex justify-center items-center">
+                                            <div className="w-32 h-1 bg-gray-300 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeTab === 'tracking' && <AdvisorDashboardMockup />}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ROI Calculator Section */}
+                <section className="py-12 md:py-20 px-4 bg-slate-100">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+                            Calculadora de Retorno de Inversión (ROI)
+                        </h2>
+                        <p className="text-center text-slate-600 mb-8 max-w-3xl mx-auto">
+                            Descubrí cuánto dinero estás dejando sobre la mesa. Esta herramienta utiliza tus métricas actuales (o promedios del mercado) para proyectar cuánto facturarías extra implementando nuestro sistema de captación y seguimiento automático.
+                        </p>
+                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 text-sm text-blue-800 max-w-3xl mx-auto">
+                            <strong>¿Cómo usarla?</strong> Ingresá la cantidad de asesores en tu equipo, el valor promedio de las propiedades que venden y cuántas captaciones logran hoy. El sistema calculará automáticamente tu potencial de crecimiento anual conservador.
+                        </div>
+                        <RoiCalculator />
+                    </div>
+                </section>
+
+                {/* CTA Final */}
+                <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                            ¿Querés Ver Cómo Aplicaría en tu Inmobiliaria?
+                        </h2>
+                        <p className="text-lg text-slate-300 mb-8">
+                            Llamada de 30 minutos donde vemos qué sistemas aplican a tu operación, cuál sería el ROI y cómo implementamos sin interrumpir nada.
+                        </p>
+                        <a
+                            href="https://vakdor.com/call_vsl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/50 active:scale-95"
+                        >
+                            <Calendar size={20} />
+                            Agendar Llamada Estratégica - 30 Min Gratis
+                        </a>
+                        <p className="text-sm text-slate-400 mt-6">
+                            ✅ Garantía de Resultados de 90 Días o Devolución Total
+                        </p>
+                    </div>
+                </section>
+            </main>
+
+            <Footer />
+        </div>
+    );
+}
