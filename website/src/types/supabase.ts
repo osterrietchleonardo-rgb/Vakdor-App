@@ -1,10 +1,4 @@
-export type Json =
-    | string
-    | number
-    | boolean
-    | null
-    | { [key: string]: Json | undefined }
-    | Json[];
+import type { Json } from './supabase';
 
 export interface Database {
     public: {
