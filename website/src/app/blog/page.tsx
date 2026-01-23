@@ -30,6 +30,7 @@ export default async function BlogPage() {
             <Header />
 
             <main className="flex-1 relative z-10">
+                {/* Hero */}
                 <section className="pt-32 pb-16 px-4">
                     <div className="max-w-4xl mx-auto text-center">
                         <p className="font-accent text-[#B87333] text-lg mb-4">Conocimiento que Convierte</p>
@@ -42,6 +43,7 @@ export default async function BlogPage() {
                     </div>
                 </section>
 
+                {/* Posts Grid */}
                 <section className="py-12 md:py-16 px-4">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -50,6 +52,7 @@ export default async function BlogPage() {
                             ))}
                         </div>
 
+                        {/* Newsletter CTA */}
                         <div className="mt-16 text-center p-8 md:p-12 bg-gradient-to-br from-[#B87333] to-[#5C3D2E] rounded-3xl shadow-xl overflow-hidden relative">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
                             <div className="relative z-10">

@@ -46,14 +46,14 @@ export function RoiCalculator() {
     }, [advisors, avgCommission, inactiveLeads, exclusivesPerMonth]);
 
     return (
-        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-6 md:p-8">
+        <div className="bg-[#0F172A]/60 rounded-2xl shadow-xl border border-[#B87333]/20 backdrop-blur-sm p-6 md:p-8">
             <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-blue-100 rounded-xl">
-                    <Calculator size={24} className="text-blue-600" />
+                <div className="p-3 bg-[#B87333]/10 rounded-xl border border-[#B87333]/20">
+                    <Calculator size={24} className="text-[#B87333]" />
                 </div>
                 <div>
-                    <h3 className="text-xl font-bold">Calculá tu ROI con Vakdor</h3>
-                    <p className="text-sm text-slate-500">Completá los datos de tu inmobiliaria</p>
+                    <h3 className="text-xl font-bold text-[#F8FAFC]">{`Calculá tu ROI con Vakdor`}</h3>
+                    <p className="text-sm text-[#94A3B8]">Completá los datos de tu inmobiliaria</p>
                 </div>
             </div>
 
@@ -61,7 +61,7 @@ export function RoiCalculator() {
                 {/* Inputs */}
                 <div className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                        <label className="block text-sm font-medium text-[#94A3B8] mb-2">
                             <Users size={14} className="inline mr-1" />
                             ¿Cuántos asesores tenés?
                         </label>
@@ -71,13 +71,13 @@ export function RoiCalculator() {
                             max="50"
                             value={advisors}
                             onChange={(e) => setAdvisors(parseInt(e.target.value))}
-                            className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                            className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-[#B87333]"
                         />
-                        <div className="text-right text-sm font-bold text-blue-600">{advisors} asesores</div>
+                        <div className="text-right text-sm font-bold text-[#B87333]">{advisors} asesores</div>
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                        <label className="block text-sm font-medium text-[#94A3B8] mb-2">
                             <DollarSign size={14} className="inline mr-1" />
                             Comisión promedio por venta (USD)
                         </label>
@@ -85,12 +85,12 @@ export function RoiCalculator() {
                             type="number"
                             value={avgCommission}
                             onChange={(e) => setAvgCommission(parseInt(e.target.value) || 0)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-4 py-2 bg-[#020617]/50 border border-slate-700 rounded-lg text-[#F8FAFC] focus:ring-2 focus:ring-[#B87333] focus:border-[#B87333]"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                        <label className="block text-sm font-medium text-[#94A3B8] mb-2">
                             <Database size={14} className="inline mr-1" />
                             Leads inactivos en tu CRM
                         </label>
@@ -98,12 +98,12 @@ export function RoiCalculator() {
                             type="number"
                             value={inactiveLeads}
                             onChange={(e) => setInactiveLeads(parseInt(e.target.value) || 0)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-4 py-2 bg-[#020617]/50 border border-slate-700 rounded-lg text-[#F8FAFC] focus:ring-2 focus:ring-[#B87333] focus:border-[#B87333]"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium text-slate-700 mb-2">
+                        <label className="block text-sm font-medium text-[#94A3B8] mb-2">
                             <TrendingUp size={14} className="inline mr-1" />
                             Propiedades exclusivas actuales/mes
                         </label>
@@ -111,46 +111,46 @@ export function RoiCalculator() {
                             type="number"
                             value={exclusivesPerMonth}
                             onChange={(e) => setExclusivesPerMonth(parseInt(e.target.value) || 0)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            className="w-full px-4 py-2 bg-[#020617]/50 border border-slate-700 rounded-lg text-[#F8FAFC] focus:ring-2 focus:ring-[#B87333] focus:border-[#B87333]"
                         />
                     </div>
                 </div>
 
                 {/* Results */}
-                <div className="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-xl p-6">
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Tu ROI Estimado</h4>
+                <div className="bg-[#020617] text-white rounded-xl p-6 border border-[#B87333]/20">
+                    <h4 className="text-sm font-bold text-[#94A3B8] uppercase tracking-wider mb-4">Tu ROI Estimado</h4>
 
                     <div className="space-y-3 mb-6">
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-slate-300">Recuperación de Leads</span>
-                            <span className="font-bold text-emerald-400">${results.leadRecoveryRevenue.toLocaleString()}</span>
+                            <span className="text-sm text-[#94A3B8]">Recuperación de Leads</span>
+                            <span className="font-bold text-[#B87333]">${results.leadRecoveryRevenue.toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-slate-300">Captación Automática</span>
-                            <span className="font-bold text-emerald-400">${results.prospectingRevenue.toLocaleString()}</span>
+                            <span className="text-sm text-[#94A3B8]">Captación Automática</span>
+                            <span className="font-bold text-[#B87333]">${results.prospectingRevenue.toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-slate-300">Ahorro en Tiempo</span>
-                            <span className="font-bold text-emerald-400">${results.timeSavingsValue.toLocaleString()}</span>
+                            <span className="text-sm text-[#94A3B8]">Ahorro en Tiempo</span>
+                            <span className="font-bold text-[#B87333]">${results.timeSavingsValue.toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-slate-300">Reducción Rotación</span>
-                            <span className="font-bold text-emerald-400">${results.turnoverSavings.toLocaleString()}</span>
+                            <span className="text-sm text-[#94A3B8]">Reducción Rotación</span>
+                            <span className="font-bold text-[#B87333]">${results.turnoverSavings.toLocaleString()}</span>
                         </div>
                     </div>
 
                     <div className="border-t border-slate-700 pt-4 space-y-3">
                         <div className="flex justify-between items-center">
-                            <span className="font-bold">Beneficio Anual Total</span>
-                            <span className="text-2xl font-black text-emerald-400">${results.totalAnnualBenefit.toLocaleString()}</span>
+                            <span className="font-bold text-[#F8FAFC]">Beneficio Anual Total</span>
+                            <span className="text-2xl font-black text-[#B87333]">${results.totalAnnualBenefit.toLocaleString()}</span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-slate-300">ROI Estimado</span>
-                            <span className="text-xl font-bold text-blue-400">{results.roi}%</span>
+                            <span className="text-sm text-[#94A3B8]">ROI Estimado</span>
+                            <span className="text-xl font-bold text-[#F8FAFC]">{results.roi}%</span>
                         </div>
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-slate-300">Se paga solo en</span>
-                            <span className="font-bold text-amber-400">{results.paybackMonths} meses</span>
+                            <span className="text-sm text-[#94A3B8]">Se paga solo en</span>
+                            <span className="font-bold text-[#F8FAFC]">{results.paybackMonths} meses</span>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@ export function RoiCalculator() {
                     href="https://vakdor.com/call_vsl"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-lg active:scale-95"
+                    className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-3 rounded-xl transition-all active:scale-95"
                 >
                     Validar estos Números en una Llamada →
                 </a>

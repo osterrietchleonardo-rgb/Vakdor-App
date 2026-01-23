@@ -11,6 +11,7 @@ export default function SobreMiPage() {
             <Header />
 
             <main className="flex-1 relative z-10">
+                {/* Hero */}
                 <section className="pt-32 pb-16 px-4">
                     <div className="max-w-4xl mx-auto text-center">
                         <p className="font-accent text-[#B87333] text-lg mb-4">La Historia Detrás</p>
@@ -23,6 +24,7 @@ export default function SobreMiPage() {
                     </div>
                 </section>
 
+                {/* Content */}
                 <section className="py-16 md:py-24 px-4 bg-[#0F172A]/50">
                     <div className="max-w-4xl mx-auto">
                         <div className="space-y-8 text-[#CBD5E1]">
@@ -70,6 +72,7 @@ export default function SobreMiPage() {
                             </div>
                         </div>
 
+                        {/* Values */}
                         <div className="mt-16 grid md:grid-cols-2 gap-6">
                             {[
                                 {
@@ -107,6 +110,7 @@ export default function SobreMiPage() {
                     </div>
                 </section>
 
+                {/* CTA */}
                 <section className="py-16 px-4">
                     <div className="max-w-3xl mx-auto text-center">
                         <p className="font-accent text-[#B87333] text-lg mb-4">¿Querés saber más?</p>
