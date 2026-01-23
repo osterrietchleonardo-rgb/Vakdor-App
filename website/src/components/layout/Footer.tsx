@@ -11,19 +11,9 @@ export function Footer() {
                 <div className="grid md:grid-cols-4 gap-8 md:gap-12">
                     {/* Brand Column */}
                     <div className="md:col-span-1">
-                        <Link href="/" className="inline-block mb-4 group">
-                            <div className="flex items-center gap-3">
-                                <div className="relative">
-                                    <div className="absolute -inset-2 bg-[#B87333]/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                                    <img
-                                        src="/logo.png"
-                                        alt="Vakdor Logo"
-                                        className="relative w-8 h-8 object-contain"
-                                    />
-                                </div>
-                                <span className="font-display text-2xl font-black text-[#F8FAFC]">
-                                    Vakdor<span className="text-[#B87333]">.</span>
-                                </span>
+                        <Link href="/" className="inline-block mb-4">
+                            <div className="bg-gradient-to-br from-[#B87333] to-[#8B5A2B] text-white font-extrabold text-xl px-4 py-2 rounded-xl">
+                                Vakdor
                             </div>
                         </Link>
                         <p className="text-[#94A3B8] text-sm leading-relaxed mb-4">

@@ -29,16 +29,11 @@ export function Header() {
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="relative">
-                            <div className="absolute -inset-2 bg-[#B87333]/30 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <img 
-                                src="/logo.png" 
-                                alt="Vakdor Logo" 
-                                className="relative w-10 h-10 object-contain drop-shadow-[0_0_15px_rgba(184,115,51,0.5)]"
-                            />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#B87333] to-[#5C3D2E] blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
+                            <div className="relative bg-gradient-to-br from-[#B87333] to-[#8B5A2B] text-white font-extrabold text-lg md:text-xl px-4 py-2 rounded-xl shadow-lg">
+                                Vakdor
+                            </div>
                         </div>
-                        <span className="font-display text-2xl font-black tracking-tight text-[#F8FAFC]">
-                            Vakdor<span className="text-[#B87333]">.</span>
-                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}
