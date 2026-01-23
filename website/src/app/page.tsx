@@ -8,27 +8,34 @@ import { ArrowRight, Bot, Building2, Users, Zap, Trophy, Clock } from 'lucide-re
 export default function HomePage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#020617] relative">
+      {/* Particle Background */}
       <ParticleField />
+
       <Header />
 
       <main className="flex-1 relative z-10">
+        {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center pt-24 pb-16 px-4">
           <div className="max-w-5xl mx-auto text-center">
+            {/* Accent Quote */}
             <p className="font-accent text-[#B87333] text-lg md:text-xl mb-6 animate-fade-in">
               "Donde el legado se encuentra con el algoritmo"
             </p>
 
+            {/* Main Title */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#F8FAFC] mb-6 leading-tight animate-fade-in-up">
               La Mayoría de las Inmobiliarias
               <span className="block text-gradient-copper">Pierde Miles de Dólares</span>
               al Año Sin Saberlo
             </h1>
 
+            {/* Subtitle */}
             <p className="text-lg md:text-xl text-[#94A3B8] mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
               No es por falta de esfuerzo. Es porque responder WhatsApps a las 11 de la noche
               y perseguir leads manualmente no escala. Te mostramos cómo la IA hace ese trabajo por vos.
             </p>
 
+            {/* Segmentador Buttons */}
             <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
               <Link
                 href="/asesor-top"
@@ -69,6 +76,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Problem Section */}
         <section className="py-20 px-4 bg-[#0F172A]/50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-[#F8FAFC] mb-4">
@@ -119,6 +127,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* Solution Section */}
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
@@ -171,6 +180,7 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* CTA Section */}
         <section className="py-20 px-4 bg-gradient-to-b from-[#0F172A]/50 to-[#020617]">
           <div className="max-w-3xl mx-auto text-center">
             <p className="font-accent text-[#B87333] text-lg mb-4">¿Listo para empezar?</p>

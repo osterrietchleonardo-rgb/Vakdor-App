@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ParticleField } from '@/components/effects/ParticleField';
 import { ChatBubble } from '@/components/mockups/ChatBubble';
 import { WhatsAppInput } from '@/components/mockups/WhatsAppInput';
 import { CrmMockup } from '@/components/mockups/CrmMockup';
@@ -86,42 +87,45 @@ export default function AsesorTopPage() {
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50">
+        <div className="min-h-screen flex flex-col bg-[#020617] relative">
+            <ParticleField />
             <Header />
 
-            <main className="flex-1">
+            <main className="flex-1 relative z-10">
                 {/* Hero Section */}
-                <section className="bg-gradient-to-br from-blue-600 to-indigo-800 text-white py-12 md:py-20 px-4">
+                <section className="pt-32 pb-16 px-4">
                     <div className="max-w-6xl mx-auto text-center">
-                        <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
-                            ¿Y Si Pudieras Dejar de Responder WhatsApps a las 11 PM y Aun Así Cerrar Más Ventas?
+                        <p className="font-accent text-[#B87333] text-lg mb-4">Para Asesores Inmobiliarios</p>
+                        <h1 className="text-3xl md:text-5xl font-extrabold text-[#F8FAFC] mb-6 leading-tight">
+                            ¿Y Si Pudieras Dejar de Responder WhatsApps a las 11 PM
+                            <span className="block text-gradient-copper">y Aun Así Cerrar Más Ventas?</span>
                         </h1>
-                        <p className="text-lg md:text-xl text-blue-100 mb-8 max-w-4xl mx-auto">
+                        <p className="text-lg md:text-xl text-[#94A3B8] mb-8 max-w-4xl mx-auto">
                             No es magia. Es un asistente de IA que responde consultas, filtra leads, agenda visitas y actualiza tu CRM mientras vos estás en otra cosa. Así de simple.
                         </p>
                     </div>
                 </section>
 
                 {/* Interactive Demo */}
-                <section className="py-12 md:py-20 px-4 bg-white">
+                <section className="py-12 md:py-20 px-4 bg-[#0F172A]/50">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid lg:grid-cols-2 gap-8 items-start">
                             {/* Left: Description & Controls */}
                             <div>
-                                <h2 className="text-2xl md:text-3xl font-bold mb-6">
+                                <h2 className="text-2xl md:text-3xl font-bold text-[#F8FAFC] mb-6">
                                     Mirá Cómo Funciona en Vivo
                                 </h2>
-                                <p className="text-slate-600 mb-6">
+                                <p className="text-[#94A3B8] mb-6">
                                     Este es el flujo real que tu asistente de IA ejecuta cuando llega un lead. Responde, filtra, recomienda propiedades y agenda visitas automáticamente.
                                 </p>
 
                                 {/* Scenario Tabs */}
-                                <div className="bg-slate-50 p-2 rounded-xl inline-flex gap-2 mb-8 border border-slate-200">
+                                <div className="bg-[#1E293B] p-2 rounded-xl inline-flex gap-2 mb-8 border border-[rgba(184,115,51,0.2)]">
                                     <button
                                         onClick={() => setSalesScenario('initial')}
                                         className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${salesScenario === 'initial'
-                                            ? 'bg-white text-emerald-600 shadow-sm border border-emerald-100'
-                                            : 'text-slate-500 hover:text-slate-700'
+                                            ? 'bg-[#B87333] text-white shadow-sm'
+                                            : 'text-[#94A3B8] hover:text-white'
                                             }`}
                                     >
                                         <MessageSquare size={16} />
@@ -130,8 +134,8 @@ export default function AsesorTopPage() {
                                     <button
                                         onClick={() => setSalesScenario('crm')}
                                         className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${salesScenario === 'crm'
-                                            ? 'bg-white text-blue-600 shadow-sm border border-blue-100'
-                                            : 'text-slate-500 hover:text-slate-700'
+                                            ? 'bg-[#B87333] text-white shadow-sm'
+                                            : 'text-[#94A3B8] hover:text-white'
                                             }`}
                                     >
                                         <Database size={16} />
@@ -140,8 +144,8 @@ export default function AsesorTopPage() {
                                     <button
                                         onClick={() => setSalesScenario('followup')}
                                         className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold transition-all ${salesScenario === 'followup'
-                                            ? 'bg-white text-amber-600 shadow-sm border border-amber-100'
-                                            : 'text-slate-500 hover:text-slate-700'
+                                            ? 'bg-[#B87333] text-white shadow-sm'
+                                            : 'text-[#94A3B8] hover:text-white'
                                             }`}
                                     >
                                         <TrendingUp size={16} />
@@ -153,14 +157,14 @@ export default function AsesorTopPage() {
                                     <div className="flex gap-3 mb-6">
                                         <button
                                             onClick={handleReset}
-                                            className="p-3 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+                                            className="p-3 text-[#94A3B8] hover:text-[#B87333] hover:bg-[#B87333]/10 rounded-full transition-colors"
                                             title="Reiniciar"
                                         >
                                             <RotateCcw size={20} />
                                         </button>
                                         <button
                                             onClick={() => setIsPlaying(!isPlaying)}
-                                            className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all shadow-md active:scale-95 ${isPlaying ? 'bg-amber-500 hover:bg-amber-600' : 'bg-blue-600 hover:bg-blue-700'
+                                            className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all shadow-md active:scale-95 ${isPlaying ? 'bg-[#B87333] hover:bg-[#A0522D]' : 'cta-copper'
                                                 }`}
                                         >
                                             {isPlaying ? (
@@ -177,27 +181,27 @@ export default function AsesorTopPage() {
                                 )}
 
                                 {/* Scenario Descriptions */}
-                                <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                                <div className="bg-[#0F172A]/60 p-6 rounded-xl border border-[#B87333]/20 backdrop-blur-sm">
                                     {salesScenario === 'initial' && (
                                         <>
-                                            <h3 className="font-bold text-lg mb-2">Paso 1: Filtrado y Agenda</h3>
-                                            <p className="text-sm text-slate-600">
+                                            <h3 className="font-bold text-lg mb-2 text-[#F8FAFC]">Paso 1: Filtrado y Agenda</h3>
+                                            <p className="text-sm text-[#94A3B8]">
                                                 La IA recibe mensajes por WhatsApp, liquida las consultas (presupuesto, zona, urgencia), recomienda propiedades específicas de tu stock y agenda una visita.
                                             </p>
                                         </>
                                     )}
                                     {salesScenario === 'crm' && (
                                         <>
-                                            <h3 className="font-bold text-lg mb-2">Paso 2: Registro Automático</h3>
-                                            <p className="text-sm text-slate-600">
+                                            <h3 className="font-bold text-lg mb-2 text-[#F8FAFC]">Paso 2: Registro Automático</h3>
+                                            <p className="text-sm text-[#94A3B8]">
                                                 Toda la data recolectada se carga sola en tu CRM. Estado, clasificación, historial de chat y próxima acción definida.
                                             </p>
                                         </>
                                     )}
                                     {salesScenario === 'followup' && (
                                         <>
-                                            <h3 className="font-bold text-lg mb-2">Paso 3: Reactivación de Base</h3>
-                                            <p className="text-sm text-slate-600">
+                                            <h3 className="font-bold text-lg mb-2 text-[#F8FAFC]">Paso 3: Reactivación de Base</h3>
+                                            <p className="text-sm text-[#94A3B8]">
                                                 El sistema detecta leads viejos que no compraron y les avisa cuando entra una propiedad que matchea con su búsqueda.
                                             </p>
                                         </>
@@ -319,10 +323,10 @@ export default function AsesorTopPage() {
                                     description: 'Tenés leads de hace 6 meses. La IA los vuelve a contactar con nuevas propiedades.'
                                 }
                             ].map((benefit, idx) => (
-                                <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                                <div key={idx} className="kinetic-card p-6 rounded-xl">
                                     <div className="text-4xl mb-4">{benefit.icon}</div>
-                                    <h3 className="text-xl font-bold mb-3">{benefit.title}</h3>
-                                    <p className="text-slate-600">{benefit.description}</p>
+                                    <h3 className="text-xl font-bold mb-3 text-[#F8FAFC]">{benefit.title}</h3>
+                                    <p className="text-[#94A3B8]">{benefit.description}</p>
                                 </div>
                             ))}
                         </div>
@@ -330,24 +334,28 @@ export default function AsesorTopPage() {
                 </section>
 
                 {/* CTA Final */}
-                <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#020617] text-white relative overflow-hidden">
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-96 h-96 bg-[#B87333]/20 rounded-full blur-3xl"></div>
+                    </div>
+                    <div className="max-w-4xl mx-auto text-center relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F8FAFC]">
                             ¿Querés Ver Cómo Funciona en tu Caso Específico?
                         </h2>
-                        <p className="text-lg text-slate-300 mb-8">
+                        <p className="text-lg text-[#94A3B8] mb-8">
                             No es una demo genérica. Es una llamada de 15 minutos donde vemos cómo se integra con tu CRM y cuánto tiempo te ahorrarías.
                         </p>
                         <a
                             href="https://vakdor.com/call_vsl"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/50 active:scale-95"
+                            className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl transition-all active:scale-95"
                         >
                             <Calendar size={20} />
                             Agendar Llamada de 15 Min
                         </a>
-                        <p className="text-sm text-slate-400 mt-6">
+                        <p className="text-sm text-[#94A3B8] mt-6">
                             ✅ 90 días de garantía - Si no funciona, te devolvemos todo
                         </p>
                     </div>

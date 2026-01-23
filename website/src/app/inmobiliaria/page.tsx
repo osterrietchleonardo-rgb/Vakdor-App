@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ParticleField } from '@/components/effects/ParticleField';
 import { ScrapingMockup } from '@/components/mockups/ScrapingMockup';
 import { AdvisorDashboardMockup } from '@/components/mockups/AdvisorDashboardMockup';
 import { ChatBubble } from '@/components/mockups/ChatBubble';
@@ -88,15 +89,18 @@ export default function InmobiliariaPage() {
     }, [activeTab]);
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50">
+        <div className="min-h-screen flex flex-col bg-[#020617] relative">
+            <ParticleField />
             <Header />
 
-            <main className="flex-1">
+            <main className="flex-1 relative z-10">
                 {/* Hero Section */}
-                <section className="bg-gradient-to-br from-slate-900 to-slate-800 text-white py-12 md:py-20 px-4">
+                <section className="pt-32 pb-16 px-4">
                     <div className="max-w-6xl mx-auto text-center">
-                        <h1 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 leading-tight">
-                            Tu Inmobiliaria Pierde $120,000 al Año por No Tener un Sistema de Captación, Tracking y Capacitación Automático
+                        <p className="font-accent text-[#B87333] text-lg mb-4">Para Inmobiliarias</p>
+                        <h1 className="text-3xl md:text-5xl font-extrabold text-[#F8FAFC] mb-6 leading-tight">
+                            Tu Inmobiliaria Pierde <span className="text-gradient-copper">$120,000 al Año</span>
+                            <span className="block">por No Tener un Sistema Automático</span>
                         </h1>
                         <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-5xl mx-auto">
                             El Partner Tecnológico que Automatiza la Prospección de Propiedades Exclusivas, Rastrea la Performance Real de tus Asesores y Capacita a tu Equipo con IA en 7 Días (Sin Contratar un Solo Desarrollador).
@@ -105,9 +109,9 @@ export default function InmobiliariaPage() {
                 </section>
 
                 {/* 3-Tab Mockup System */}
-                <section className="py-12 md:py-20 px-4 bg-white">
+                <section className="py-12 md:py-20 px-4 bg-[#0F172A]">
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-[#F8FAFC]">
                             Los 3 Sistemas que Implementamos
                         </h2>
 
@@ -116,8 +120,8 @@ export default function InmobiliariaPage() {
                             <button
                                 onClick={() => setActiveTab('rastreo')}
                                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'rastreo'
-                                    ? 'bg-blue-600 text-white shadow-lg'
-                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    ? 'bg-[#B87333] text-white shadow-lg shadow-[#B87333]/30'
+                                    : 'bg-[#020617]/60 text-[#94A3B8] hover:bg-[#B87333]/20 border border-[#B87333]/20'
                                     }`}
                             >
                                 <Search size={18} />
@@ -126,8 +130,8 @@ export default function InmobiliariaPage() {
                             <button
                                 onClick={() => setActiveTab('contacto')}
                                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'contacto'
-                                    ? 'bg-emerald-600 text-white shadow-lg'
-                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    ? 'bg-[#B87333] text-white shadow-lg shadow-[#B87333]/30'
+                                    : 'bg-[#020617]/60 text-[#94A3B8] hover:bg-[#B87333]/20 border border-[#B87333]/20'
                                     }`}
                             >
                                 <MessageSquare size={18} />
@@ -136,8 +140,8 @@ export default function InmobiliariaPage() {
                             <button
                                 onClick={() => setActiveTab('tracking')}
                                 className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'tracking'
-                                    ? 'bg-indigo-600 text-white shadow-lg'
-                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                                    ? 'bg-[#B87333] text-white shadow-lg shadow-[#B87333]/30'
+                                    : 'bg-[#020617]/60 text-[#94A3B8] hover:bg-[#B87333]/20 border border-[#B87333]/20'
                                     }`}
                             >
                                 <TrendingUp size={18} />
@@ -151,32 +155,32 @@ export default function InmobiliariaPage() {
                             <div>
                                 {activeTab === 'rastreo' && (
                                     <>
-                                        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#F8FAFC]">
                                             Captación Automática 24/7
                                         </h3>
-                                        <p className="text-slate-600 mb-6">
+                                        <p className="text-[#94A3B8] mb-6">
                                             La IA escanea ZonaProp, ArgenProp y Mercado Libre cada 6 horas, detecta propiedades de dueños directos y extrae sus contactos antes que tu competencia.
                                         </p>
                                         <div className="space-y-4">
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">5+ Propiedades Exclusivas al Mes</h4>
-                                                    <p className="text-sm text-slate-600">En promedio, sin que tus asesores salgan a buscar</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">5+ Propiedades Exclusivas al Mes</h4>
+                                                    <p className="text-sm text-[#94A3B8]">En promedio, sin que tus asesores salgan a buscar</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Llegás Primero</h4>
-                                                    <p className="text-sm text-slate-600">El sistema contacta en menos de 30 minutos desde que se publica</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Llegás Primero</h4>
+                                                    <p className="text-sm text-[#94A3B8]">El sistema contacta en menos de 30 minutos desde que se publica</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Se Integra con tu CRM</h4>
-                                                    <p className="text-sm text-slate-600">Todos los contactos se registran automáticamente</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Se Integra con tu CRM</h4>
+                                                    <p className="text-sm text-[#94A3B8]">Todos los contactos se registran automáticamente</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -185,10 +189,10 @@ export default function InmobiliariaPage() {
 
                                 {activeTab === 'contacto' && (
                                     <>
-                                        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#F8FAFC]">
                                             Outreach Automático a Dueños
                                         </h3>
-                                        <p className="text-slate-600 mb-6">
+                                        <p className="text-[#94A3B8] mb-6">
                                             Una vez detectado el dueño directo, la IA le envía un mensaje por WhatsApp ofreciendo una tasación gratuita y agenda la visita automáticamente.
                                         </p>
 
@@ -196,14 +200,14 @@ export default function InmobiliariaPage() {
                                         <div className="flex gap-3 mb-8">
                                             <button
                                                 onClick={handleReset}
-                                                className="p-3 text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+                                                className="p-3 text-[#94A3B8] hover:text-[#B87333] hover:bg-[#B87333]/10 rounded-full transition-colors"
                                                 title="Reiniciar Conv"
                                             >
                                                 <RotateCcw size={20} />
                                             </button>
                                             <button
                                                 onClick={() => setIsPlaying(!isPlaying)}
-                                                className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all shadow-md active:scale-95 ${isPlaying ? 'bg-emerald-500 hover:bg-emerald-600' : 'bg-slate-700 hover:bg-slate-800'
+                                                className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold text-white transition-all shadow-md active:scale-95 ${isPlaying ? 'bg-[#B87333] hover:bg-[#A0522D]' : 'cta-copper'
                                                     }`}
                                             >
                                                 {isPlaying ? (
@@ -220,24 +224,24 @@ export default function InmobiliariaPage() {
 
                                         <div className="space-y-4">
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Mensaje Personalizado</h4>
-                                                    <p className="text-sm text-slate-600">La IA adapta el tono según el perfil del dueño</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Mensaje Personalizado</h4>
+                                                    <p className="text-sm text-[#94A3B8]">La IA adapta el tono según el perfil del dueño</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Agenda Automática</h4>
-                                                    <p className="text-sm text-slate-600">Si acepta, coordina fecha y hora sin intervención manual</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Agenda Automática</h4>
+                                                    <p className="text-sm text-[#94A3B8]">Si acepta, coordina fecha y hora sin intervención manual</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Tasa de Respuesta 40%</h4>
-                                                    <p className="text-sm text-slate-600">4 de cada 10 dueños contactados responden positivamente</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Tasa de Respuesta 40%</h4>
+                                                    <p className="text-sm text-[#94A3B8]">4 de cada 10 dueños contactados responden positivamente</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -246,32 +250,32 @@ export default function InmobiliariaPage() {
 
                                 {activeTab === 'tracking' && (
                                     <>
-                                        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                                        <h3 className="text-2xl md:text-3xl font-bold mb-4 text-[#F8FAFC]">
                                             Dashboard de Performance Real
                                         </h3>
-                                        <p className="text-slate-600 mb-6">
+                                        <p className="text-[#94A3B8] mb-6">
                                             Ve en tiempo real quién responde rápido, quién convierte y quién está a punto de irse. El sistema te alerta antes de que renuncien.
                                         </p>
                                         <div className="space-y-4">
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Métricas en Tiempo Real</h4>
-                                                    <p className="text-sm text-slate-600">Tasa de respuesta, conversión y leads perdidos por asesor</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Métricas en Tiempo Real</h4>
+                                                    <p className="text-sm text-[#94A3B8]">Tasa de respuesta, conversión y leads perdidos por asesor</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Alertas Predictivas</h4>
-                                                    <p className="text-sm text-slate-600">Te avisa cuando detecta patrones de riesgo de rotación</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Alertas Predictivas</h4>
+                                                    <p className="text-sm text-[#94A3B8]">Te avisa cuando detecta patrones de riesgo de rotación</p>
                                                 </div>
                                             </div>
                                             <div className="flex items-start gap-3">
-                                                <CheckCircle2 size={20} className="text-emerald-600 mt-0.5 flex-shrink-0" />
+                                                <CheckCircle2 size={20} className="text-[#B87333] mt-0.5 flex-shrink-0" />
                                                 <div>
-                                                    <h4 className="font-bold">Reducción 50% Rotación</h4>
-                                                    <p className="text-sm text-slate-600">Intervención temprana = asesores más felices y productivos</p>
+                                                    <h4 className="font-bold text-[#F8FAFC]">Reducción 50% Rotación</h4>
+                                                    <p className="text-sm text-[#94A3B8]">Intervención temprana = asesores más felices y productivos</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -348,15 +352,15 @@ export default function InmobiliariaPage() {
                 </section>
 
                 {/* ROI Calculator Section */}
-                <section className="py-12 md:py-20 px-4 bg-slate-100">
+                <section className="py-12 md:py-20 px-4 bg-[#020617]">
                     <div className="max-w-5xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#F8FAFC]">
                             Calculadora de Retorno de Inversión (ROI)
                         </h2>
-                        <p className="text-center text-slate-600 mb-8 max-w-3xl mx-auto">
+                        <p className="text-center text-[#94A3B8] mb-8 max-w-3xl mx-auto">
                             Descubrí cuánto dinero estás dejando sobre la mesa. Esta herramienta utiliza tus métricas actuales (o promedios del mercado) para proyectar cuánto facturarías extra implementando nuestro sistema de captación y seguimiento automático.
                         </p>
-                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8 text-sm text-blue-800 max-w-3xl mx-auto">
+                        <div className="bg-[#B87333]/10 border border-[#B87333]/30 rounded-xl p-4 mb-8 text-sm text-[#F8FAFC] max-w-3xl mx-auto">
                             <strong>¿Cómo usarla?</strong> Ingresá la cantidad de asesores en tu equipo, el valor promedio de las propiedades que venden y cuántas captaciones logran hoy. El sistema calculará automáticamente tu potencial de crecimiento anual conservador.
                         </div>
                         <RoiCalculator />
@@ -364,24 +368,28 @@ export default function InmobiliariaPage() {
                 </section>
 
                 {/* CTA Final */}
-                <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-slate-900 to-slate-800 text-white">
-                    <div className="max-w-4xl mx-auto text-center">
-                        <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#020617] text-white relative overflow-hidden">
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-96 h-96 bg-[#B87333]/20 rounded-full blur-3xl"></div>
+                    </div>
+                    <div className="max-w-4xl mx-auto text-center relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F8FAFC]">
                             ¿Querés Ver Cómo Aplicaría en tu Inmobiliaria?
                         </h2>
-                        <p className="text-lg text-slate-300 mb-8">
+                        <p className="text-lg text-[#94A3B8] mb-8">
                             Llamada de 30 minutos donde vemos qué sistemas aplican a tu operación, cuál sería el ROI y cómo implementamos sin interrumpir nada.
                         </p>
                         <a
                             href="https://vakdor.com/call_vsl"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-emerald-500/50 active:scale-95"
+                            className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl transition-all active:scale-95"
                         >
                             <Calendar size={20} />
                             Agendar Llamada Estratégica - 30 Min Gratis
                         </a>
-                        <p className="text-sm text-slate-400 mt-6">
+                        <p className="text-sm text-[#94A3B8] mt-6">
                             ✅ Garantía de Resultados de 90 Días o Devolución Total
                         </p>
                     </div>
