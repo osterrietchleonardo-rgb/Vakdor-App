@@ -28,12 +28,17 @@ export function Header() {
                 <div className="flex justify-between items-center">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-[#B87333] to-[#5C3D2E] blur-lg opacity-50 group-hover:opacity-80 transition-opacity" />
-                            <div className="relative bg-gradient-to-br from-[#B87333] to-[#8B5A2B] text-white font-extrabold text-lg md:text-xl px-4 py-2 rounded-xl shadow-lg">
-                                Vakdor
-                            </div>
+                        <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110">
+                            <div className="absolute inset-0 bg-[#B87333] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full" />
+                            <img
+                                src="/logo.svg"
+                                alt="Vakdor Logo"
+                                className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_15px_rgba(184,115,51,0.3)]"
+                            />
                         </div>
+                        <span className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-[#E2E8F0] to-[#94A3B8] group-hover:to-white transition-all duration-300">
+                            Vakdor
+                        </span>
                     </Link>
 
                     {/* Desktop Navigation */}
