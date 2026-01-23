@@ -1,4 +1,10 @@
-import type { Json } from './supabase';
+export type Json =
+    | string
+    | number
+    | boolean
+    | null
+    | { [key: string]: Json | undefined }
+    | Json[];
 
 export interface Database {
     public: {
