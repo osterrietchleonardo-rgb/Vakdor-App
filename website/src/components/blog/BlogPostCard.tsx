@@ -9,9 +9,9 @@ interface BlogPostCardProps {
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
     return (
-        <article className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow group flex flex-col">
+        <article className="kinetic-card rounded-2xl overflow-hidden group flex flex-col">
             <div
-                className="h-48 bg-gradient-to-br from-blue-500 to-indigo-600 relative overflow-hidden"
+                className="h-48 bg-gradient-to-br from-[#B87333] to-[#5C3D2E] relative overflow-hidden"
             >
                 {post.featured_image_url ? (
                     <img
@@ -26,8 +26,8 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
                 )}
             </div>
             <div className="p-5 flex-1 flex flex-col">
-                <div className="flex items-center gap-3 text-xs text-slate-500 mb-3">
-                    <span className="bg-blue-100 text-blue-700 px-2 py-0.5 rounded font-medium">
+                <div className="flex items-center gap-3 text-xs text-[#94A3B8] mb-3">
+                    <span className="bg-[#B87333]/20 text-[#B87333] px-2 py-0.5 rounded font-medium">
                         {post.category}
                     </span>
                     {post.read_time_minutes && (
@@ -37,14 +37,14 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
                         </span>
                     )}
                 </div>
-                <h2 className="text-lg font-bold mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                <h2 className="text-lg font-bold text-[#F8FAFC] mb-2 group-hover:text-[#B87333] transition-colors line-clamp-2">
                     {post.title}
                 </h2>
-                <p className="text-sm text-slate-600 mb-4 line-clamp-3">
+                <p className="text-sm text-[#94A3B8] mb-4 line-clamp-3">
                     {post.meta_description}
                 </p>
                 <div className="mt-auto flex items-center justify-between">
-                    <span className="text-xs text-slate-400">
+                    <span className="text-xs text-[#64748B]">
                         {post.published_at ? new Date(post.published_at).toLocaleDateString('es-AR', {
                             day: 'numeric',
                             month: 'short',
@@ -53,7 +53,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
                     </span>
                     <Link
                         href={`/blog/${post.slug}`}
-                        className="text-sm font-bold text-blue-600 flex items-center gap-1 group-hover:gap-2 transition-all"
+                        className="text-sm font-bold text-[#B87333] flex items-center gap-1 group-hover:gap-2 transition-all"
                     >
                         Leer más <ArrowRight size={14} />
                     </Link>
