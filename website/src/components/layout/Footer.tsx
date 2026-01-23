@@ -16,7 +16,7 @@ export function Footer() {
                                 Vakdor
                             </div>
                         </Link>
-                        <p className="text-[#94A3B8] text-sm leading-relaxed mb-4">
+                        <p className="text-[#CBD5E1] text-sm leading-relaxed mb-4">
                             El Partner Tecnológico del Sector Inmobiliario. Automatiza y escala tu negocio con IA.
                         </p>
                         <p className="font-accent text-[#B87333] text-sm italic">
@@ -40,7 +40,7 @@ export function Footer() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className="text-[#94A3B8] hover:text-[#B87333] transition-colors text-sm"
+                                    className="text-[#CBD5E1] hover:text-[#B87333] transition-colors text-sm font-medium"
                                 >
                                     {link.label}
                                 </Link>
@@ -56,20 +56,20 @@ export function Footer() {
                         <div className="flex flex-col gap-3 text-sm">
                             <a
                                 href="mailto:hola@vakdor.com"
-                                className="flex items-center gap-2 text-[#94A3B8] hover:text-[#B87333] transition-colors"
+                                className="flex items-center gap-2 text-[#CBD5E1] hover:text-[#B87333] transition-colors font-medium"
                             >
-                                <Mail size={14} />
+                                <Mail size={16} />
                                 hola@vakdor.com
                             </a>
                             <a
                                 href="tel:+5491112345678"
-                                className="flex items-center gap-2 text-[#94A3B8] hover:text-[#B87333] transition-colors"
+                                className="flex items-center gap-2 text-[#CBD5E1] hover:text-[#B87333] transition-colors font-medium"
                             >
-                                <Phone size={14} />
+                                <Phone size={16} />
                                 +54 9 11 1234-5678
                             </a>
-                            <span className="flex items-center gap-2 text-[#94A3B8]">
-                                <MapPin size={14} />
+                            <span className="flex items-center gap-2 text-[#CBD5E1] font-medium">
+                                <MapPin size={16} />
                                 Buenos Aires, Argentina
                             </span>
                         </div>
@@ -83,15 +83,15 @@ export function Footer() {
                         <div className="flex gap-3 mb-6">
                             <a
                                 href="#"
-                                className="w-10 h-10 rounded-lg bg-[#1E293B] flex items-center justify-center text-[#94A3B8] hover:bg-[#B87333] hover:text-white transition-all"
+                                className="w-10 h-10 rounded-lg bg-[#334155] flex items-center justify-center text-[#E2E8F0] hover:bg-[#B87333] hover:text-white transition-all hover:scale-110"
                             >
-                                <Linkedin size={18} />
+                                <Linkedin size={20} />
                             </a>
                             <a
                                 href="#"
-                                className="w-10 h-10 rounded-lg bg-[#1E293B] flex items-center justify-center text-[#94A3B8] hover:bg-[#B87333] hover:text-white transition-all"
+                                className="w-10 h-10 rounded-lg bg-[#334155] flex items-center justify-center text-[#E2E8F0] hover:bg-[#B87333] hover:text-white transition-all hover:scale-110"
                             >
-                                <Instagram size={18} />
+                                <Instagram size={20} />
                             </a>
                         </div>
                         <a
@@ -111,10 +111,10 @@ export function Footer() {
                         © {new Date().getFullYear()} Vakdor. Todos los derechos reservados.
                     </p>
                     <div className="flex gap-6 text-xs">
-                        <Link href="#" className="text-[#64748B] hover:text-[#B87333] transition-colors">
+                        <Link href="#" className="text-[#94A3B8] hover:text-[#B87333] transition-colors">
                             Términos y Condiciones
                         </Link>
-                        <Link href="#" className="text-[#64748B] hover:text-[#B87333] transition-colors">
+                        <Link href="#" className="text-[#94A3B8] hover:text-[#B87333] transition-colors">
                             Política de Privacidad
                         </Link>
                     </div>
