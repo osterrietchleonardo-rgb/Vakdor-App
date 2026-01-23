@@ -47,8 +47,6 @@ export const metadata: Metadata = {
   },
 };
 
-import { BackgroundLogo } from "@/components/effects/BackgroundLogo";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -57,7 +55,6 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning className="dark">
       <body className={`${plusJakarta.variable} ${fraunces.variable} font-sans antialiased bg-[#020617]`}>
-        <BackgroundLogo />
         {children}
       </body>
     </html>
