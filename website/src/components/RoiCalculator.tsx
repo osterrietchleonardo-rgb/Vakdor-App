@@ -158,7 +158,7 @@ export function RoiCalculator() {
 
             <div className="text-center">
                 <a
-                    href="https://vakdor.com/call_vsl"
+                    href="https://propuesta.vakdor.com/call"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-3 rounded-xl transition-all active:scale-95"

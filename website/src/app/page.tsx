@@ -192,7 +192,7 @@ export default function HomePage() {
               tu inmobiliaria sobre la mesa y cómo podemos ayudarte a recuperarlo.
             </p>
             <a
-              href="https://vakdor.com/call_vsl"
+              href="https://propuesta.vakdor.com/call"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"

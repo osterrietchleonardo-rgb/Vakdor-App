@@ -59,7 +59,7 @@ export function Header() {
                     {/* CTA Button */}
                     <div className="flex items-center gap-4">
                         <a
-                            href="https://vakdor.com/call_vsl"
+                            href="https://propuesta.vakdor.com/call"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-[#B87333] to-[#9A5520] hover:from-[#A05A2C] hover:to-[#8B4513] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg hover:shadow-[#B87333]/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
@@ -99,7 +99,7 @@ export function Header() {
                                 </Link>
                             ))}
                             <a
-                                href="https://vakdor.com/call_vsl"
+                                href="https://propuesta.vakdor.com/call"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="bg-gradient-to-r from-[#B87333] to-[#9A5520] text-white px-5 py-3 rounded-xl text-center text-sm mt-2 shadow-lg font-bold"
