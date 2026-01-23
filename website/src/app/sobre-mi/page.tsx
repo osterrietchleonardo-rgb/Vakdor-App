@@ -116,7 +116,7 @@ export default function SobreMiPage() {
                         <p className="font-accent text-[#B87333] text-lg mb-4">¿Querés saber más?</p>
                         <h2 className="text-3xl font-bold text-[#F8FAFC] mb-6">Hablemos de Tu Inmobiliaria</h2>
                         <a
-                            href="https://vakdor.com/call_vsl"
+                            href="https://propuesta.vakdor.com/call"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-block cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"

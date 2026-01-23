@@ -347,7 +347,7 @@ export default function AsesorTopPage() {
                             No es una demo genérica. Es una llamada de 15 minutos donde vemos cómo se integra con tu CRM y cuánto tiempo te ahorrarías.
                         </p>
                         <a
-                            href="https://vakdor.com/call_vsl"
+                            href="https://propuesta.vakdor.com/call"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl transition-all active:scale-95"

@@ -117,7 +117,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
                         Charlá 15 minutos con nosotros para ver cómo podemos ayudarte.
                     </p>
                     <a
-                        href="https://vakdor.com/call_vsl"
+                        href="https://propuesta.vakdor.com/call"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg active:scale-95 inline-block"
