@@ -56,22 +56,22 @@ export function Footer() {
                         </h4>
                         <div className="flex flex-col gap-4 text-sm">
                             <a
-                                href="mailto:hola@vakdor.com"
+                                href="mailto:business@vakdor.com"
                                 className="flex items-center gap-3 !text-slate-300 hover:!text-white transition-colors font-medium group"
                             >
                                 <div className="p-2 rounded-lg bg-[#1E293B] group-hover:bg-[#B87333] transition-colors">
                                     <Mail size={16} className="text-[#B87333] group-hover:!text-white" />
                                 </div>
-                                hola@vakdor.com
+                                business@vakdor.com
                             </a>
                             <a
-                                href="tel:+5491112345678"
+                                href="tel:+5492213089334"
                                 className="flex items-center gap-3 !text-slate-300 hover:!text-white transition-colors font-medium group"
                             >
                                 <div className="p-2 rounded-lg bg-[#1E293B] group-hover:bg-[#B87333] transition-colors">
                                     <Phone size={16} className="text-[#B87333] group-hover:!text-white" />
                                 </div>
-                                +54 9 11 1234-5678
+                                +54 9 221 308-9334
                             </a>
                             <span className="flex items-center gap-3 !text-slate-300 font-medium group">
                                 <div className="p-2 rounded-lg bg-[#1E293B]">
