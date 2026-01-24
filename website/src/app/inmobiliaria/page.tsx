@@ -94,17 +94,26 @@ export default function InmobiliariaPage() {
             <Header />
 
             <main className="flex-1 relative z-10">
-                {/* Hero Section */}
+                {/* Hero Section - Caples: Urgency + Belfort: Certainty */}
                 <section className="pt-32 pb-16 px-4">
                     <div className="max-w-6xl mx-auto text-center">
-                        <p className="font-accent text-[#B87333] text-lg mb-4">Para Inmobiliarias</p>
+                        <p className="font-accent text-[#B87333] text-lg mb-4">Para Directores de Inmobiliaria</p>
                         <h1 className="text-3xl md:text-5xl font-extrabold text-[#F8FAFC] mb-6 leading-tight">
-                            Tu Inmobiliaria Pierde <span className="text-gradient-copper">$120,000 al Año</span>
-                            <span className="block">por No Tener un Sistema Automático</span>
+                            El Costo Oculto: Tu Inmobiliaria Pierde <span className="text-gradient-copper">$120,000 USD al Año.</span>
+                            <span className="block text-2xl md:text-3xl mt-2 text-[#94A3B8]">Garantizado. (Y Sabés que es Verdad).</span>
                         </h1>
                         <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-5xl mx-auto">
-                            El Partner Tecnológico que Automatiza la Prospección de Propiedades Exclusivas, Rastrea la Performance Real de tus Asesores y Capacita a tu Equipo con IA en 7 Días (Sin Contratar un Solo Desarrollador).
+                            Vakdor es el Partner Tecnológico que Instala la <span className="text-[#B87333] font-semibold">Arquitectura de Ventas Autónoma</span>: Captación Exclusiva, Tracking de Equipo y Capacitación con IA en <span className="text-white font-medium">7 Días</span>.
                         </p>
+                        
+                        {/* Hopkins: Objection Handling - Injected */}
+                        <div className="max-w-2xl mx-auto bg-[#0F172A]/80 border border-[#B87333]/30 rounded-xl p-6 mb-8">
+                            <p className="text-[#B87333] font-bold mb-2">"¿Es muy caro?"</p>
+                            <p className="text-[#94A3B8] text-sm">
+                                El costo de <span className="text-white">no</span> tener este sistema es de $120,000 USD al año. 
+                                La pregunta no es si podés pagar Vakdor, sino <span className="text-white font-medium">si podés permitirte seguir perdiendo ese dinero</span>.
+                            </p>
+                        </div>
                     </div>
                 </section>
 
@@ -351,17 +360,17 @@ export default function InmobiliariaPage() {
                     </div>
                 </section>
 
-                {/* ROI Calculator Section */}
+                {/* ROI Calculator Section - Cialdini: Reciprocity */}
                 <section className="py-12 md:py-20 px-4 bg-[#020617]">
                     <div className="max-w-5xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-[#F8FAFC]">
-                            Calculadora de Retorno de Inversión (ROI)
+                            Validá tu ROI con Datos Reales: <span className="text-gradient-copper">Descubrí Cuánto Dejarías de Perder</span>
                         </h2>
                         <p className="text-center text-[#94A3B8] mb-8 max-w-3xl mx-auto">
-                            Descubrí cuánto dinero estás dejando sobre la mesa. Esta herramienta utiliza tus métricas actuales (o promedios del mercado) para proyectar cuánto facturarías extra implementando nuestro sistema de captación y seguimiento automático.
+                            Esta calculadora utiliza tus métricas actuales para proyectar cuánto facturarías extra implementando la Arquitectura de Venta Autónoma. Sin humo, solo matemática.
                         </p>
                         <div className="bg-[#B87333]/10 border border-[#B87333]/30 rounded-xl p-4 mb-8 text-sm text-[#F8FAFC] max-w-3xl mx-auto">
-                            <strong>¿Cómo usarla?</strong> Ingresá la cantidad de asesores en tu equipo, el valor promedio de las propiedades que venden y cuántas captaciones logran hoy. El sistema calculará automáticamente tu potencial de crecimiento anual conservador.
+                            <strong>¿Cómo usarla?</strong> Ingresá la cantidad de asesores, el valor promedio de las propiedades y cuántas captaciones logran hoy. El sistema calcula tu potencial de crecimiento conservador.
                         </div>
                         <RoiCalculator />
                     </div>
@@ -378,7 +387,7 @@ export default function InmobiliariaPage() {
                             ¿Querés Ver Cómo Aplicaría en tu Inmobiliaria?
                         </h2>
                         <p className="text-lg text-[#94A3B8] mb-8">
-                            Llamada de 30 minutos donde vemos qué sistemas aplican a tu operación, cuál sería el ROI y cómo implementamos sin interrumpir nada.
+                            Auditoría Estratégica de 30 minutos donde analizamos qué sistemas aplican a tu operación, proyectamos el ROI real y diseñamos la implementación sin interrumpir nada.
                         </p>
                         <a
                             href="https://propuesta.vakdor.com/call"
@@ -387,10 +396,10 @@ export default function InmobiliariaPage() {
                             className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl transition-all active:scale-95"
                         >
                             <Calendar size={20} />
-                            Agendar Llamada Estratégica - 30 Min Gratis
+                            Agendar Auditoría Estratégica Gratuita (Espacios Limitados)
                         </a>
                         <p className="text-sm text-[#94A3B8] mt-6">
-                            ✅ Garantía de Resultados de 90 Días o Devolución Total
+                            ✅ 90 Días de Garantía: Si no lográs el ROI proyectado, te devolvemos tu inversión.
                         </p>
                     </div>
                 </section>
