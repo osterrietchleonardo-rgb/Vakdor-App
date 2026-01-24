@@ -1,7 +1,6 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { ParticleField } from '@/components/effects/ParticleField';
 import { getPostBySlug } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 import { Clock, User, ArrowLeft, Tag } from 'lucide-react';
@@ -46,11 +45,10 @@ export default async function BlogPostPage({ params }: PostPageProps) {
     const htmlContent = await marked(post.content);
 
     return (
-        <div className="min-h-screen flex flex-col bg-[#020617] relative">
-            <ParticleField />
+        <div className="min-h-screen flex flex-col bg-[#020617]">
             <Header />
 
-            <main className="flex-1 pt-24 pb-16 relative z-10">
+            <main className="flex-1 pt-24 pb-16">
                 <div className="max-w-4xl mx-auto px-4">
                     {/* Back link */}
                     <Link 
@@ -107,21 +105,21 @@ export default async function BlogPostPage({ params }: PostPageProps) {
                         {/* Content - Dark Theme Prose */}
                         <div
                             className="prose prose-lg prose-invert max-w-none
-                                prose-headings:font-black prose-headings:text-[#F8FAFC]
-                                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-[#B87333]
+                                prose-headings:font-bold prose-headings:text-[#F8FAFC]
+                                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-[#B87333] prose-h2:border-b prose-h2:border-[#1E293B] prose-h2:pb-2
                                 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-[#F8FAFC]
-                                prose-p:text-[#CBD5E1] prose-p:leading-relaxed prose-p:mb-4
-                                prose-strong:text-[#F8FAFC] prose-strong:font-bold
-                                prose-a:text-[#B87333] prose-a:font-bold hover:prose-a:text-[#D4A574] prose-a:no-underline hover:prose-a:underline
-                                prose-ul:text-[#CBD5E1] prose-ul:my-4
-                                prose-ol:text-[#CBD5E1] prose-ol:my-4
-                                prose-li:text-[#CBD5E1] prose-li:my-1
-                                prose-blockquote:border-l-4 prose-blockquote:border-[#B87333] prose-blockquote:bg-[#0F172A] prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-xl prose-blockquote:text-[#94A3B8] prose-blockquote:italic prose-blockquote:my-6
-                                prose-table:border-collapse prose-table:w-full prose-table:my-6
-                                prose-th:bg-[#1E293B] prose-th:text-[#F8FAFC] prose-th:font-bold prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:border prose-th:border-[#334155]
+                                prose-p:text-[#CBD5E1] prose-p:leading-relaxed prose-p:mb-5
+                                prose-strong:text-[#F8FAFC] prose-strong:font-semibold
+                                prose-a:text-[#B87333] prose-a:font-medium hover:prose-a:text-[#D4A574] prose-a:underline
+                                prose-ul:text-[#CBD5E1] prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
+                                prose-ol:text-[#CBD5E1] prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
+                                prose-li:text-[#CBD5E1] prose-li:my-2
+                                prose-blockquote:border-l-4 prose-blockquote:border-[#B87333] prose-blockquote:bg-[#0F172A] prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-xl prose-blockquote:text-[#94A3B8] prose-blockquote:italic prose-blockquote:my-6 prose-blockquote:not-italic
+                                prose-table:border-collapse prose-table:w-full prose-table:my-6 prose-table:overflow-hidden prose-table:rounded-xl
+                                prose-thead:bg-[#1E293B]
+                                prose-th:text-[#F8FAFC] prose-th:font-bold prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:border prose-th:border-[#334155]
                                 prose-td:px-4 prose-td:py-3 prose-td:border prose-td:border-[#334155] prose-td:text-[#CBD5E1]
-                                prose-hr:border-[#334155] prose-hr:my-10
-                                prose-code:text-[#B87333] prose-code:bg-[#1E293B] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded"
+                                prose-hr:border-[#334155] prose-hr:my-10"
                             dangerouslySetInnerHTML={{ __html: htmlContent }}
                         />
 
@@ -146,7 +144,7 @@ export default async function BlogPostPage({ params }: PostPageProps) {
             </main>
 
             {/* CTA Section */}
-            <section className="bg-gradient-to-br from-[#B87333] to-[#5C3D2E] py-16 px-4 relative z-10">
+            <section className="bg-gradient-to-br from-[#B87333] to-[#5C3D2E] py-16 px-4">
                 <div className="max-w-4xl mx-auto text-center">
                     <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
                         ¿Te gustaría implementar esto en tu inmobiliaria?
