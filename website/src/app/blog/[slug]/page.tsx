@@ -1,10 +1,12 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { ParticleField } from '@/components/effects/ParticleField';
 import { getPostBySlug } from '@/lib/blog';
 import { notFound } from 'next/navigation';
-import { Clock, User, Calendar, ArrowLeft, Tag } from 'lucide-react';
+import { Clock, User, ArrowLeft, Tag } from 'lucide-react';
 import Link from 'next/link';
+import { marked } from 'marked';
 
 // Force dynamic rendering to always get fresh data from Supabase
 export const dynamic = 'force-dynamic';
@@ -40,36 +42,47 @@ export default async function BlogPostPage({ params }: PostPageProps) {
         notFound();
     }
 
+    // Convert Markdown to HTML
+    const htmlContent = await marked(post.content);
+
     return (
-        <div className="min-h-screen flex flex-col bg-white">
+        <div className="min-h-screen flex flex-col bg-[#020617] relative">
+            <ParticleField />
             <Header />
 
-            <main className="flex-1 pt-8 pb-16">
+            <main className="flex-1 pt-24 pb-16 relative z-10">
                 <div className="max-w-4xl mx-auto px-4">
-                    <Link href="/blog" className="inline-flex items-center gap-2 text-slate-500 hover:text-blue-600 mb-8 transition-colors text-sm font-medium">
+                    {/* Back link */}
+                    <Link 
+                        href="/blog" 
+                        className="inline-flex items-center gap-2 text-[#94A3B8] hover:text-[#B87333] mb-8 transition-colors text-sm font-medium"
+                    >
                         <ArrowLeft size={16} /> Volver al blog
                     </Link>
 
                     <article>
-                        <div className="mb-8">
-                            <div className="flex items-center gap-4 text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">
-                                <span className="bg-blue-50 px-3 py-1 rounded-full">{post.category}</span>
-                                <span className="flex items-center gap-1.5 text-slate-400 normal-case tracking-normal">
+                        {/* Post Header */}
+                        <div className="mb-10">
+                            <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest mb-4">
+                                <span className="bg-[#B87333]/20 text-[#B87333] px-3 py-1 rounded-full border border-[#B87333]/30">
+                                    {post.category}
+                                </span>
+                                <span className="flex items-center gap-1.5 text-[#94A3B8] normal-case tracking-normal">
                                     <Clock size={14} /> {post.read_time_minutes} min lectura
                                 </span>
                             </div>
 
-                            <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight mb-6">
+                            <h1 className="text-3xl md:text-5xl font-black text-[#F8FAFC] leading-tight mb-6">
                                 {post.title}
                             </h1>
 
-                            <div className="flex items-center gap-4 py-6 border-y border-slate-100 mb-8">
-                                <div className="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center text-slate-500">
+                            <div className="flex items-center gap-4 py-6 border-y border-[#1E293B] mb-8">
+                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#B87333] to-[#5C3D2E] flex items-center justify-center text-white">
                                     <User size={24} />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-bold text-slate-900">{post.author}</p>
-                                    <p className="text-xs text-slate-500">
+                                    <p className="text-sm font-bold text-[#F8FAFC]">{post.author}</p>
+                                    <p className="text-xs text-[#94A3B8]">
                                         {new Date(post.published_at!).toLocaleDateString('es-AR', {
                                             day: 'numeric',
                                             month: 'long',
@@ -80,28 +93,49 @@ export default async function BlogPostPage({ params }: PostPageProps) {
                             </div>
                         </div>
 
+                        {/* Featured Image */}
                         {post.featured_image_url && (
-                            <div className="aspect-video w-full rounded-3xl overflow-hidden mb-12 shadow-lg">
-                                <img src={post.featured_image_url} alt={post.title} className="w-full h-full object-cover" />
+                            <div className="aspect-video w-full rounded-2xl overflow-hidden mb-12 border border-[#1E293B]">
+                                <img 
+                                    src={post.featured_image_url} 
+                                    alt={post.title} 
+                                    className="w-full h-full object-cover" 
+                                />
                             </div>
                         )}
 
+                        {/* Content - Dark Theme Prose */}
                         <div
-                            className="prose prose-lg prose-slate max-w-none 
-              prose-headings:font-black prose-headings:text-slate-900
-              prose-p:text-slate-600 prose-p:leading-relaxed
-              prose-strong:text-slate-900 prose-strong:font-bold
-              prose-a:text-blue-600 prose-a:font-bold hover:prose-a:text-blue-700 decoration-blue-100"
-                            dangerouslySetInnerHTML={{ __html: post.content }}
+                            className="prose prose-lg prose-invert max-w-none
+                                prose-headings:font-black prose-headings:text-[#F8FAFC]
+                                prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-[#B87333]
+                                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-[#F8FAFC]
+                                prose-p:text-[#CBD5E1] prose-p:leading-relaxed prose-p:mb-4
+                                prose-strong:text-[#F8FAFC] prose-strong:font-bold
+                                prose-a:text-[#B87333] prose-a:font-bold hover:prose-a:text-[#D4A574] prose-a:no-underline hover:prose-a:underline
+                                prose-ul:text-[#CBD5E1] prose-ul:my-4
+                                prose-ol:text-[#CBD5E1] prose-ol:my-4
+                                prose-li:text-[#CBD5E1] prose-li:my-1
+                                prose-blockquote:border-l-4 prose-blockquote:border-[#B87333] prose-blockquote:bg-[#0F172A] prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-xl prose-blockquote:text-[#94A3B8] prose-blockquote:italic prose-blockquote:my-6
+                                prose-table:border-collapse prose-table:w-full prose-table:my-6
+                                prose-th:bg-[#1E293B] prose-th:text-[#F8FAFC] prose-th:font-bold prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:border prose-th:border-[#334155]
+                                prose-td:px-4 prose-td:py-3 prose-td:border prose-td:border-[#334155] prose-td:text-[#CBD5E1]
+                                prose-hr:border-[#334155] prose-hr:my-10
+                                prose-code:text-[#B87333] prose-code:bg-[#1E293B] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded"
+                            dangerouslySetInnerHTML={{ __html: htmlContent }}
                         />
 
+                        {/* Tags */}
                         {post.seo_keywords && post.seo_keywords.length > 0 && (
-                            <div className="mt-16 pt-8 border-t border-slate-100 flex flex-wrap gap-2">
-                                <span className="text-sm font-bold text-slate-400 mr-2 flex items-center gap-1.5">
+                            <div className="mt-16 pt-8 border-t border-[#1E293B] flex flex-wrap gap-2">
+                                <span className="text-sm font-bold text-[#94A3B8] mr-2 flex items-center gap-1.5">
                                     <Tag size={14} /> Tags:
                                 </span>
                                 {post.seo_keywords.map((tag) => (
-                                    <span key={tag} className="text-xs bg-slate-50 text-slate-500 px-3 py-1 rounded-full border border-slate-200">
+                                    <span 
+                                        key={tag} 
+                                        className="text-xs bg-[#1E293B] text-[#94A3B8] px-3 py-1 rounded-full border border-[#334155] hover:border-[#B87333] hover:text-[#B87333] transition-colors"
+                                    >
                                         {tag}
                                     </span>
                                 ))}
@@ -111,19 +145,19 @@ export default async function BlogPostPage({ params }: PostPageProps) {
                 </div>
             </main>
 
-            {/* CTA Section for individual post */}
-            <section className="bg-slate-900 py-16 px-4">
+            {/* CTA Section */}
+            <section className="bg-gradient-to-br from-[#B87333] to-[#5C3D2E] py-16 px-4 relative z-10">
                 <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">¿Te gustaría implementar esto en tu inmobiliaria?</h2>
-                    <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                        ¿Te gustaría implementar esto en tu inmobiliaria?
+                    </h2>
+                    <p className="text-white/80 mb-8 max-w-2xl mx-auto">
                         Ayudamos a inmobiliarias a automatizar sus procesos de venta y captación con IA.
                         Charlá 15 minutos con nosotros para ver cómo podemos ayudarte.
                     </p>
                     <a
                         href="https://propuesta.vakdor.com/call"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg active:scale-95 inline-block"
+                        className="bg-[#020617] hover:bg-black text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg active:scale-95 inline-block"
                     >
                         Agendar Llamada Estratégica
                     </a>
