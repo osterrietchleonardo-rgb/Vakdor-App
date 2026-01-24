@@ -4,7 +4,11 @@ import React from 'react';
 import Link from 'next/link';
 import { Mail, Phone, MapPin, Linkedin, Instagram } from 'lucide-react';
 
-export function Footer() {
+interface FooterProps {
+    hideCTA?: boolean;
+}
+
+export function Footer({ hideCTA = false }: FooterProps) {
     return (
         <footer className="relative z-50 bg-[#0F172A] border-t border-[#B87333]/30">
             <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-16">
@@ -40,6 +44,7 @@ export function Footer() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
+                                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                     className="!text-slate-300 hover:!text-white transition-colors text-sm font-medium hover:translate-x-1 duration-300 flex items-center gap-2"
                                 >
                                     <span className="w-1 h-1 rounded-full bg-[#B87333]" />
@@ -101,14 +106,16 @@ export function Footer() {
                                 <Instagram size={20} />
                             </a>
                         </div>
-                        <a
-                            href="https://propuesta.vakdor.com/call"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block cta-copper px-6 py-3 rounded-xl text-sm font-bold w-full text-center shadow-[0_4px_14px_0_rgba(184,115,51,0.39)] hover:shadow-[0_6px_20px_rgba(184,115,51,0.23)] hover:-translate-y-1 transition-all ease-linear !text-white"
-                        >
-                            Agendar Llamada
-                        </a>
+                        {!hideCTA && (
+                            <a
+                                href="https://propuesta.vakdor.com/call"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-block cta-copper px-6 py-3 rounded-xl text-sm font-bold w-full text-center shadow-[0_4px_14px_0_rgba(184,115,51,0.39)] hover:shadow-[0_6px_20px_rgba(184,115,51,0.23)] hover:-translate-y-1 transition-all ease-linear !text-white"
+                            >
+                                Agendar Llamada
+                            </a>
+                        )}
                     </div>
                 </div>
 

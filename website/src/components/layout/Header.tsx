@@ -4,7 +4,11 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Calendar, Menu, X } from 'lucide-react';
 
-export function Header() {
+interface HeaderProps {
+    hideCTA?: boolean;
+}
+
+export function Header({ hideCTA = false }: HeaderProps) {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -53,6 +57,7 @@ export function Header() {
                             <Link
                                 key={link.href}
                                 href={link.href}
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                                 className="text-[#94A3B8] hover:text-[#B87333] transition-colors text-sm font-medium relative group"
                             >
                                 {link.label}
@@ -63,15 +68,17 @@ export function Header() {
 
                     {/* CTA Button */}
                     <div className="flex items-center gap-4">
-                        <a
-                            href="https://propuesta.vakdor.com/call"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-[#B87333] to-[#9A5520] hover:from-[#A05A2C] hover:to-[#8B4513] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg hover:shadow-[#B87333]/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-                        >
-                            <Calendar size={16} />
-                            <span>Agendar Demo</span>
-                        </a>
+                        {!hideCTA && (
+                            <a
+                                href="https://propuesta.vakdor.com/call"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-[#B87333] to-[#9A5520] hover:from-[#A05A2C] hover:to-[#8B4513] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg hover:shadow-[#B87333]/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+                            >
+                                <Calendar size={16} />
+                                <span>Agendar Demo</span>
+                            </a>
+                        )}
 
                         {/* Mobile Menu Button */}
                         <button
@@ -97,21 +104,23 @@ export function Header() {
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    onClick={() => setMobileMenuOpen(false)}
+                                    onClick={() => { setMobileMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                     className="text-[#CBD5E1] hover:text-[#B87333] transition-colors text-base font-medium"
                                 >
                                     {link.label}
                                 </Link>
                             ))}
-                            <a
-                                href="https://propuesta.vakdor.com/call"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-gradient-to-r from-[#B87333] to-[#9A5520] text-white px-5 py-3 rounded-xl text-center text-sm mt-2 shadow-lg font-bold"
-                            >
-                                <Calendar size={16} className="inline mr-2" />
-                                Agendar Demo
-                            </a>
+                            {!hideCTA && (
+                                <a
+                                    href="https://propuesta.vakdor.com/call"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-gradient-to-r from-[#B87333] to-[#9A5520] text-white px-5 py-3 rounded-xl text-center text-sm mt-2 shadow-lg font-bold"
+                                >
+                                    <Calendar size={16} className="inline mr-2" />
+                                    Agendar Demo
+                                </a>
+                            )}
                         </nav>
                     </div>
                 )}
