@@ -6,6 +6,9 @@ import { notFound } from 'next/navigation';
 import { Clock, User, Calendar, ArrowLeft, Tag } from 'lucide-react';
 import Link from 'next/link';
 
+// Force dynamic rendering to always get fresh data from Supabase
+export const dynamic = 'force-dynamic';
+
 interface PostPageProps {
     params: Promise<{
         slug: string;
