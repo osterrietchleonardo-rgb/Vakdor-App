@@ -13,6 +13,9 @@ export const metadata: Metadata = {
     description: 'Artículos, guías y casos de éxito sobre cómo usar IA para automatizar y escalar tu negocio inmobiliario.',
 };
 
+// Force dynamic rendering to always get fresh data from Supabase
+export const dynamic = 'force-dynamic';
+
 export default async function BlogPage() {
     let posts: BlogPost[] = [];
 
