@@ -102,24 +102,9 @@ export default async function BlogPostPage({ params }: PostPageProps) {
                             </div>
                         )}
 
-                        {/* Content - Dark Theme Prose */}
+                        {/* Content with custom blog-content class */}
                         <div
-                            className="prose prose-lg prose-invert max-w-none
-                                prose-headings:font-bold prose-headings:text-[#F8FAFC]
-                                prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-[#B87333] prose-h2:border-b prose-h2:border-[#1E293B] prose-h2:pb-2
-                                prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-[#F8FAFC]
-                                prose-p:text-[#CBD5E1] prose-p:leading-relaxed prose-p:mb-5
-                                prose-strong:text-[#F8FAFC] prose-strong:font-semibold
-                                prose-a:text-[#B87333] prose-a:font-medium hover:prose-a:text-[#D4A574] prose-a:underline
-                                prose-ul:text-[#CBD5E1] prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
-                                prose-ol:text-[#CBD5E1] prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
-                                prose-li:text-[#CBD5E1] prose-li:my-2
-                                prose-blockquote:border-l-4 prose-blockquote:border-[#B87333] prose-blockquote:bg-[#0F172A] prose-blockquote:px-6 prose-blockquote:py-4 prose-blockquote:rounded-r-xl prose-blockquote:text-[#94A3B8] prose-blockquote:italic prose-blockquote:my-6 prose-blockquote:not-italic
-                                prose-table:border-collapse prose-table:w-full prose-table:my-6 prose-table:overflow-hidden prose-table:rounded-xl
-                                prose-thead:bg-[#1E293B]
-                                prose-th:text-[#F8FAFC] prose-th:font-bold prose-th:px-4 prose-th:py-3 prose-th:text-left prose-th:border prose-th:border-[#334155]
-                                prose-td:px-4 prose-td:py-3 prose-td:border prose-td:border-[#334155] prose-td:text-[#CBD5E1]
-                                prose-hr:border-[#334155] prose-hr:my-10"
+                            className="blog-content"
                             dangerouslySetInnerHTML={{ __html: htmlContent }}
                         />
 
