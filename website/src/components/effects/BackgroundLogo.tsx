@@ -21,7 +21,7 @@ export function BackgroundLogo() {
             >
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#B87333] to-[#5C3D2E] opacity-10 blur-[100px] rounded-full mix-blend-screen" />
                 <img
-                    src="/logo.svg"
+                    src="/logo.png"
                     alt="Vakdor Background"
                     className="w-full h-full object-contain opacity-5 drop-shadow-[0_0_50px_rgba(184,115,51,0.1)] grayscale brightness-150 contrast-125"
                 />
