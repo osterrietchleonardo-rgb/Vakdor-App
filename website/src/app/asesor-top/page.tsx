@@ -92,16 +92,17 @@ export default function AsesorTopPage() {
             <Header />
 
             <main className="flex-1 relative z-10">
-                {/* Hero Section */}
+                {/* Hero Section - Ziglar: Emotional Freedom + Belfort: Line */}
                 <section className="pt-32 pb-16 px-4">
                     <div className="max-w-6xl mx-auto text-center">
-                        <p className="font-accent text-[#B87333] text-lg mb-4">Para Asesores Inmobiliarios</p>
+                        <p className="font-accent text-[#B87333] text-lg mb-4">Para Asesores Inmobiliarios Top</p>
                         <h1 className="text-3xl md:text-5xl font-extrabold text-[#F8FAFC] mb-6 leading-tight">
-                            ¿Y Si Pudieras Dejar de Responder WhatsApps a las 11 PM
-                            <span className="block text-gradient-copper">y Aun Así Cerrar Más Ventas?</span>
+                            Dejá de Ser un Asistente y <span className="text-gradient-copper">Convertite en el Arquitecto de tu Negocio.</span>
+                            <span className="block text-2xl md:text-3xl mt-2 text-[#94A3B8]">(Recuperá tus Fines de Semana).</span>
                         </h1>
                         <p className="text-lg md:text-xl text-[#94A3B8] mb-8 max-w-4xl mx-auto">
-                            No es magia. Es un asistente de IA que responde consultas, filtra leads, agenda visitas y actualiza tu CRM mientras vos estás en otra cosa. Así de simple.
+                            ¿Y si tu <span className="text-[#B87333] font-semibold">Asistente de IA</span> se Encargara del 80% del Ruido Operativo?
+                            Cerrá más ventas sin vivir pegado al celular.
                         </p>
                     </div>
                 </section>
@@ -295,32 +296,32 @@ export default function AsesorTopPage() {
                                 {
                                     icon: '🌙',
                                     title: 'Responde Consultas 24/7',
-                                    description: 'Un lead te escribe a las 11 PM. La IA responde en segundos, hace preguntas y manda opciones. Vos te enterás al otro día.'
+                                    description: 'Un lead te escribe a las 11 PM. La IA responde en segundos, hace preguntas y manda opciones. Vos te enterás al otro día con la cita agendada.'
                                 },
                                 {
                                     icon: '🎯',
-                                    title: 'Filtra Curiosos de Compradores Reales',
-                                    description: 'La IA analiza presupuesto, zona y urgencia. Ya no perdés tiempo con gente que solo está mirando.'
+                                    title: 'Filtro de Calificación Precisa',
+                                    description: 'La IA analiza presupuesto, zona y urgencia. Solo te notifica cuando hay un comprador real. (No más curiosos).'
                                 },
                                 {
                                     icon: '🏠',
                                     title: 'Recomienda las Propiedades Correctas',
-                                    description: 'Busca en tu inventario y manda las 2-3 opciones que mejor calzan. Automáticamente.'
+                                    description: 'Busca en tu inventario y manda las 2-3 opciones que mejor calzan. Automáticamente, sin que pierdas un segundo.'
                                 },
                                 {
                                     icon: '📅',
                                     title: 'Agenda las Visitas por Vos',
-                                    description: 'Propone horarios, el lead elige, y queda agendado en tu CRM. Sin intercambio de mensajes.'
+                                    description: 'Propone horarios, el lead elige, y queda agendado en tu CRM. Sin intercambio de 20 mensajes.'
                                 },
                                 {
                                     icon: '📊',
                                     title: 'Actualiza tu CRM Automáticamente',
-                                    description: 'Cada conversación se registra sola. No más copy-paste ni olvidarte de actualizar.'
+                                    description: 'Cada conversación se registra sola. No más copy-paste ni olvidarte de actualizar a las 10 PM.'
                                 },
                                 {
                                     icon: '♾️',
-                                    title: 'Retoma Contacto con Leads Viejos',
-                                    description: 'Tenés leads de hace 6 meses. La IA los vuelve a contactar con nuevas propiedades.'
+                                    title: 'El Resucitador de Leads',
+                                    description: 'Retomá contacto con leads de hace 6 meses con ofertas personalizadas. No perdés más contactos, los nutrís automáticamente.'
                                 }
                             ].map((benefit, idx) => (
                                 <div key={idx} className="kinetic-card p-6 rounded-xl">
@@ -344,7 +345,7 @@ export default function AsesorTopPage() {
                             ¿Querés Ver Cómo Funciona en tu Caso Específico?
                         </h2>
                         <p className="text-lg text-[#94A3B8] mb-8">
-                            No es una demo genérica. Es una llamada de 15 minutos donde vemos cómo se integra con tu CRM y cuánto tiempo te ahorrarías.
+                            No es una demo genérica. Es una llamada de 15 minutos donde diseñamos tu Sistema de Venta Autónoma y vemos cómo se integra con tu CRM actual.
                         </p>
                         <a
                             href="https://propuesta.vakdor.com/call"
@@ -353,10 +354,10 @@ export default function AsesorTopPage() {
                             className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-4 rounded-xl transition-all active:scale-95"
                         >
                             <Calendar size={20} />
-                            Agendar Llamada de 15 Min
+                            Agendá tu Llamada de 15 Minutos: Diseñemos tu Sistema
                         </a>
                         <p className="text-sm text-[#94A3B8] mt-6">
-                            ✅ 90 días de garantía - Si no funciona, te devolvemos todo
+                            ✅ 90 días de garantía - Si no funciona, te devolvemos todo.
                         </p>
                     </div>
                 </section>
