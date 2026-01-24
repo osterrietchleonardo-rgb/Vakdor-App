@@ -42,10 +42,12 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: '/logo.svg',
-    apple: '/logo.svg',
+    icon: '/favicon.ico',
+    apple: '/favicon.ico',
   },
 };
+
+import { BackgroundLogo } from "@/components/effects/BackgroundLogo";
 
 export default function RootLayout({
   children,
@@ -55,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning className="dark">
       <body className={`${plusJakarta.variable} ${fraunces.variable} font-sans antialiased bg-[#020617]`}>
+        <BackgroundLogo />
         {children}
       </body>
     </html>
