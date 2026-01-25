@@ -103,14 +103,14 @@ export default function InmobiliariaPage() {
                             <span className="block text-2xl md:text-3xl mt-2 text-[#94A3B8]">Garantizado. (Y Sabés que es Verdad).</span>
                         </h1>
                         <p className="text-lg md:text-xl text-slate-300 mb-8 max-w-5xl mx-auto">
-                            Vakdor es el Partner Tecnológico que Instala la <span className="text-[#B87333] font-semibold">Arquitectura de Ventas Autónoma</span>: Captación Exclusiva, Tracking de Equipo y Capacitación con IA en <span className="text-white font-medium">7 Días</span>.
+                            Vakdor es tu <span className="text-[#B87333] font-semibold">Partner Tecnológico</span>: Recuperación de Leads Perdidos, Captación Automática de Propiedades, Tracking de Equipo y Tutor IA para Nuevos Asesores.
                         </p>
-                        
+
                         {/* Hopkins: Objection Handling - Injected */}
                         <div className="max-w-2xl mx-auto bg-[#0F172A]/80 border border-[#B87333]/30 rounded-xl p-6 mb-8">
                             <p className="text-[#B87333] font-bold mb-2">"¿Es muy caro?"</p>
                             <p className="text-[#94A3B8] text-sm">
-                                El costo de <span className="text-white">no</span> tener este sistema es de $120,000 USD al año. 
+                                El costo de <span className="text-white">no</span> tener este sistema es de $120,000 USD al año.
                                 La pregunta no es si podés pagar Vakdor, sino <span className="text-white font-medium">si podés permitirte seguir perdiendo ese dinero</span>.
                             </p>
                         </div>

@@ -100,9 +100,13 @@ export default function AsesorTopPage() {
                             Dejá de Ser un Asistente y <span className="text-gradient-copper">Convertite en el Arquitecto de tu Negocio.</span>
                             <span className="block text-2xl md:text-3xl mt-2 text-[#94A3B8]">(Recuperá tus Fines de Semana).</span>
                         </h1>
-                        <p className="text-lg md:text-xl text-[#94A3B8] mb-8 max-w-4xl mx-auto">
+                        <p className="text-lg md:text-xl text-[#94A3B8] mb-4 max-w-4xl mx-auto">
                             ¿Y si tu <span className="text-[#B87333] font-semibold">Asistente de IA</span> se Encargara del 80% del Ruido Operativo?
                             Cerrá más ventas sin vivir pegado al celular.
+                        </p>
+                        {/* Cardone: 10X Emphasis */}
+                        <p className="text-sm text-[#B87333] font-medium">
+                            📈 Nuestros usuarios reportan <span className="text-white">3x más cierres</span> sin aumentar sus horas de trabajo.
                         </p>
                     </div>
                 </section>
@@ -287,9 +291,13 @@ export default function AsesorTopPage() {
                 {/* Benefits - 6 Pillars */}
                 <section className="py-12 md:py-20 px-4 bg-slate-50">
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
                             Lo Que Hace el Asistente de IA (Sin Humo)
                         </h2>
+                        {/* Cardone: 10X Scale Message */}
+                        <p className="text-center text-[#94A3B8] mb-12 max-w-2xl mx-auto">
+                            Escalá tu negocio 10x sin escalar tu esfuerzo. Cada hora que la IA trabaja es una hora que vos ganás.
+                        </p>
 
                         <div className="grid md:grid-cols-2 gap-8">
                             {[
