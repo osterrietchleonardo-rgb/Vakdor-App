@@ -1,5 +1,4 @@
 'use client';
-// Force rebuild: Fix FAQSection props usage
 
 import React, { useState, useEffect, useRef } from 'react';
 import { Header } from '@/components/layout/Header';

@@ -411,10 +411,10 @@ export default function InmobiliariaPage() {
                     </div>
                     <div className="max-w-4xl mx-auto text-center relative z-10">
                         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F8FAFC]">
-                            ¿Querés Ver Cómo Aplicaría en tu Inmobiliaria?
+                            ¿Querés Ver Cómo Funciona en tu Caso Específico?
                         </h2>
                         <p className="text-lg text-[#94A3B8] mb-8">
-                            Auditoría Estratégica de 30 minutos donde analizamos qué sistemas aplican a tu operación, proyectamos el ROI real y diseñamos la implementación sin interrumpir nada.
+                            No es una demo genérica. Es una llamada de 15 minutos donde diseñamos tu Sistema de Venta Autónoma y vemos cómo se integra con tu CRM actual.
                         </p>
                         <a
                             href="https://www.vakdor.com/call"
