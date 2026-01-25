@@ -1,128 +1,137 @@
-'use client';
+import React from 'react';
+import { Header } from '@/components/layout/Header';
+import { Footer } from '@/components/layout/Footer';
+import { ParticleField } from '@/components/effects/ParticleField';
+import { CheckCircle2, Target, Heart, Lightbulb, Shield, Award } from 'lucide-react';
 
-import { BackgroundLogo } from "@/components/effects/BackgroundLogo";
-import { ParticleField } from "@/components/effects/ParticleField";
-import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, BrainCircuit, LineChart, ShieldCheck } from "lucide-react";
-
-export default function AboutPage() {
+export default function SobreMiPage() {
     return (
-        <main className="min-h-screen pt-24 pb-16 relative overflow-hidden">
-             <ParticleField />
-             
-             {/* Background Decoration */}
-            <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[var(--liquid-copper)] opacity-5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 -z-10"></div>
+        <div className="min-h-screen flex flex-col bg-[#020617] relative">
+            <ParticleField />
+            <Header />
 
-            <div className="container mx-auto px-4 max-w-[1000px] relative z-10">
-                {/* Header Section */}
-                <div className="text-center mb-16 space-y-6">
-                    <div className="inline-block px-3 py-1 bg-[rgba(184,115,51,0.1)] border border-[rgba(184,115,51,0.2)] rounded-full text-[var(--liquid-copper)] text-sm font-bold tracking-wider mb-4 animate-fade-in">
-                        SOBRE EL FUNDADOR
+            <main className="flex-1 relative z-10">
+                {/* Hero - Halbert: Dramatic + Ziglar: Empathy */}
+                <section className="pt-32 pb-16 px-4">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <p className="font-accent text-[#B87333] text-lg mb-4">La Historia Detrás</p>
+                        <h1 className="text-4xl md:text-5xl font-extrabold text-[#F8FAFC] mb-6">
+                            La Historia de un Problema que <span className="text-gradient-copper">Nadie Quiso Resolver.</span>
+                        </h1>
+                        <p className="text-xl text-[#94A3B8]">
+                            Y Por Qué Tuvimos que Construir la Solución.
+                        </p>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-display font-bold text-white mb-6 leading-tight animate-fade-in-up">
-                        De la Ingeniería a la <br />
-                        <span className="text-gradient-copper">Revolución Inmobiliaria</span>
-                    </h1>
-                </div>
+                </section>
 
-                {/* Profile Card & Bio */}
-                <div className="grid md:grid-cols-12 gap-12 mb-24 items-start">
-                    {/* Image Column */}
-                    <div className="md:col-span-5 relative group">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-[var(--liquid-copper)] to-purple-900 rounded-2xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-                        <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-[rgba(184,115,51,0.2)] shadow-2xl">
-                             {/* Placeholder for Leo's photo - using a generic abstract dark tech placeholder or user provided image later */}
-                             <div className="w-full h-full bg-slate-900 relative">
-                                {/* <Image src="/leo-profile.jpg" fill alt="Leonardo Osterrietch" className="object-cover" /> */}
-                                <div className="absolute inset-0 flex items-center justify-center text-slate-700 bg-gradient-to-br from-slate-900 to-slate-800">
-                                    <span className="text-center px-4">
-                                        [Foto de Leonardo] <br/>
-                                        <span className="text-xs text-silver mt-2 block">Ingeniero & Especialista en Crecimiento</span>
-                                    </span>
-                                </div>
-                             </div>
+                {/* Content - SPIN Selling: Problem + Implication */}
+                <section className="py-16 md:py-24 px-4 bg-[#0F172A]/50">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="space-y-8 text-[#CBD5E1]">
+                            {/* The Pain - Ziglar: Empathy */}
+                            <div className="kinetic-card p-8 rounded-2xl">
+                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">El Problema que Vi</h2>
+                                <p className="mb-6 text-lg leading-relaxed">
+                                    En 2022 trabajé con una inmobiliaria en Buenos Aires. Vi lo que nadie quiere ver.
+                                </p>
+                                <blockquote className="border-l-4 border-[#B87333] pl-6 my-6 italic text-lg">
+                                    "Vi a asesores top que se despertaban a las 3 AM porque llegó un lead y no podían dejarlo sin responder.
+                                    Vi a directores invirtiendo <span className="text-[#B87333] font-semibold">50 mil dólares</span> en marketing
+                                    y perdiendo el 60% de esos leads porque nadie hacía seguimiento.
+                                    <br /><br />
+                                    Me pregunté: <span className="text-white">¿Por qué el sector que construye el futuro sigue operando
+                                        con la tecnología del pasado?</span>"
+                                </blockquote>
+                            </div>
+
+                            {/* The Discovery */}
+                            <div className="kinetic-card p-8 rounded-2xl">
+                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">El Descubrimiento</h2>
+                                <p className="mb-4">
+                                    Empecé a probar IA conversacional, modelos de clasificación de leads, scraping de portales.
+                                    En 6 meses armé un prototipo que automatizaba el 80% del trabajo repetitivo.
+                                </p>
+                                <p className="mb-4">Lo probé con 5 asesores. Los resultados fueron claros:</p>
+                                <ul className="space-y-3 mb-4">
+                                    <li className="flex items-center gap-3">
+                                        <CheckCircle2 className="text-[#B87333] flex-shrink-0" size={20} />
+                                        <span><span className="text-[#B87333] font-bold">25%</span> más visitas agendadas</span>
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <CheckCircle2 className="text-[#B87333] flex-shrink-0" size={20} />
+                                        <span><span className="text-[#B87333] font-bold">15 horas</span> semanales ahorradas</span>
+                                    </li>
+                                    <li className="flex items-center gap-3">
+                                        <CheckCircle2 className="text-[#B87333] flex-shrink-0" size={20} />
+                                        <span><span className="text-[#B87333] font-bold">0 leads</span> perdidos por horario</span>
+                                    </li>
+                                </ul>
+                                <p className="text-[#B87333] font-semibold text-lg">Ahí nació Vakdor.</p>
+                            </div>
+
+                            {/* The Mission - Kennedy: Differentiation */}
+                            <div className="kinetic-card p-8 rounded-2xl border-2 border-[#B87333]/30">
+                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">La Misión: No Vendemos Software.</h2>
+                                <h3 className="text-xl text-[#B87333] font-semibold mb-4">Instalamos un Sistema de Control Total.</h3>
+                                <p className="mb-4 text-lg">
+                                    Vakdor es tu infraestructura de ventas autónoma. Te damos el control total sin depender
+                                    de desarrolladores, ni de CRMs rígidos.
+                                </p>
+                                <p className="text-white font-semibold text-xl">
+                                    Tu data, tus reglas.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Pillars - Cialdini: Authority + Mary Kay: Recognition */}
+                        <div className="mt-16">
+                            <h2 className="text-2xl md:text-3xl font-bold text-[#F8FAFC] mb-8 text-center">
+                                Nuestros Pilares
+                            </h2>
+                            <div className="grid md:grid-cols-2 gap-6">
+                                {[
+                                    {
+                                        icon: Shield,
+                                        title: 'Transparencia Radical',
+                                        description: 'Si Vakdor no es la solución para tu operación, te lo decimos en la primera llamada. No vendemos por vender.'
+                                    },
+                                    {
+                                        icon: Target,
+                                        title: 'Resultados Garantizados',
+                                        description: '90 días de garantía. Si no lográs el ROI que proyectamos, te devolvemos tu inversión. Así de simple.'
+                                    },
+                                    {
+                                        icon: Heart,
+                                        title: 'Acompañamiento Estratégico',
+                                        description: 'No sos un número. Nuestro equipo optimiza tu sistema semanalmente para asegurar la máxima performance.'
+                                    },
+                                    {
+                                        icon: Lightbulb,
+                                        title: 'Innovación Continua',
+                                        description: 'Cada mes la herramienta mejora. Sos early adopter de tecnología que tus competidores no tienen.'
+                                    },
+                                ].map((value, index) => (
+                                    <div key={index} className="kinetic-card p-6 rounded-2xl">
+                                        <div className="flex items-center gap-3 mb-3">
+                                            <div className="w-10 h-10 rounded-lg bg-[#B87333]/20 flex items-center justify-center">
+                                                <value.icon className="text-[#B87333]" size={20} />
+                                            </div>
+                                            <h3 className="text-xl font-bold text-[#F8FAFC]">{value.title}</h3>
+                                        </div>
+                                        <p className="text-[#94A3B8]">{value.description}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
+                </section>
 
-                    {/* Bio Column */}
-                    <div className="md:col-span-7 space-y-6 text-silver text-lg leading-relaxed">
-                        <h2 className="text-3xl font-display font-bold text-white mb-4">
-                            Hola, soy <span className="text-[var(--liquid-copper)]">Leo Osterrietch</span>.
-                        </h2>
-                        <p>
-                            No soy un "guru" de ventas ni un coach motivacional. Soy Ingeniero. Mi trabajo consiste en construir sistemas que funcionen de manera predecible, eficiente y escalable.
-                        </p>
-                        <p>
-                            Durante años, me dediqué a optimizar sistemas complejos en ingeniería. Pero me di cuenta de una desconexión masiva en el mundo de los negocios de alto ticket, especialmente en Real Estate:
-                        </p>
-                        <blockquote className="border-l-4 border-[var(--liquid-copper)] pl-6 py-2 my-8 italic text-white bg-white/5 rounded-r-xl">
-                            "Los mejores asesores pasan el 70% de su tiempo haciendo trabajo administrativo de bajo valor, en lugar de estar cerrando tratos."
-                        </blockquote>
-                        <p>
-                            Esa ineficiencia me obsesionó. Fundé Vakdor con una misión clara: <strong className="text-white">Eliminar la fricción operativa del Real Estate.</strong>
-                        </p>
-                        <p>
-                            Hoy, ayudo a inmobiliarias y asesores top a implementar infraestructuras de Inteligencia Artificial que no solo "ahorran tiempo", sino que multiplican la capacidad de facturación sin necesidad de multiplicar el tamaño del equipo.
-                        </p>
-                        
-                        <div className="pt-6">
-                            <a 
-                                href="https://www.linkedin.com/in/osterrietchleonardo/"
-                                target="_blank"
-                                rel="noopener noreferrer" 
-                                className="inline-flex items-center gap-2 text-[var(--liquid-copper)] font-bold hover:underline underline-offset-4 group"
-                            >
-                                Conectemos en LinkedIn 
-                                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Values / Philosophy */}
-                <div className="grid md:grid-cols-3 gap-8 mb-24">
-                     <div className="glass p-8 rounded-2xl hover:border-[var(--liquid-copper)]/40 transition-colors group">
-                        <div className="w-12 h-12 rounded-xl bg-[var(--liquid-copper)]/10 flex items-center justify-center text-[var(--liquid-copper)] mb-6 group-hover:bg-[var(--liquid-copper)]/20 transition-colors">
-                            <BrainCircuit size={28} />
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Ingeniería sobre Motivación</h3>
-                        <p className="text-silver text-sm">
-                            El entusiasmo fluctúa. Los sistemas permanecen. Construimos flujos de trabajo que no dependen de que tengas "un buen día".
-                        </p>
-                     </div>
-
-                     <div className="glass p-8 rounded-2xl hover:border-[var(--liquid-copper)]/40 transition-colors group">
-                        <div className="w-12 h-12 rounded-xl bg-[var(--liquid-copper)]/10 flex items-center justify-center text-[var(--liquid-copper)] mb-6 group-hover:bg-[var(--liquid-copper)]/20 transition-colors">
-                            <LineChart size={28} />
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Datos sobre Intuición</h3>
-                        <p className="text-silver text-sm">
-                            Lo que no se mide, no se mejora. Implementamos métricas claras para tomar decisiones basadas en realidad, no en corazonadas.
-                        </p>
-                     </div>
-
-                     <div className="glass p-8 rounded-2xl hover:border-[var(--liquid-copper)]/40 transition-colors group">
-                        <div className="w-12 h-12 rounded-xl bg-[var(--liquid-copper)]/10 flex items-center justify-center text-[var(--liquid-copper)] mb-6 group-hover:bg-[var(--liquid-copper)]/20 transition-colors">
-                            <ShieldCheck size={28} />
-                        </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Calidad sobre Cantidad</h3>
-                        <p className="text-silver text-sm">
-                            No buscamos llenar tu agenda de curiosos. Filtramos violentamente para que solo hables con quien tiene el dinero y la urgencia.
-                        </p>
-                     </div>
-                </div>
-
-                {/* CTA Section */}
-                <div className="text-center bg-gradient-to-b from-[#0F172A] to-[#020617] rounded-3xl p-12 border border-[rgba(184,115,51,0.2)] relative overflow-hidden">
-                     {/* Glow effect */}
-                     <div className="absolute inset-0 bg-[var(--liquid-copper)] opacity-5 blur-3xl"></div>
-                     
-                    <div className="relative z-10 max-w-2xl mx-auto">
-                        <h2 className="text-3xl font-display font-bold text-white mb-6">
-                            ¿Listo para operar como una empresa de tecnología?
-                        </h2>
-                        <p className="text-silver mb-8 text-lg">
+                {/* CTA - Belfort: Certainty */}
+                <section className="py-16 px-4">
+                    <div className="max-w-3xl mx-auto text-center">
+                        <p className="font-accent text-[#B87333] text-lg mb-4">¿Querés saber más?</p>
+                        <h2 className="text-3xl font-bold text-[#F8FAFC] mb-6">Hablemos de Tu Operación</h2>
+                        <p className="text-[#94A3B8] mb-8">
                             Una auditoría estratégica de 30 minutos donde vemos cómo aplica el sistema a tu caso específico.
                         </p>
                         <a
@@ -131,12 +140,13 @@ export default function AboutPage() {
                             rel="noopener noreferrer"
                             className="inline-block cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
                         >
-                            Agendar Auditoría con Leo
+                            Agendar Auditoría Estratégica
                         </a>
                     </div>
-                </div>
+                </section>
+            </main>
 
-            </div>
-        </main>
+            <Footer />
+        </div>
     );
 }
