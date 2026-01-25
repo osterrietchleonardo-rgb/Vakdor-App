@@ -13,16 +13,16 @@ interface FAQSectionProps {
     id?: string;
 }
 
-export function FAQSection({ 
-    title = "Preguntas Frecuentes Estratégicas", 
-    subtitle = "Resolvemos tus dudas con transparencia radical.", 
+export function FAQSection({
+    title = "Preguntas Frecuentes Estratégicas",
+    subtitle = "Resolvemos tus dudas con transparencia radical.",
     items,
     id = "faq"
 }: FAQSectionProps) {
     return (
         <section id={id} className="py-20 md:py-32 px-4 bg-[#020617] relative overflow-hidden">
-             {/* Background Gradients */}
-             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            {/* Background Gradients */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                 <div className="absolute top-[20%] right-[-10%] w-[500px] h-[500px] bg-[#B87333]/5 rounded-full blur-[100px]" />
                 <div className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] bg-[#1E293B]/30 rounded-full blur-[100px]" />
             </div>
