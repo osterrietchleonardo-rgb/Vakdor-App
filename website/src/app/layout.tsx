@@ -45,6 +45,9 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/favicon.ico',
   },
+  verification: {
+    google: "Sdb8QQKE5tpEO0O9F5zpioLlBazb-hPCI75yogmMKCk",
+  },
 };
 
 import { BackgroundLogo } from "@/components/effects/BackgroundLogo";
