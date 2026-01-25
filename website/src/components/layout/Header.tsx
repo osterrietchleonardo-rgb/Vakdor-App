@@ -1,23 +1,17 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import { Menu, X } from 'lucide-react';
-import Image from 'next/image';
+import { Calendar, Menu, X } from 'lucide-react';
 
-export function Header() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+export interface HeaderProps {
+    hideCTA?: boolean;
+}
+
+export function Header({ hideCTA = false }: HeaderProps) {
     const [scrolled, setScrolled] = useState(false);
-    const pathname = usePathname();
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-    // Check if we are on a landing page to hide navigation
-    const isLandingPage = pathname === '/asesor-top' || pathname === '/inmobiliaria';
-    // Siempre mostrar el CTA, incluso en landings, pero quizás con diferente texto si se requiere.
-    // Por ahora mantenemos la lógica de mostrarlo siempre.
-    const hideCTA = false; 
-
-    // Handle scroll effect
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
@@ -26,53 +20,53 @@ export function Header() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const navLinks = [
-        { href: '/asesor-top', label: 'Para Asesores' },
-        { href: '/inmobiliaria', label: 'Para Inmobiliarias' },
-        { href: '/sobre-mi', label: 'Sobre Mí' },
-        // { href: '#casos', label: 'Casos de Éxito' },
-    ];
-
     return (
-        <header 
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-                scrolled ? 'bg-[#020617]/80 backdrop-blur-md border-b border-[rgba(184,115,51,0.1)] py-3' : 'bg-transparent py-5'
-            }`}
+        <header
+            className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[95%] max-w-6xl
+                ${scrolled
+                    ? 'glass glass-hover rounded-2xl shadow-2xl'
+                    : 'bg-transparent'
+                }`}
         >
-            <div className="container mx-auto px-4 max-w-[1240px]">
-                <div className="flex items-center justify-between">
+            <div className="px-4 md:px-6 py-3 md:py-4">
+                <div className="flex justify-between items-center">
                     {/* Logo */}
-                    <Link href="/" className="relative z-50 flex items-center gap-2 group">
-                        <div className="relative w-8 h-8 md:w-10 md:h-10 transition-transform duration-300 group-hover:scale-110">
-                            <Image 
-                                src="/logo.png" 
-                                alt="Vakdor Logo" 
-                                fill
-                                className="object-contain"
+                    <Link href="/" className="flex items-center gap-3 group">
+                        <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110">
+                            <div className="absolute inset-0 bg-[#B87333] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full" />
+                            <img
+                                src="/logo.png"
+                                alt="Vakdor Logo"
+                                className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_15px_rgba(184,115,51,0.3)]"
                             />
                         </div>
-                        <span className="font-display font-bold text-xl md:text-2xl text-white tracking-tight group-hover:text-[var(--liquid-copper)] transition-colors">
-                            VAKDOR
+                        <span className="text-xl md:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-[#E2E8F0] to-[#94A3B8] group-hover:to-white transition-all duration-300">
+                            Vakdor
                         </span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    {!isLandingPage && (
-                        <nav className="hidden md:flex items-center gap-8">
-                            {navLinks.map((link) => (
-                                <Link 
-                                    key={link.href}
-                                    href={link.href}
-                                    className="text-sm font-medium text-slate-300 hover:text-white transition-colors relative group"
-                                >
-                                    {link.label}
-                                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--liquid-copper)] transition-all group-hover:w-full"></span>
-                                </Link>
-                            ))}
-                        </nav>
-                    )}
+                    <nav className="hidden md:flex items-center gap-8">
+                        {[
+                            { href: '/', label: 'Inicio' },
+                            { href: '/asesor-top', label: 'Para Asesores' },
+                            { href: '/inmobiliaria', label: 'Para Inmobiliarias' },
+                            { href: '/blog', label: 'Blog' },
+                            { href: '/sobre-mi', label: 'Sobre Mí' },
+                        ].map((link) => (
+                            <Link
+                                key={link.href}
+                                href={link.href}
+                                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                                className="text-[#94A3B8] hover:text-[#B87333] transition-colors text-sm font-medium relative group"
+                            >
+                                {link.label}
+                                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#B87333] to-[#5C3D2E] group-hover:w-full transition-all duration-300" />
+                            </Link>
+                        ))}
+                    </nav>
 
-                    {/* CTA & Mobile Menu Toggle */}
+                    {/* CTA Button */}
                     <div className="flex items-center gap-4">
                         {!hideCTA && (
                             <a
@@ -81,48 +75,55 @@ export function Header() {
                                 rel="noopener noreferrer"
                                 className="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-[#B87333] to-[#9A5520] hover:from-[#A05A2C] hover:to-[#8B4513] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg hover:shadow-[#B87333]/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                             >
-                                Agendar Auditoría
+                                <Calendar size={16} />
+                                <span>Agendar Demo</span>
                             </a>
                         )}
 
-                        <button 
-                            className="md:hidden relative z-50 text-white p-2"
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="md:hidden text-[#94A3B8] hover:text-[#B87333] transition-colors p-2"
                         >
-                            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
                     </div>
                 </div>
-            </div>
 
-            {/* Mobile Menu Overlay */}
-            <div 
-                className={`fixed inset-0 bg-[#020617] md:hidden transition-transform duration-300 ease-in-out z-40 flex flex-col justify-center items-center ${
-                    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
-            >
-                <nav className="flex flex-col items-center gap-8 p-8">
-                    {!isLandingPage && navLinks.map((link) => (
-                        <Link 
-                            key={link.href}
-                            href={link.href}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="text-2xl font-display font-bold text-white hover:text-[var(--liquid-copper)] transition-colors"
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
-                    {!hideCTA && (
-                        <a
-                            href="https://www.vakdor.com/call"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-gradient-to-r from-[#B87333] to-[#9A5520] text-white px-5 py-3 rounded-xl text-center text-sm mt-2 shadow-lg font-bold"
-                        >
-                            Agendar Auditoría
-                        </a>
-                    )}
-                </nav>
+                {/* Mobile Menu */}
+                {mobileMenuOpen && (
+                    <div className="md:hidden mt-4 pb-4 border-t border-[rgba(184,115,51,0.2)] pt-4 animate-fade-in">
+                        <nav className="flex flex-col gap-4">
+                            {[
+                                { href: '/', label: 'Inicio' },
+                                { href: '/asesor-top', label: 'Para Asesores' },
+                                { href: '/inmobiliaria', label: 'Para Inmobiliarias' },
+                                { href: '/blog', label: 'Blog' },
+                                { href: '/sobre-mi', label: 'Sobre Mí' },
+                            ].map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => { setMobileMenuOpen(false); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                    className="text-[#CBD5E1] hover:text-[#B87333] transition-colors text-base font-medium"
+                                >
+                                    {link.label}
+                                </Link>
+                            ))}
+                            {!hideCTA && (
+                                <a
+                                    href="https://www.vakdor.com/call"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-gradient-to-r from-[#B87333] to-[#9A5520] text-white px-5 py-3 rounded-xl text-center text-sm mt-2 shadow-lg font-bold"
+                                >
+                                    <Calendar size={16} className="inline mr-2" />
+                                    Agendar Demo
+                                </a>
+                            )}
+                        </nav>
+                    </div>
+                )}
             </div>
         </header>
     );
