@@ -1,153 +1,68 @@
-import React from 'react';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { getPostBySlug } from '@/lib/blog';
-import { notFound } from 'next/navigation';
-import { Clock, User, ArrowLeft, Tag } from 'lucide-react';
-import Link from 'next/link';
-import { marked } from 'marked';
+'use client';
 
-// Force dynamic rendering to always get fresh data from Supabase
-export const dynamic = 'force-dynamic';
+// This is a minimal implementation for a blog post layout
+// In a real app, you would fetch post data based on the slug
+// For now, we'll just show the structure
 
-interface PostPageProps {
-    params: Promise<{
-        slug: string;
-    }>;
-}
+import { ParticleField } from "@/components/effects/ParticleField";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import React from "react";
 
-export async function generateMetadata({ params }: PostPageProps) {
-    const { slug } = await params;
-    const post = await getPostBySlug(slug);
-    if (!post) return { title: 'Post no encontrado' };
-
-    return {
-        title: post.title,
-        description: post.meta_description,
-        openGraph: {
-            title: post.title,
-            description: post.meta_description,
-            type: 'article',
-            images: post.featured_image_url ? [post.featured_image_url] : [],
-        },
-    };
-}
-
-export default async function BlogPostPage({ params }: PostPageProps) {
-    const { slug } = await params;
-    const post = await getPostBySlug(slug);
-
-    if (!post) {
-        notFound();
-    }
-
-    // Convert Markdown to HTML
-    const htmlContent = await marked(post.content);
+export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+    // Unwrap params in React 19 / Next 15+ 
+    const { slug } = React.use(params);
 
     return (
-        <div className="min-h-screen flex flex-col bg-[#020617]">
-            <Header />
+        <main className="min-h-screen pt-24 pb-16 relative">
+            <ParticleField />
+            
+            <article className="container mx-auto px-4 max-w-3xl relative z-10">
+                <Link href="/" className="inline-flex items-center gap-2 text-silver hover:text-[var(--liquid-copper)] mb-8 transition-colors">
+                    <ArrowLeft size={18} /> Volver al inicio
+                </Link>
 
-            <main className="flex-1 pt-24 pb-16">
-                <div className="max-w-4xl mx-auto px-4">
-                    {/* Back link */}
-                    <Link 
-                        href="/blog" 
-                        className="inline-flex items-center gap-2 text-[#94A3B8] hover:text-[#B87333] mb-8 transition-colors text-sm font-medium"
-                    >
-                        <ArrowLeft size={16} /> Volver al blog
-                    </Link>
+                <header className="mb-12">
+                    <div className="text-[var(--liquid-copper)] font-bold tracking-wider text-sm mb-4 uppercase">
+                        Blog / Estrategia
+                    </div>
+                    <h1 className="text-3xl md:text-5xl font-display font-bold text-white mb-6 leading-tight">
+                        La Era de la Venta Autónoma: Por qué el modelo tradicional [Título Placeholder para {slug}]
+                    </h1>
+                    <div className="flex items-center gap-4 text-silver text-sm border-y border-[rgba(184,115,51,0.2)] py-4">
+                        <span>Por Leo Osterrietch</span>
+                        <span>•</span>
+                        <span>5 min lectura</span>
+                    </div>
+                </header>
 
-                    <article>
-                        {/* Post Header */}
-                        <div className="mb-10">
-                            <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest mb-4">
-                                <span className="bg-[#B87333]/20 text-[#B87333] px-3 py-1 rounded-full border border-[#B87333]/30">
-                                    {post.category}
-                                </span>
-                                <span className="flex items-center gap-1.5 text-[#94A3B8] normal-case tracking-normal">
-                                    <Clock size={14} /> {post.read_time_minutes} min lectura
-                                </span>
-                            </div>
-
-                            <h1 className="text-3xl md:text-5xl font-black text-[#F8FAFC] leading-tight mb-6">
-                                {post.title}
-                            </h1>
-
-                            <div className="flex items-center gap-4 py-6 border-y border-[#1E293B] mb-8">
-                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#B87333] to-[#5C3D2E] flex items-center justify-center text-white">
-                                    <User size={24} />
-                                </div>
-                                <div>
-                                    <p className="text-sm font-bold text-[#F8FAFC]">{post.author}</p>
-                                    <p className="text-xs text-[#94A3B8]">
-                                        {new Date(post.published_at!).toLocaleDateString('es-AR', {
-                                            day: 'numeric',
-                                            month: 'long',
-                                            year: 'numeric'
-                                        })}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Featured Image */}
-                        {post.featured_image_url && (
-                            <div className="aspect-video w-full rounded-2xl overflow-hidden mb-12 border border-[#1E293B]">
-                                <img 
-                                    src={post.featured_image_url} 
-                                    alt={post.title} 
-                                    className="w-full h-full object-cover" 
-                                />
-                            </div>
-                        )}
-
-                        {/* Content with custom blog-content class */}
-                        <div
-                            className="blog-content"
-                            dangerouslySetInnerHTML={{ __html: htmlContent }}
-                        />
-
-                        {/* Tags */}
-                        {post.seo_keywords && post.seo_keywords.length > 0 && (
-                            <div className="mt-16 pt-8 border-t border-[#1E293B] flex flex-wrap gap-2">
-                                <span className="text-sm font-bold text-[#94A3B8] mr-2 flex items-center gap-1.5">
-                                    <Tag size={14} /> Tags:
-                                </span>
-                                {post.seo_keywords.map((tag) => (
-                                    <span 
-                                        key={tag} 
-                                        className="text-xs bg-[#1E293B] text-[#94A3B8] px-3 py-1 rounded-full border border-[#334155] hover:border-[#B87333] hover:text-[#B87333] transition-colors"
-                                    >
-                                        {tag}
-                                    </span>
-                                ))}
-                            </div>
-                        )}
-                    </article>
+                <div className="prose prose-invert prose-lg max-w-none text-slate-300">
+                    <p className="lead text-xl text-white font-medium mb-8">
+                        *Nota: Este es un template para los posts del blog. Aquí iría el contenido real del artículo generado o traído de un CMS.*
+                    </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <h3>El Problema del Seguimiento Manual</h3>
+                    <p>
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    {/* More content placeholders */}
                 </div>
-            </main>
 
-            {/* CTA Section */}
-            <section className="bg-gradient-to-br from-[#B87333] to-[#5C3D2E] py-16 px-4">
-                <div className="max-w-4xl mx-auto text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                        ¿Te gustaría implementar esto en tu inmobiliaria?
-                    </h2>
-                    <p className="text-white/80 mb-8 max-w-2xl mx-auto">
-                        Ayudamos a inmobiliarias a automatizar sus procesos de venta y captación con IA.
+                <div className="mt-16 p-8 bg-slate-900/50 border border-[rgba(184,115,51,0.3)] rounded-2xl text-center">
+                    <h3 className="text-2xl font-bold text-white mb-4">¿Querés implementar esto en tu negocio?</h3>
+                    <p className="text-silver mb-8">
                         Charlá 15 minutos con nosotros para ver cómo podemos ayudarte.
                     </p>
                     <a
-                        href="https://propuesta.vakdor.com/call"
+                        href="https://www.vakdor.com/call"
                         className="bg-[#020617] hover:bg-black text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg active:scale-95 inline-block"
                     >
                         Agendar Llamada Estratégica
                     </a>
                 </div>
-            </section>
-
-            <Footer />
-        </div>
+            </article>
+        </main>
     );
 }
