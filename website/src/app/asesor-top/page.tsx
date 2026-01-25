@@ -10,6 +10,7 @@ import { CrmMockup } from '@/components/mockups/CrmMockup';
 import { Play, Pause, RotateCcw, CheckCircle2, Calendar, MessageSquare, Database, TrendingUp } from 'lucide-react';
 import { SALES_SCRIPT, FOLLOW_UP_SCRIPT } from '@/data/mockData';
 import type { ChatMessage } from '@/data/mockData';
+import { NewsletterSection } from '@/components/NewsletterSection';
 
 export default function AsesorTopPage() {
     const [salesScenario, setSalesScenario] = useState<'initial' | 'crm' | 'followup'>('initial');
@@ -370,6 +371,9 @@ export default function AsesorTopPage() {
                     </div>
                 </section>
             </main>
+
+            {/* Newsletter Section */}
+            <NewsletterSection source="asesor-top" />
 
             <Footer />
         </div>

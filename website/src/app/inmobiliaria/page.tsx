@@ -12,6 +12,7 @@ import { Search, MessageSquare, TrendingUp, Calendar, CheckCircle2, Play, Pause,
 import { RoiCalculator } from '@/components/RoiCalculator';
 import { CAPTACION_SCRIPT } from '@/data/mockData';
 import type { ChatMessage } from '@/data/mockData';
+import { NewsletterSection } from '@/components/NewsletterSection';
 
 export default function InmobiliariaPage() {
     const [activeTab, setActiveTab] = useState<'rastreo' | 'contacto' | 'tracking'>('rastreo');
@@ -404,6 +405,9 @@ export default function InmobiliariaPage() {
                     </div>
                 </section>
             </main>
+
+            {/* Newsletter Section */}
+            <NewsletterSection source="inmobiliaria" />
 
             <Footer />
         </div >
