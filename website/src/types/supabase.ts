@@ -62,6 +62,29 @@ export interface Database {
                     is_published?: boolean;
                 };
             };
+            newsletter_subscribers: {
+                Row: {
+                    id: string;
+                    email: string;
+                    subscribed_at: string;
+                    source: string | null;
+                    is_active: boolean;
+                };
+                Insert: {
+                    id?: string;
+                    email: string;
+                    subscribed_at?: string;
+                    source?: string;
+                    is_active?: boolean;
+                };
+                Update: {
+                    id?: string;
+                    email?: string;
+                    subscribed_at?: string;
+                    source?: string;
+                    is_active?: boolean;
+                };
+            };
         };
         Views: {};
         Functions: {
