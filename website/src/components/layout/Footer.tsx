@@ -94,13 +94,17 @@ export function Footer({ hideCTA = false }: FooterProps) {
                         </h4>
                         <div className="flex gap-3 mb-6">
                             <a
-                                href="#"
+                                href="https://www.linkedin.com/in/osterrietchleonardo/"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="w-10 h-10 rounded-xl bg-[#1E293B] border border-slate-700 flex items-center justify-center !text-slate-300 hover:bg-[#B87333] hover:border-[#B87333] hover:!text-white transition-all hover:scale-110 shadow-lg"
                             >
                                 <Linkedin size={20} />
                             </a>
                             <a
-                                href="#"
+                                href="https://www.instagram.com/vakdor_leo/"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="w-10 h-10 rounded-xl bg-[#1E293B] border border-slate-700 flex items-center justify-center !text-slate-300 hover:bg-[#B87333] hover:border-[#B87333] hover:!text-white transition-all hover:scale-110 shadow-lg"
                             >
                                 <Instagram size={20} />
