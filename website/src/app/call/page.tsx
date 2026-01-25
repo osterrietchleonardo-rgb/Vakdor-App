@@ -34,11 +34,16 @@ export default function CallPage() {
                             </div>
 
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
-                                Escala tu Inmobiliaria con <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B87333] via-[#D4AF37] to-[#B87333] animate-gradient-x">Inteligencia Soberana</span>
+                                Dejá de Perder Leads. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B87333] via-[#D4AF37] to-[#B87333] animate-gradient-x">Empezá a Escalar.</span>
                             </h1>
 
+                            {/* Ogilvy: Big Idea Quote */}
+                            <p className="font-accent text-[#B87333] text-base italic">
+                                "El tiempo que perdés respondiendo consultas es tiempo que no estás cerrando ventas."
+                            </p>
+
                             <p className="text-lg text-slate-400 leading-relaxed">
-                                No es solo una llamada. Es el primer paso para integrar sistemas autónomos que trabajan mientras duermes. Descubre cómo nuestros agentes de IA pueden cualificar leads, gestionar citas y cerrar ventas automáticamente.
+                                En 30 minutos analizamos tu operación, identificamos cuánto dinero estás dejando sobre la mesa y te mostramos el sistema exacto que necesitás para recuperarlo. Ya seas asesor top o dirijas una inmobiliaria.
                             </p>
 
                             <div className="space-y-6 pt-6">
@@ -47,8 +52,8 @@ export default function CallPage() {
                                         <Zap size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Automatización Total</h3>
-                                        <p className="text-slate-400 text-sm">Elimina el 80% del trabajo manual repetitivo en tu proceso de ventas.</p>
+                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Para Asesores: AureFlow</h3>
+                                        <p className="text-slate-400 text-sm">Tu asistente de WhatsApp que responde, califica y agenda 24/7. Vos solo te presentás a cerrar.</p>
                                     </div>
                                 </div>
 
@@ -57,8 +62,8 @@ export default function CallPage() {
                                         <Shield size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Infraestructura Propia</h3>
-                                        <p className="text-slate-400 text-sm">Tu data, tus reglas. Implementamos sistemas que te pertenecen.</p>
+                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Para Inmobiliarias: Partner Tecnológico</h3>
+                                        <p className="text-slate-400 text-sm">Captación automática, recuperación de leads, tracking de equipo y tutor IA para tus nuevos asesores.</p>
                                     </div>
                                 </div>
 
@@ -67,8 +72,8 @@ export default function CallPage() {
                                         <TrendingUp size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">ROI Medible</h3>
-                                        <p className="text-slate-400 text-sm">Resultados tangibles desde el primer mes de implementación.</p>
+                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Sin Riesgo: 90 Días de Garantía</h3>
+                                        <p className="text-slate-400 text-sm">Si no lográs el ROI proyectado, te devolvemos tu inversión. Así de seguros estamos.</p>
                                     </div>
                                 </div>
                             </div>
@@ -84,11 +89,15 @@ export default function CallPage() {
                                         ))}
                                     </div>
                                     <div className="text-sm font-medium text-white">
-                                        +50 Inmobiliarias transformadas
+                                        +50 Profesionales confían en Vakdor
                                     </div>
                                 </div>
                                 <p className="text-xs text-slate-500">
                                     * Espacios limitados por mes para garantizar la calidad del servicio.
+                                </p>
+                                {/* Caples: Specific Data */}
+                                <p className="text-xs text-[#B87333] mt-2 font-medium">
+                                    📊 El 82% de nuestros clientes recuperan la inversión en los primeros 60 días.
                                 </p>
                             </div>
                         </div>

@@ -19,20 +19,20 @@ export default function HomePage() {
           <div className="max-w-5xl mx-auto text-center">
             {/* Accent Quote - Ogilvy: Big Idea */}
             <p className="font-accent text-[#B87333] text-lg md:text-xl mb-6 animate-fade-in">
-              "Donde el Legado se encuentra con el Algoritmo"
+              "Cada Lead Perdido es una Comisión que se Evapora"
             </p>
 
             {/* Main Title - Halbert/Belfort: Pain + Transformation */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#F8FAFC] mb-6 leading-tight animate-fade-in-up">
-              El 80% de tu Esfuerzo es Ruido.
-              <span className="block text-gradient-copper">Dejá de Ser un Operario</span>
-              y Convertite en el Arquitecto de tu Negocio.
+              Mientras Vos Dormís, tu Competencia Cierra.
+              <span className="block text-gradient-copper">¿Y si Pudieras Escalar</span>
+              sin Sacrificar tu Vida?
             </h1>
 
             {/* Subtitle - Sugarman: Slippery Slide */}
             <p className="text-lg md:text-xl text-[#94A3B8] mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              Te instalamos la <span className="text-[#B87333] font-semibold">Arquitectura de Venta Autónoma</span> que trabaja 24/7.
-              El único sistema que te permite enfocarte en el cierre y <span className="text-white font-medium">recuperar tus fines de semana</span>.
+              <span className="text-[#B87333] font-semibold">Sistemas de IA</span> que trabajan 24/7 para que vos te enfoques en lo que mejor hacés: cerrar ventas y liderar tu equipo.
+              <span className="text-white font-medium">Sin más tareas repetitivas. Sin más leads perdidos.</span>
             </p>
 
             {/* Segmentador Buttons - Caples: Specific Benefits */}
@@ -48,10 +48,10 @@ export default function HomePage() {
                   SOY ASESOR TOP
                 </h2>
                 <p className="text-[#94A3B8] text-sm mb-4">
-                  Quiero Dejar de Ser un Esclavo del WhatsApp y <span className="text-[#B87333] font-semibold">Duplicar mis Cierres</span>.
+                  Quiero que la IA <span className="text-[#B87333] font-semibold">Responda, Califique y Agende por Mí</span>. Yo Solo Me Presento a Cerrar.
                 </p>
                 <span className="inline-flex items-center gap-2 text-[#B87333] font-semibold text-sm group-hover:gap-3 transition-all">
-                  VER EL SISTEMA QUE GARANTIZA EL ROI <ArrowRight size={16} />
+                  CONOCER AUREFLOW <ArrowRight size={16} />
                 </span>
               </Link>
 
@@ -66,10 +66,10 @@ export default function HomePage() {
                   DIRIJO UNA INMOBILIARIA
                 </h2>
                 <p className="text-[#94A3B8] text-sm mb-4">
-                  Necesito <span className="text-[#B87333] font-semibold">Captación Exclusiva</span> y Control Total del ROI.
+                  Necesito un <span className="text-[#B87333] font-semibold">Partner Tecnológico</span>: Leads Recuperados, Captación Automática y Performance en Tiempo Real.
                 </p>
                 <span className="inline-flex items-center gap-2 text-[#B87333] font-semibold text-sm group-hover:gap-3 transition-all">
-                  VER EL SISTEMA QUE GARANTIZA EL ROI <ArrowRight size={16} />
+                  VER LAS SOLUCIONES <ArrowRight size={16} />
                 </span>
               </Link>
             </div>
@@ -80,7 +80,7 @@ export default function HomePage() {
         <section className="py-20 px-4 bg-[#0F172A]/50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-[#F8FAFC] mb-4">
-              El Costo Oculto de la Fricción Manual: <span className="text-gradient-copper">¿Cuánto Dinero Dejás Sobre la Mesa?</span>
+              ¿Cuánto Dinero Estás Dejando <span className="text-gradient-copper">Sobre la Mesa?</span>
             </h2>
             <p className="text-[#94A3B8] text-center mb-12 max-w-2xl mx-auto">
               Mientras otros sectores escalan con tecnología, el inmobiliario sigue atrapado en procesos que queman equipos y pierden clientes.
@@ -90,22 +90,22 @@ export default function HomePage() {
               {[
                 {
                   icon: Clock,
-                  title: 'Si Sos Asesor',
-                  description: 'Pasás 20+ horas semanales respondiendo las mismas preguntas. Tiempo que podrías usar para cerrar.',
+                  title: 'El Tiempo es Dinero',
+                  description: 'Responder las mismas preguntas una y otra vez te roba horas que podrías usar para cerrar negocios o escalar tu equipo.',
                   stat: '20+ hrs',
                   statLabel: 'perdidas por semana'
                 },
                 {
                   icon: TrendingDown,
-                  title: '33% de Leads Desperdiciados',
-                  description: 'Un tercio de tu inversión en marketing se esfuma porque nadie hace seguimiento. Vakdor te devuelve ese dinero.',
+                  title: 'Leads que Nadie Siguió',
+                  description: 'Un tercio de tu inversión en marketing desaparece porque falta seguimiento. Vakdor los recupera automáticamente.',
                   stat: '33%',
                   statLabel: 'leads perdidos'
                 },
                 {
                   icon: AlertTriangle,
-                  title: 'Mientras Dormís',
-                  description: 'Tu competencia que sí usa tecnología se lleva los mejores clientes. La diferencia se mide en minutos.',
+                  title: 'La Ventaja es de Minutos',
+                  description: 'Cuando tardás 4 horas en responder, tu competencia que usa tecnología ya cerró la cita.',
                   stat: '∞',
                   statLabel: 'oportunidades perdidas'
                 },
@@ -124,6 +124,15 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
+
+            {/* Hopkins: Objection Handling */}
+            <div className="max-w-2xl mx-auto mt-12 bg-[#020617]/80 border border-[#B87333]/30 rounded-xl p-6">
+              <p className="text-[#B87333] font-bold mb-2">"No tengo tiempo para implementar algo nuevo..."</p>
+              <p className="text-[#94A3B8] text-sm">
+                Ese es precisamente el problema. Estás tan ocupado apagando incendios que no podés construir el sistema que los prevenga.
+                <span className="text-white font-medium"> Vakdor se implementa sin interrumpir tu operación actual.</span>
+              </p>
+            </div>
           </div>
         </section>
 
@@ -131,12 +140,12 @@ export default function HomePage() {
         <section className="py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <p className="font-accent text-[#B87333] text-lg mb-4">La Arquitectura de Venta Autónoma</p>
+              <p className="font-accent text-[#B87333] text-lg mb-4">Soluciones para Cada Necesidad</p>
               <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-4">
-                No Vendemos Software. <span className="text-gradient-copper">Instalamos un Sistema de Control Total.</span>
+                No Vendemos Software. <span className="text-gradient-copper">Instalamos Resultados.</span>
               </h2>
               <p className="text-[#94A3B8] max-w-2xl mx-auto">
-                Tu data, tus reglas. La IA hace el trabajo de bajo valor cognitivo mientras vos te enfocás en lo que la máquina no puede hacer: cerrar acuerdos complejos.
+                Tu data, tus reglas. La IA hace el trabajo de bajo valor cognitivo mientras vos te enfocás en lo que la máquina no puede hacer: cerrar acuerdos complejos y liderar equipos.
               </p>
             </div>
 
@@ -144,23 +153,23 @@ export default function HomePage() {
               {[
                 {
                   icon: Bot,
-                  title: 'Asistente Virtual 24/7',
-                  description: 'Responde consultas, califica leads y agenda visitas mientras dormís. Como tener un equipo que nunca descansa y nunca se queja.',
-                },
-                {
-                  icon: Building2,
-                  title: 'Captación Automática',
-                  description: 'Rastrea portales inmobiliarios y contacta propietarios antes que tu competencia. Captación en piloto automático, 5+ exclusivas al mes.',
+                  title: 'AureFlow: Tu Asistente 24/7',
+                  description: 'Para asesores: La IA responde consultas, califica leads y agenda visitas por WhatsApp mientras dormís. Vos solo te presentás a cerrar.',
                 },
                 {
                   icon: Users,
-                  title: 'Seguimiento Perpetuo',
-                  description: 'Ningún lead se pierde. El sistema hace seguimiento personalizado durante 18 meses hasta que estén listos para comprar.',
+                  title: 'Recuperador de Leads',
+                  description: 'Reactivá automáticamente leads que no compraron. El sistema les avisa cuando aparece una propiedad que matchea. No perdés más oportunidades.',
+                },
+                {
+                  icon: Building2,
+                  title: 'Captación de Propiedades',
+                  description: 'Para inmobiliarias: La IA rastrea portales y contacta dueños directos antes que la competencia. 5+ exclusivas al mes en piloto automático.',
                 },
                 {
                   icon: Trophy,
-                  title: 'Dashboard de Performance',
-                  description: 'Visualiza el rendimiento de tu equipo en tiempo real. Identificá quién convierte y quién está a punto de irse antes de que renuncie.',
+                  title: 'Performance + Capacitación',
+                  description: 'Dashboard de rendimiento en tiempo real + Tutor IA que entrena a tus nuevos asesores. Control total sin micromanagement.',
                 },
               ].map((item, index) => (
                 <div
@@ -183,13 +192,12 @@ export default function HomePage() {
         {/* CTA Section - Cialdini: Scarcity + Bencivenga: Irresistibility */}
         <section className="py-20 px-4 bg-gradient-to-b from-[#0F172A]/50 to-[#020617]">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="font-accent text-[#B87333] text-lg mb-4">¿Listo para la Transformación?</p>
+            <p className="font-accent text-[#B87333] text-lg mb-4">¿Listo para Dejar de Perder Dinero?</p>
             <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-6">
-              Descubrí la Arquitectura de la Venta Autónoma
+              Descubrí Cuánto Estás Dejando Sobre la Mesa
             </h2>
             <p className="text-[#94A3B8] mb-8 max-w-xl mx-auto">
-              En una auditoría estratégica de 30 minutos te mostramos exactamente cuánto dinero está dejando
-              tu operación sobre la mesa y cómo podemos ayudarte a recuperarlo. <span className="text-white font-medium">Espacios limitados por mes.</span>
+              En una auditoría de 30 minutos analizamos tu operación actual, identificamos las fugas de leads y diseñamos un plan concreto para tu situación. <span className="text-white font-medium">Ya seas asesor top o dirijas una inmobiliaria.</span>
             </p>
             <a
               href="https://propuesta.vakdor.com/call"
