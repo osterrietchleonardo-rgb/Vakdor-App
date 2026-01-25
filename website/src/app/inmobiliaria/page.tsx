@@ -13,6 +13,7 @@ import { RoiCalculator } from '@/components/RoiCalculator';
 import { CAPTACION_SCRIPT } from '@/data/mockData';
 import type { ChatMessage } from '@/data/mockData';
 import { NewsletterSection } from '@/components/NewsletterSection';
+import { FAQSection } from '@/components/FAQSection';
 
 export default function InmobiliariaPage() {
     const [activeTab, setActiveTab] = useState<'rastreo' | 'contacto' | 'tracking'>('rastreo');
@@ -377,7 +378,32 @@ export default function InmobiliariaPage() {
                     </div>
                 </section>
 
-                {/* CTA Final */}
+                
+                {/* FAQ Section - Inmobiliarias */}
+                <FAQSection
+                    title="Preguntas Frecuentes Estratégicas"
+                    subtitle="Resolviendo dudas para directores que buscan escalar."
+                    items={[
+                        {
+                            question: "Mi dolor de cabeza es la retención. ¿Cómo ayudan con esto?",
+                            answer: "Creamos un 'Candado de Valor'. Cuando su brokerage provee leads cualificados y citas agendadas, el agente sabe que irse significa volver al trabajo manual. Convertimos su infraestructura en una ventaja competitiva tan fuerte que abandonar su firma se vuelve una mala decisión financiera y operativa."
+                        },
+                        {
+                            question: "He invertido en CRMs antes y nadie los usa. ¿Por qué esto es diferente?",
+                            answer: "El problema es exigir a los agentes que sean secretarios de datos. Nuestra filosofía es 'Zero Data Entry'. La IA captura llamadas y actividades sola. Cuando la tecnología elimina trabajo en lugar de crearlo, la adopción es inmediata. Además, genera dinero desde el día uno, convirtiéndose en un centro de beneficios."
+                        },
+                        {
+                            question: "Mis márgenes están comprimidos. ¿Es momento de invertir?",
+                            answer: "Precisamente por eso. No se puede 'ahorrar' camino al crecimiento; se debe 'automatizar' camino a la rentabilidad. Nuestras soluciones desacoplan ingresos de costos operativos, permitiendo duplicar transacciones sin duplicar personal. En 2026, la tecnología es el escudo que protege su rentabilidad."
+                        },
+                        {
+                            question: "¿Cómo sé que esto no es solo 'humo' (hype) de IA?",
+                            answer: "No vendemos chatbots; implementamos Agentes Autónomos con arquitecturas probadas de Memoria, Planificación y Acción, alimentados con datos hiperlocales. Los resultados son métricas duras: tasas de respuesta, citas agendadas y reducción de horas administrativas. Le invitamos a una prueba de concepto con sus propios datos."
+                        }
+                    ]}
+                />
+
+                {/* CTA Final CTA Final Section needs to remain */}
                 <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#020617] text-white relative overflow-hidden">
                     {/* Glow effect */}
                     <div className="absolute inset-0 flex items-center justify-center">

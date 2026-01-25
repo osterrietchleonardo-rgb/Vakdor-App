@@ -11,6 +11,7 @@ import { Play, Pause, RotateCcw, CheckCircle2, Calendar, MessageSquare, Database
 import { SALES_SCRIPT, FOLLOW_UP_SCRIPT } from '@/data/mockData';
 import type { ChatMessage } from '@/data/mockData';
 import { NewsletterSection } from '@/components/NewsletterSection';
+import { FAQSection } from '@/components/FAQSection';
 
 export default function AsesorTopPage() {
     const [salesScenario, setSalesScenario] = useState<'initial' | 'crm' | 'followup'>('initial');
@@ -343,7 +344,32 @@ export default function AsesorTopPage() {
                     </div>
                 </section>
 
-                {/* CTA Final */}
+                
+                {/* FAQ Section - Asesores */}
+                <FAQSection
+                    title="Preguntas Frecuentes Estratégicas"
+                    subtitle="Derribando mitos sobre la automatización inmobiliaria."
+                    items={[
+                        {
+                            question: "¿Por qué debería considerar cambiarme si ya me va bien?",
+                            answer: "El éxito en este negocio se construye con años de esfuerzo, pero la mayoría de los Top Producers alcanzan un 'techo de cristal' donde ganar más implica sacrificar su vida personal. Nuestro sistema actúa como un equipo de ventas interno (ISA) disponible 24/7. Mientras usted se enfoca en negociar, la IA cualifica leads y agenda citas. No le pedimos trabajar más, sino facturar un 30% más recuperando sus fines de semana."
+                        },
+                        {
+                            question: "Mis clientes son de lujo, no puedo ponerles un 'robot'.",
+                            answer: "Tiene toda la razón. En el mercado de lujo, la automatización mal aplicada es un suicidio. Por eso, nuestra tecnología es 'invisible'. No usamos chatbots genéricos. Utilizamos Inteligencia de Datos y conserjería digital. La IA prepara el informe y la estrategia, pero usted hace la llamada. Es hiper-personalización a escala, manteniendo el toque humano como protagonista."
+                        },
+                        {
+                            question: "¿En qué se diferencian de los cursos de ventas tradicionales?",
+                            answer: "El coaching tradicional falla porque depende de la fuerza de voluntad. Nosotros nos basamos en la ejecución asistida. No solo enseñamos metodologías; le damos las herramientas para ejecutarlas. Guiones en tiempo real, análisis de personalidad de prospectos y automatización de seguimiento con 'psicología inversa'. Pasamos de la teoría a la acción automática."
+                        },
+                        {
+                            question: "Me preocupa la seguridad de mi base de datos.",
+                            answer: "La propiedad de sus datos es sagrada. Su base de datos es una bóveda privada: sus datos entrenan a su IA personal, no a la de la competencia. Además, utilizamos Neuro-Copywriting para analizar el comportamiento de sus leads y redactar mensajes relevantes, antítesis de lo impersonal."
+                        }
+                    ]}
+                />
+
+                {/* CTA Final CTA Final Section needs to remain */}
                 <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#020617] text-white relative overflow-hidden">
                     {/* Glow effect */}
                     <div className="absolute inset-0 flex items-center justify-center">
