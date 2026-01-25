@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ParticleField } from '@/components/effects/ParticleField';
 import { getPublishedPosts } from '@/lib/blog';
 import { BlogPostCard } from '@/components/blog/BlogPostCard';
+import { NewsletterSection } from '@/components/NewsletterSection';
 import type { Metadata } from 'next';
 import type { BlogPost } from '@/types/supabase';
 import { FALLBACK_POSTS } from '@/data/mockData';
@@ -56,25 +57,8 @@ export default async function BlogPage() {
                         </div>
 
                         {/* Newsletter CTA */}
-                        <div className="mt-16 text-center p-8 md:p-12 bg-gradient-to-br from-[#B87333] to-[#5C3D2E] rounded-3xl shadow-xl overflow-hidden relative">
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-                            <div className="relative z-10">
-                                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">No te pierdas ninguna actualización</h3>
-                                <p className="text-white/80 mb-8 max-w-xl mx-auto text-lg">
-                                    Recibí las últimas estrategias sobre IA inmobiliaria directamente en tu email.
-                                    Sin spam, solo valor real.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                                    <input
-                                        type="email"
-                                        placeholder="Tu email principal"
-                                        className="executive-input flex-1 px-5 py-3 rounded-xl"
-                                    />
-                                    <button className="bg-[#020617] hover:bg-black text-white px-8 py-3 rounded-xl font-bold transition-all whitespace-nowrap active:scale-95">
-                                        Unirme ahora
-                                    </button>
-                                </div>
-                            </div>
+                        <div className="mt-16">
+                            <NewsletterSection source="blog" />
                         </div>
                     </div>
                 </section>

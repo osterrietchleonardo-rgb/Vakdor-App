@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ParticleField } from '@/components/effects/ParticleField';
 import { ArrowRight, Bot, Building2, Users, Zap, Trophy, Clock, AlertTriangle, DollarSign, TrendingDown } from 'lucide-react';
+import { NewsletterSection } from '@/components/NewsletterSection';
 
 export default function HomePage() {
   return (
@@ -212,6 +213,8 @@ export default function HomePage() {
             </p>
           </div>
         </section>
+        {/* Newsletter Section */}
+        <NewsletterSection source="home" />
       </main>
 
       <Footer />

@@ -3,6 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { ParticleField } from "@/components/effects/ParticleField";
 import { BookingCalendar } from "@/components/booking/BookingCalendar";
 import { CheckCircle2, Zap, Shield, TrendingUp } from "lucide-react";
+import { NewsletterSection } from "@/components/NewsletterSection";
 
 export const metadata = {
     title: "Agendar Llamada | Vakdor - Sovereign Intelligence",
@@ -109,6 +110,9 @@ export default function CallPage() {
                     </div>
                 </div>
             </main>
+
+            {/* Newsletter Section */}
+            <NewsletterSection source="call" />
 
             <Footer hideCTA />
         </div>
