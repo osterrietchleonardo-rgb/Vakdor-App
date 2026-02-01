@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 
 interface Particle {
     x: number;
@@ -13,6 +13,22 @@ interface Particle {
 
 export function ParticleField() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [isMobile, setIsMobile] = useState(true); // Default to true to prevent flash
+
+    // Detect mobile on client side
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Don't render on mobile - critical for TBT optimization
+    if (isMobile) {
+        return null;
+    }
     const particlesRef = useRef<Particle[]>([]);
     const mouseRef = useRef({ x: -1000, y: -1000 });
     const animationRef = useRef<number | null>(null);
@@ -55,10 +71,10 @@ export function ParticleField() {
 
         // 1. Update and Draw Particles
         ctx.fillStyle = '#B87333';
-        
+
         for (let i = 0; i < particleCount; i++) {
             const particle = particles[i];
-            
+
             // Mouse influence
             const dx = mouse.x - particle.x;
             const dy = mouse.y - particle.y;
@@ -86,19 +102,19 @@ export function ParticleField() {
         ctx.lineWidth = 0.5;
 
         for (let i = 0; i < particleCount; i++) {
-            const p1 = particles[i]; 
-            
+            const p1 = particles[i];
+
             for (let j = i + 1; j < particleCount; j++) {
                 const p2 = particles[j];
                 const dx = p1.x - p2.x;
                 const dy = p1.y - p2.y;
                 const distSq = dx * dx + dy * dy;
-                
+
                 // Compare squared distance to avoid expensive sqrt
                 if (distSq < connectionDistance * connectionDistance) {
                     const dist = Math.sqrt(distSq);
                     const opacity = (1 - dist / connectionDistance) * 0.15;
-                    
+
                     if (opacity > 0.01) {
                         ctx.strokeStyle = `rgba(184, 115, 51, ${opacity})`;
                         ctx.beginPath();
@@ -120,13 +136,13 @@ export function ParticleField() {
         let resizeTimeout: NodeJS.Timeout;
 
         const resizeCanvas = () => {
-             // Debounce resize
-             clearTimeout(resizeTimeout);
-             resizeTimeout = setTimeout(() => {
+            // Debounce resize
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 initParticles(canvas);
-             }, 100);
+            }, 100);
         };
 
         const handleMouseMove = (e: MouseEvent) => {
@@ -164,7 +180,7 @@ export function ParticleField() {
         <canvas
             ref={canvasRef}
             className="fixed inset-0 pointer-events-none z-0"
-            style={{ background: 'transparent' }} 
+            style={{ background: 'transparent' }}
         />
     );
 }
