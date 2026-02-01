@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
 };
 
-import { BackgroundLogo } from "@/components/effects/BackgroundLogo";
+import { BackgroundLogo } from '@/components/effects/BackgroundLogo';
 
 export default function RootLayout({
   children,
@@ -62,6 +62,13 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning className="dark">
       <head>
+        {/* Preconnect to critical domains */}
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* DNS-prefetch for analytics (less critical) */}
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/logo.png" />
         <link rel="shortcut icon" href="/favicon.ico" />

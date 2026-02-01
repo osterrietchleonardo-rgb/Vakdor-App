@@ -1,17 +1,35 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { ParticleField } from '@/components/effects/ParticleField';
 import { ChatBubble } from '@/components/mockups/ChatBubble';
 import { WhatsAppInput } from '@/components/mockups/WhatsAppInput';
-import { CrmMockup } from '@/components/mockups/CrmMockup';
 import { Play, Pause, RotateCcw, CheckCircle2, Calendar, MessageSquare, Database, TrendingUp } from 'lucide-react';
 import { SALES_SCRIPT, FOLLOW_UP_SCRIPT } from '@/data/mockData';
 import type { ChatMessage } from '@/data/mockData';
-import { NewsletterSection } from '@/components/NewsletterSection';
-import { FAQSection } from '@/components/FAQSection';
+
+// Dynamic imports for non-critical visual components
+const ParticleField = dynamic(
+    () => import('@/components/effects/ParticleField').then(m => m.ParticleField),
+    { ssr: false }
+);
+
+const CrmMockup = dynamic(
+    () => import('@/components/mockups/CrmMockup').then(m => m.CrmMockup),
+    { ssr: false }
+);
+
+const NewsletterSection = dynamic(
+    () => import('@/components/NewsletterSection').then(m => m.NewsletterSection),
+    { ssr: false }
+);
+
+const FAQSection = dynamic(
+    () => import('@/components/FAQSection').then(m => m.FAQSection),
+    { ssr: false }
+);
 
 export default function AsesorTopPage() {
     const [salesScenario, setSalesScenario] = useState<'initial' | 'crm' | 'followup'>('initial');

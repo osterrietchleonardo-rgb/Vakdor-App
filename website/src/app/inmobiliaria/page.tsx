@@ -1,19 +1,45 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
-import { ParticleField } from '@/components/effects/ParticleField';
-import { ScrapingMockup } from '@/components/mockups/ScrapingMockup';
-import { AdvisorDashboardMockup } from '@/components/mockups/AdvisorDashboardMockup';
 import { ChatBubble } from '@/components/mockups/ChatBubble';
 import { WhatsAppInput } from '@/components/mockups/WhatsAppInput';
 import { Search, MessageSquare, TrendingUp, Calendar, CheckCircle2, Play, Pause, RotateCcw } from 'lucide-react';
-import { RoiCalculator } from '@/components/RoiCalculator';
 import { CAPTACION_SCRIPT } from '@/data/mockData';
 import type { ChatMessage } from '@/data/mockData';
-import { NewsletterSection } from '@/components/NewsletterSection';
-import { FAQSection } from '@/components/FAQSection';
+
+// Dynamic imports for non-critical visual components
+const ParticleField = dynamic(
+    () => import('@/components/effects/ParticleField').then(m => m.ParticleField),
+    { ssr: false }
+);
+
+const ScrapingMockup = dynamic(
+    () => import('@/components/mockups/ScrapingMockup').then(m => m.ScrapingMockup),
+    { ssr: false }
+);
+
+const AdvisorDashboardMockup = dynamic(
+    () => import('@/components/mockups/AdvisorDashboardMockup').then(m => m.AdvisorDashboardMockup),
+    { ssr: false }
+);
+
+const RoiCalculator = dynamic(
+    () => import('@/components/RoiCalculator').then(m => m.RoiCalculator),
+    { ssr: false }
+);
+
+const NewsletterSection = dynamic(
+    () => import('@/components/NewsletterSection').then(m => m.NewsletterSection),
+    { ssr: false }
+);
+
+const FAQSection = dynamic(
+    () => import('@/components/FAQSection').then(m => m.FAQSection),
+    { ssr: false }
+);
 
 export default function InmobiliariaPage() {
     const [activeTab, setActiveTab] = useState<'rastreo' | 'contacto' | 'tracking'>('rastreo');
@@ -411,10 +437,10 @@ export default function InmobiliariaPage() {
                     </div>
                     <div className="max-w-4xl mx-auto text-center relative z-10">
                         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#F8FAFC]">
-                            ¿Querés Ver Cómo Funciona en tu Caso Específico?
+                            ¿Querés Ver Cómo Aplicaría en tu Inmobiliaria?
                         </h2>
                         <p className="text-lg text-[#94A3B8] mb-8">
-                            No es una demo genérica. Es una llamada de 15 minutos donde diseñamos tu Sistema de Venta Autónoma y vemos cómo se integra con tu CRM actual.
+                            Auditoría Estratégica de 30 minutos donde analizamos qué sistemas aplican a tu operación, proyectamos el ROI real y diseñamos la implementación sin interrumpir nada.
                         </p>
                         <a
                             href="https://www.vakdor.com/call"
