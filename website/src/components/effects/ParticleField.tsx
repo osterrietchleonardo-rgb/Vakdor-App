@@ -13,6 +13,9 @@ interface Particle {
 
 export function ParticleField() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const particlesRef = useRef<Particle[]>([]);
+    const mouseRef = useRef({ x: -1000, y: -1000 });
+    const animationRef = useRef<number | null>(null);
     const [isMobile, setIsMobile] = useState(true); // Default to true to prevent flash
 
     // Detect mobile on client side
@@ -24,14 +27,6 @@ export function ParticleField() {
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
-
-    // Don't render on mobile - critical for TBT optimization
-    if (isMobile) {
-        return null;
-    }
-    const particlesRef = useRef<Particle[]>([]);
-    const mouseRef = useRef({ x: -1000, y: -1000 });
-    const animationRef = useRef<number | null>(null);
 
     const initParticles = useCallback((canvas: HTMLCanvasElement) => {
         const particles: Particle[] = [];
@@ -130,6 +125,9 @@ export function ParticleField() {
     }, []);
 
     useEffect(() => {
+        // Don't run animation on mobile - critical for TBT optimization
+        if (isMobile) return;
+
         const canvas = canvasRef.current;
         if (!canvas) return;
 
@@ -174,7 +172,12 @@ export function ParticleField() {
             }
             clearTimeout(resizeTimeout);
         };
-    }, [initParticles, animate]);
+    }, [isMobile, initParticles, animate]);
+
+    // Don't render on mobile - critical for TBT optimization
+    if (isMobile) {
+        return null;
+    }
 
     return (
         <canvas
