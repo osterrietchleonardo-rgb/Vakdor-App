@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Calendar, Menu, X } from 'lucide-react';
 
 export interface HeaderProps {
@@ -34,9 +35,12 @@ export function Header({ hideCTA = false }: HeaderProps) {
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110">
                             <div className="absolute inset-0 bg-[#B87333] blur-2xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full" />
-                            <img
+                            <Image
                                 src="/logo.png"
                                 alt="Vakdor Logo"
+                                width={48}
+                                height={48}
+                                priority
                                 className="w-full h-full object-contain relative z-10 drop-shadow-[0_0_15px_rgba(184,115,51,0.3)]"
                             />
                         </div>
