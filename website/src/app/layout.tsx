@@ -5,14 +5,16 @@ import "./globals.css";
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700"], // Reduced from 5 to 3 weights
+  display: "swap", // Explicit font-display
 });
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500"], // Reduced from 3 to 2 weights
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -72,3 +74,4 @@ export default function RootLayout({
     </html>
   );
 }
+
