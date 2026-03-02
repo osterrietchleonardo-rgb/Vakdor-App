@@ -8,6 +8,7 @@ import { NewsletterSection } from "@/components/NewsletterSection";
 export const metadata = {
     title: "Agendar Llamada | Vakdor - Sovereign Intelligence",
     description: "Agenda tu auditoría estratégica gratuita. Descubre cómo la IA puede escalar tu negocio inmobiliario.",
+    alternates: { canonical: '/call' },
 };
 
 export default function CallPage() {

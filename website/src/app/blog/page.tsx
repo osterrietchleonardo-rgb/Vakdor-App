@@ -12,6 +12,7 @@ import { FALLBACK_POSTS } from '@/data/mockData';
 export const metadata: Metadata = {
     title: 'Blog - IA para Inmobiliarias',
     description: 'Artículos, guías y casos de éxito sobre cómo usar IA para automatizar y escalar tu negocio inmobiliario.',
+    alternates: { canonical: '/blog' },
 };
 
 // Force dynamic rendering to always get fresh data from Supabase

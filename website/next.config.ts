@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Prevent URL duplication (e.g., /page vs /page/)
+  trailingSlash: false,
   // Enable image optimization
   images: {
     formats: ['image/webp', 'image/avif'],

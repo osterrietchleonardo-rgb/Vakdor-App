@@ -18,6 +18,10 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.vakdor.com'),
+  alternates: {
+    canonical: '/',
+  },
   title: {
     default: "Vakdor | IA para Inmobiliarias y Asesores",
     template: "%s | Vakdor"
@@ -29,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_AR",
-    url: "https://propuesta.vakdor.com",
+    url: "https://www.vakdor.com",
     siteName: "Vakdor",
     title: "Vakdor | IA para Inmobiliarias y Asesores",
     description: "El Partner Tecnológico del Sector Inmobiliario. Automatiza la captación de propiedades, el seguimiento de leads y la capacitación de tu equipo con IA.",
@@ -81,4 +85,3 @@ export default function RootLayout({
     </html>
   );
 }
-
