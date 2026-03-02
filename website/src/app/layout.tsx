@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -66,6 +67,20 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning className="dark">
       <head>
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-BMYP2N4LWM"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-BMYP2N4LWM');
+          `}
+        </Script>
+
         {/* Preconnect to critical domains */}
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
