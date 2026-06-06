@@ -148,9 +148,9 @@ export default function HomePage() {
                   loop
                   playsInline
                   preload="auto"
-                  poster="/videos/prisma-poster.png"
+                  poster="https://upggigryxdvcmnuwafyl.supabase.co/storage/v1/object/public/videos/prisma-poster.png"
                 >
-                  <source src="/videos/prisma-demo.mp4" type="video/mp4" />
+                  <source src="https://upggigryxdvcmnuwafyl.supabase.co/storage/v1/object/public/videos/prisma-demo.mp4" type="video/mp4" />
                   Tu navegador no soporta la reproducción de video.
                 </video>
               </div>
