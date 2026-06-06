@@ -6,8 +6,8 @@ import { CheckCircle2, Zap, Shield, TrendingUp } from "lucide-react";
 import { NewsletterSection } from "@/components/NewsletterSection";
 
 export const metadata = {
-    title: "Agendar Llamada | Vakdor - Sovereign Intelligence",
-    description: "Agenda tu auditoría estratégica gratuita. Descubre cómo la IA puede escalar tu negocio inmobiliario.",
+    title: "Agendar Diagnóstico Operativo | Vakdor PRISMA",
+    description: "Agendá tu Diagnóstico Operativo gratuito y vé PRISMA en vivo. Descubrí cómo darle trazabilidad matemática a tu inmobiliaria conectando Tokko Broker con WhatsApp.",
     alternates: { canonical: '/call' },
 };
 
@@ -32,20 +32,20 @@ export default function CallPage() {
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B87333] opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#B87333]"></span>
                                 </span>
-                                Auditoría Estratégica Gratuita
+                                Diagnóstico Operativo Gratuito
                             </div>
 
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight">
-                                Dejá de Perder Leads. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B87333] via-[#D4AF37] to-[#B87333] animate-gradient-x">Empezá a Escalar.</span>
+                                Dejá de Liderar a Ciegas. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#B87333] via-[#D4AF37] to-[#B87333] animate-gradient-x">Asumí el Control Integral.</span>
                             </h1>
 
                             {/* Ogilvy: Big Idea Quote */}
                             <p className="font-accent text-[#B87333] text-base italic">
-                                "El tiempo que perdés respondiendo consultas es tiempo que no estás cerrando ventas."
+                                "El voluntarismo no escala. Lo que no se mide, no se controla."
                             </p>
 
                             <p className="text-lg text-slate-400 leading-relaxed">
-                                En 30 minutos analizamos tu operación, identificamos cuánto dinero estás dejando sobre la mesa y te mostramos el sistema exacto que necesitás para recuperarlo. Ya seas asesor top o dirijas una inmobiliaria.
+                                En 30 minutos auditamos tu operación, detectamos dónde se fugan tus leads y tu rentabilidad, y te mostramos PRISMA en vivo: el Sistema Operativo que conecta tu CRM (Tokko Broker) con WhatsApp para darle trazabilidad matemática a tu agencia.
                             </p>
 
                             <div className="space-y-6 pt-6">
@@ -54,8 +54,8 @@ export default function CallPage() {
                                         <Zap size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Para Asesores: AureFlow</h3>
-                                        <p className="text-slate-400 text-sm">Tu asistente de WhatsApp que responde, califica y agenda 24/7. Vos solo te presentás a cerrar.</p>
+                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Trazabilidad de Leads (Speed-to-Lead)</h3>
+                                        <p className="text-slate-400 text-sm">Conectamos el punto ciego entre Tokko y WhatsApp. Cada oportunidad atendida, pre-calificada y registrada en menos de 2 minutos. Cero fugas.</p>
                                     </div>
                                 </div>
 
@@ -64,8 +64,8 @@ export default function CallPage() {
                                         <Shield size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Para Inmobiliarias: Partner Tecnológico</h3>
-                                        <p className="text-slate-400 text-sm">Captación automática, recuperación de leads, tracking de equipo y tutor IA para tus nuevos asesores.</p>
+                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Control y Performance de Asesores</h3>
+                                        <p className="text-slate-400 text-sm">Se acabó el liderazgo a ciegas. Un tablero en tiempo real con datos matemáticos para saber quién convierte y quién quema los leads.</p>
                                     </div>
                                 </div>
 
@@ -74,8 +74,8 @@ export default function CallPage() {
                                         <TrendingUp size={24} />
                                     </div>
                                     <div>
-                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Sin Riesgo: 90 Días de Garantía</h3>
-                                        <p className="text-slate-400 text-sm">Si no lográs el ROI proyectado, te devolvemos tu inversión. Así de seguros estamos.</p>
+                                        <h3 className="text-white font-bold text-lg mb-1 group-hover:text-[#B87333] transition-colors">Implementación Llave en Mano en 72hs</h3>
+                                        <p className="text-slate-400 text-sm">Sin que vos ni tu equipo configuren nada ni toquen una línea de código. Recuperás el control desde la primera semana.</p>
                                     </div>
                                 </div>
                             </div>
@@ -91,15 +91,15 @@ export default function CallPage() {
                                         ))}
                                     </div>
                                     <div className="text-sm font-medium text-white">
-                                        +50 Profesionales confían en Vakdor
+                                        Inmobiliarias líderes ya operan con PRISMA
                                     </div>
                                 </div>
                                 <p className="text-xs text-slate-500">
-                                    * Espacios limitados por mes para garantizar la calidad del servicio.
+                                    * Cupos limitados por mes para garantizar implementaciones Llave en Mano de calidad.
                                 </p>
                                 {/* Caples: Specific Data */}
                                 <p className="text-xs text-[#B87333] mt-2 font-medium">
-                                    📊 El 82% de nuestros clientes recuperan la inversión en los primeros 60 días.
+                                    📊 Cada lead atendido, pre-calificado y registrado en menos de 2 minutos. Cero fugas.
                                 </p>
                             </div>
                         </div>

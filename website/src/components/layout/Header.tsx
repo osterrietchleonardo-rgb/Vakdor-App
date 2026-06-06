@@ -52,9 +52,6 @@ export function Header({ hideCTA = false }: HeaderProps) {
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-8">
                         {[
-                            { href: '/', label: 'Inicio' },
-                            { href: '/asesor-top', label: 'Para Asesores' },
-                            { href: '/inmobiliaria', label: 'Para Inmobiliarias' },
                             { href: '/blog', label: 'Blog' },
                             { href: '/sobre-mi', label: 'Sobre Mí' },
                         ].map((link) => (
@@ -99,9 +96,6 @@ export function Header({ hideCTA = false }: HeaderProps) {
                     <div className="md:hidden mt-4 pb-4 border-t border-[rgba(184,115,51,0.2)] pt-4 animate-fade-in">
                         <nav className="flex flex-col gap-4">
                             {[
-                                { href: '/', label: 'Inicio' },
-                                { href: '/asesor-top', label: 'Para Asesores' },
-                                { href: '/inmobiliaria', label: 'Para Inmobiliarias' },
                                 { href: '/blog', label: 'Blog' },
                                 { href: '/sobre-mi', label: 'Sobre Mí' },
                             ].map((link) => (

@@ -794,6 +794,7 @@ export default function AureFlowDemo() {
     </div>
   );
 }
+'''
 
 with open('frontend/src/App.jsx', 'a', encoding='utf-8') as f:
     f.write(content)

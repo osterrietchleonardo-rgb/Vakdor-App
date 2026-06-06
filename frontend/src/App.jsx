@@ -4,15 +4,20 @@ import {
   RotateCcw, Play, Pause, Search, Zap, Database, ChevronRight, Calendar, PhoneCall,
   ArrowLeft, Video, Phone, MoreVertical
 } from 'lucide-react';
-import { SALES_SCRIPT, PROSPECTS, CAPTACION_SCRIPT } from './data/mockData';
+import { SALES_SCRIPT, PROSPECTS, CAPTACION_SCRIPT, FOLLOW_UP_SCRIPT } from './data/mockData';
 import { Header } from './components/Header';
 import { ChatBubble } from './components/ChatBubble';
 import { TypingIndicator } from './components/TypingIndicator';
 import { WhatsAppInput } from './components/WhatsAppInput';
 import { ProspectCard } from './components/ProspectCard';
+import { CrmMockup } from './components/CrmMockup';
+import { ScrapingMockup } from './components/ScrapingMockup';
+import { AdvisorDashboardMockup } from './components/AdvisorDashboardMockup';
 
 export default function AureFlowDemo() {
   const [activeTab, setActiveTab] = useState('sales');
+  const [salesScenario, setSalesScenario] = useState('initial'); // 'initial', 'crm', 'followup'
+  const [prospectingScenario, setProspectingScenario] = useState('scanning'); // 'scanning', 'outreach', 'tracking'
   const [messages, setMessages] = useState([]);
   const [stepIndex, setStepIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
@@ -59,11 +64,14 @@ export default function AureFlowDemo() {
 
     let timeoutId;
     const runStep = () => {
-      if (stepIndex >= SALES_SCRIPT.length) {
+      // Choose script based on scenario
+      const script = salesScenario === 'followup' ? FOLLOW_UP_SCRIPT : SALES_SCRIPT;
+
+      if (stepIndex >= script.length) {
         setIsPlaying(false);
         return;
       }
-      const currentStep = SALES_SCRIPT[stepIndex];
+      const currentStep = script[stepIndex];
       const isUser = currentStep.sender === 'user';
 
       if (!isUser) {
@@ -81,12 +89,13 @@ export default function AureFlowDemo() {
     };
 
     if (isPlaying) {
-      const currentStep = SALES_SCRIPT[stepIndex];
+      const script = salesScenario === 'followup' ? FOLLOW_UP_SCRIPT : SALES_SCRIPT;
+      const currentStep = script[stepIndex];
       const stepDelay = currentStep ? currentStep.delay : 1000;
       timeoutId = setTimeout(runStep, stepDelay);
     }
     return () => clearTimeout(timeoutId);
-  }, [isPlaying, stepIndex, activeTab]);
+  }, [isPlaying, stepIndex, activeTab, salesScenario]);
 
   useEffect(() => {
     if (activeTab !== 'prospecting') return;
@@ -138,11 +147,21 @@ export default function AureFlowDemo() {
 
   useEffect(() => {
     if (activeTab === 'sales') {
+      // Only reset sales chat if switching scenarios or tabs, handled partly by useEffect on salesScenario
+      // But if we just switched TO sales, we might want to reset? 
+      // Actually, let's keep it simple: switching major tabs resets everything.
       handleCaptacionReset();
     } else {
       handleReset();
     }
   }, [activeTab]);
+
+  // Reset when scenario changes
+  useEffect(() => {
+    if (activeTab === 'sales') {
+      handleReset();
+    }
+  }, [salesScenario]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans text-gray-800">
@@ -343,106 +362,137 @@ export default function AureFlowDemo() {
 
           {activeTab === 'sales' ? (
             // CONTENT FOR SALES MODE
-            <div ref={salesSectionRef}>
-              <div className="bg-gradient-to-br from-emerald-600 to-teal-800 p-6 md:p-8 rounded-xl md:rounded-2xl shadow-xl text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-white opacity-5 rounded-full -mr-12 -mt-12 md:-mr-16 md:-mt-16 pointer-events-none"></div>
+            <>
+              <div ref={salesSectionRef}>
+                <div className="bg-gradient-to-br from-emerald-600 to-teal-800 p-6 md:p-8 rounded-xl md:rounded-2xl shadow-xl text-white relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-48 h-48 md:w-64 md:h-64 bg-white opacity-5 rounded-full -mr-12 -mt-12 md:-mr-16 md:-mt-16 pointer-events-none"></div>
 
-                <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
-                  <div className="bg-white/20 p-2 md:p-3 rounded-lg md:rounded-xl">
-                    <MessageSquare size={24} className="md:w-7 md:h-7" />
+                  <div className="flex items-center gap-2 md:gap-3 mb-3 md:mb-4">
+                    <div className="bg-white/20 p-2 md:p-3 rounded-lg md:rounded-xl">
+                      <MessageSquare size={24} className="md:w-7 md:h-7" />
+                    </div>
+                    <div>
+                      <h2 className="text-xl md:text-2xl font-extrabold">Asesor de Ventas IA</h2>
+                      <p className="text-emerald-100 text-xs md:text-sm">$300/mes USD · Done-for-you</p>
+                    </div>
                   </div>
-                  <div>
-                    <h2 className="text-xl md:text-2xl font-extrabold">Asesor de Ventas IA</h2>
-                    <p className="text-emerald-100 text-xs md:text-sm">$300/mes USD · Done-for-you</p>
+
+                  <p className="text-emerald-50 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
+                    Tu negocio funcionando en piloto automático, con el toque humano que tu CRM solo no te da. <strong>Nosotros configuramos todo por vos en 15 días.</strong>
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3 md:gap-4">
+                    <div className="bg-white/10 backdrop-blur-sm p-2.5 md:p-3 rounded-lg border border-white/20">
+                      <div className="text-xl md:text-2xl font-bold">+20%</div>
+                      <div className="text-[10px] md:text-xs opacity-80">Más Visitas</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-sm p-2.5 md:p-3 rounded-lg border border-white/20">
+                      <div className="text-xl md:text-2xl font-bold">0%</div>
+                      <div className="text-[10px] md:text-xs opacity-80">No-Shows</div>
+                    </div>
                   </div>
                 </div>
 
-                <p className="text-emerald-50 text-sm md:text-base leading-relaxed mb-4 md:mb-6">
-                  Tu negocio funcionando en piloto automático, con el toque humano que tu CRM solo no te da. <strong>Nosotros configuramos todo por vos en 15 días.</strong>
-                </p>
-
-                <div className="grid grid-cols-2 gap-3 md:gap-4">
-                  <div className="bg-white/10 backdrop-blur-sm p-2.5 md:p-3 rounded-lg border border-white/20">
-                    <div className="text-xl md:text-2xl font-bold">+20%</div>
-                    <div className="text-[10px] md:text-xs opacity-80">Más Visitas</div>
-                  </div>
-                  <div className="bg-white/10 backdrop-blur-sm p-2.5 md:p-3 rounded-lg border border-white/20">
-                    <div className="text-xl md:text-2xl font-bold">0%</div>
-                    <div className="text-[10px] md:text-xs opacity-80">No-Shows</div>
-                  </div>
+                <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-sm border border-gray-100">
+                  <h3 className="font-bold text-gray-800 mb-3 md:mb-4 flex items-center gap-2 text-sm md:text-base">
+                    <TrendingUp className="text-emerald-600" size={18} />
+                    Gestión completa de tus consultas:
+                  </h3>
+                  <ul className="space-y-3 md:space-y-4">
+                    <li className="flex gap-2 md:gap-3">
+                      <div className="mt-1 bg-green-100 p-1 rounded text-green-600 h-fit"><CheckCheck size={14} className="md:w-4 md:h-4" /></div>
+                      <div>
+                        <strong className="block text-gray-900 text-xs md:text-sm">WhatsApp + CRM Integrado</strong>
+                        <span className="text-gray-500 text-[11px] md:text-xs">Gestión unificada de todas las consultas desde WhatsApp y tu CRM preferido (Tokko, u otros sistemas).</span>
+                      </div>
+                    </li>
+                    <li className="flex gap-2 md:gap-3">
+                      <div className="mt-1 bg-green-100 p-1 rounded text-green-600 h-fit"><UserCheck size={14} className="md:w-4 md:h-4" /></div>
+                      <div>
+                        <strong className="block text-gray-900 text-xs md:text-sm">Registro Automático en CRM</strong>
+                        <span className="text-gray-500 text-[11px] md:text-xs">Todos los datos de contacto, preferencias y seguimiento se registran automáticamente en tu sistema.</span>
+                      </div>
+                    </li>
+                    <li className="flex gap-2 md:gap-3">
+                      <div className="mt-1 bg-green-100 p-1 rounded text-green-600 h-fit"><ShieldCheck size={14} className="md:w-4 md:h-4" /></div>
+                      <div>
+                        <strong className="block text-gray-900 text-xs md:text-sm">Notificaciones y Seguimientos</strong>
+                        <span className="text-gray-500 text-[11px] md:text-xs">Sistema inteligente de recordatorios, re-confirmaciones y nurturing programado automáticamente.</span>
+                      </div>
+                    </li>
+                  </ul>
                 </div>
-              </div>
 
-              <div className="bg-white p-4 md:p-6 rounded-xl md:rounded-2xl shadow-sm border border-gray-100">
-                <h3 className="font-bold text-gray-800 mb-3 md:mb-4 flex items-center gap-2 text-sm md:text-base">
-                  <TrendingUp className="text-emerald-600" size={18} />
-                  Gestión completa de tus consultas:
-                </h3>
-                <ul className="space-y-3 md:space-y-4">
-                  <li className="flex gap-2 md:gap-3">
-                    <div className="mt-1 bg-green-100 p-1 rounded text-green-600 h-fit"><CheckCheck size={14} className="md:w-4 md:h-4" /></div>
-                    <div>
-                      <strong className="block text-gray-900 text-xs md:text-sm">WhatsApp + CRM Integrado</strong>
-                      <span className="text-gray-500 text-[11px] md:text-xs">Gestión unificada de todas las consultas desde WhatsApp y tu CRM preferido (Tokko, u otros sistemas).</span>
-                    </div>
-                  </li>
-                  <li className="flex gap-2 md:gap-3">
-                    <div className="mt-1 bg-green-100 p-1 rounded text-green-600 h-fit"><UserCheck size={14} className="md:w-4 md:h-4" /></div>
-                    <div>
-                      <strong className="block text-gray-900 text-xs md:text-sm">Registro Automático en CRM</strong>
-                      <span className="text-gray-500 text-[11px] md:text-xs">Todos los datos de contacto, preferencias y seguimiento se registran automáticamente en tu sistema.</span>
-                    </div>
-                  </li>
-                  <li className="flex gap-2 md:gap-3">
-                    <div className="mt-1 bg-green-100 p-1 rounded text-green-600 h-fit"><ShieldCheck size={14} className="md:w-4 md:h-4" /></div>
-                    <div>
-                      <strong className="block text-gray-900 text-xs md:text-sm">Notificaciones y Seguimientos</strong>
-                      <span className="text-gray-500 text-[11px] md:text-xs">Sistema inteligente de recordatorios, re-confirmaciones y nurturing programado automáticamente.</span>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              {/* BONUS STACK */}
-              <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-4 md:p-6 rounded-xl md:rounded-2xl border border-emerald-200">
-                <h4 className="font-bold text-gray-800 mb-2 md:mb-3 text-xs md:text-sm flex items-center gap-2">
-                  <span className="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px] md:text-xs">BONUS</span>
-                  Si arrancás esta semana
-                </h4>
-                <ul className="space-y-1.5 md:space-y-2 text-[11px] md:text-xs text-gray-700">
-                  <li className="flex items-start gap-1.5 md:gap-2">
-                    <CheckCheck size={12} className="text-emerald-600 mt-0.5 flex-shrink-0 md:w-3.5 md:h-3.5" />
-                    <span><strong>Módulo "Anti-Plantón":</strong> Recordatorios 24hs y 2hs antes. No-Shows bajados a menos del 10%.</span>
-                  </li>
-                  <li className="flex items-start gap-1.5 md:gap-2">
-                    <CheckCheck size={12} className="text-emerald-600 mt-0.5 flex-shrink-0 md:w-3.5 md:h-3.5" />
-                    <span><strong>Dashboard de Inversión Real:</strong> Ver qué anuncios rinden y cuáles son gasto innecesario.</span>
-                  </li>
-                  <li className="flex items-start gap-1.5 md:gap-2">
-                    <CheckCheck size={12} className="text-emerald-600 mt-0.5 flex-shrink-0 md:w-3.5 md:h-3.5" />
-                    <span><strong>Soporte "Guante Blanco" 24/7:</strong> Si algo falla un sábado a la noche, nosotros lo arreglamos.</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* CONTROLS */}
-              <div className="bg-white p-3 md:p-4 rounded-xl shadow border border-gray-100 flex items-center justify-between gap-2">
-                <div className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wide">
-                  Control de Demo
+                {/* BONUS STACK */}
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 p-4 md:p-6 rounded-xl md:rounded-2xl border border-emerald-200">
+                  <h4 className="font-bold text-gray-800 mb-2 md:mb-3 text-xs md:text-sm flex items-center gap-2">
+                    <span className="bg-emerald-600 text-white px-2 py-0.5 rounded text-[10px] md:text-xs">BONUS</span>
+                    Si arrancás esta semana
+                  </h4>
+                  <ul className="space-y-1.5 md:space-y-2 text-[11px] md:text-xs text-gray-700">
+                    <li className="flex items-start gap-1.5 md:gap-2">
+                      <CheckCheck size={12} className="text-emerald-600 mt-0.5 flex-shrink-0 md:w-3.5 md:h-3.5" />
+                      <span><strong>Módulo "Anti-Plantón":</strong> Recordatorios 24hs y 2hs antes. No-Shows bajados a menos del 10%.</span>
+                    </li>
+                    <li className="flex items-start gap-1.5 md:gap-2">
+                      <CheckCheck size={12} className="text-emerald-600 mt-0.5 flex-shrink-0 md:w-3.5 md:h-3.5" />
+                      <span><strong>Dashboard de Inversión Real:</strong> Ver qué anuncios rinden y cuáles son gasto innecesario.</span>
+                    </li>
+                    <li className="flex items-start gap-1.5 md:gap-2">
+                      <CheckCheck size={12} className="text-emerald-600 mt-0.5 flex-shrink-0 md:w-3.5 md:h-3.5" />
+                      <span><strong>Soporte "Guante Blanco" 24/7:</strong> Si algo falla un sábado a la noche, nosotros lo arreglamos.</span>
+                    </li>
+                  </ul>
                 </div>
-                <div className="flex gap-1.5 md:gap-2">
-                  <button onClick={handleReset} className="p-1.5 md:p-2 text-gray-500 hover:bg-gray-100 rounded-full">
-                    <RotateCcw size={16} className="md:w-4 md:h-4" />
+
+              </div>
+
+              {/* SALES SCENARIO CONTROLS */}
+              <div className="bg-white p-3 md:p-4 rounded-xl shadow border border-gray-100 mt-4">
+                <div className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wide mb-3">
+                  Etapas del Proceso
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <button
+                    onClick={() => setSalesScenario('initial')}
+                    className={`px-2 py-2 rounded-lg text-xs font-bold border transition-all ${salesScenario === 'initial' ? 'bg-emerald-50 border-emerald-500 text-emerald-700' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'}`}
+                  >
+                    1. Chat Inicial
                   </button>
                   <button
-                    onClick={() => setIsPlaying(!isPlaying)}
-                    className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full font-bold text-white transition-all shadow-md active:scale-95 text-xs md:text-sm ${isPlaying ? 'bg-amber-500 hover:bg-amber-600' : 'bg-emerald-600 hover:bg-emerald-700'}`}
+                    onClick={() => setSalesScenario('crm')}
+                    className={`px-2 py-2 rounded-lg text-xs font-bold border transition-all ${salesScenario === 'crm' ? 'bg-blue-50 border-blue-500 text-blue-700' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'}`}
                   >
-                    {isPlaying ? <><Pause size={14} className="md:w-4 md:h-4" /> Pausar</> : <><Play size={14} className="md:w-4 md:h-4" /> Iniciar Demo</>}
+                    2. Registro CRM
+                  </button>
+                  <button
+                    onClick={() => setSalesScenario('followup')}
+                    className={`px-2 py-2 rounded-lg text-xs font-bold border transition-all ${salesScenario === 'followup' ? 'bg-amber-50 border-amber-500 text-amber-700' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'}`}
+                  >
+                    3. Reactivación
                   </button>
                 </div>
+
+                {salesScenario !== 'crm' && (
+                  <div className="mt-4 flex items-center justify-between gap-2 border-t border-gray-100 pt-3">
+                    <div className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wide">
+                      Control de Chat
+                    </div>
+                    <div className="flex gap-1.5 md:gap-2">
+                      <button onClick={handleReset} className="p-1.5 md:p-2 text-gray-500 hover:bg-gray-100 rounded-full">
+                        <RotateCcw size={16} className="md:w-4 md:h-4" />
+                      </button>
+                      <button
+                        onClick={() => setIsPlaying(!isPlaying)}
+                        className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-1.5 md:py-2 rounded-full font-bold text-white transition-all shadow-md active:scale-95 text-xs md:text-sm ${isPlaying ? 'bg-amber-500 hover:bg-amber-600' : 'bg-emerald-600 hover:bg-emerald-700'}`}
+                      >
+                        {isPlaying ? <><Pause size={14} className="md:w-4 md:h-4" /> Pausar</> : <><Play size={14} className="md:w-4 md:h-4" /> Iniciar Demo</>}
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
+            </>
           ) : (
             // CONTENT FOR PROSPECTING MODE
             <div ref={prospectingSectionRef}>
@@ -538,34 +588,39 @@ export default function AureFlowDemo() {
         <div className="w-full lg:max-w-[900px] flex-shrink-0 flex justify-center lg:block">
 
           {activeTab === 'sales' ? (
-            // PHONE SIMULATOR
-            <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[650px] sm:h-[750px] bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border-[6px] sm:border-[8px] border-gray-800 overflow-hidden flex flex-col">
-              <div className="bg-[#075e54] h-6 sm:h-8 w-full flex items-center justify-center relative z-20">
-                <div className="w-20 h-3 sm:w-24 sm:h-4 bg-black rounded-b-xl absolute top-0"></div>
+            // PHONE SIMULATOR OR CRM
+            salesScenario === 'crm' ? (
+              <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[650px] sm:h-[750px] animate-fade-in">
+                <CrmMockup />
               </div>
-              <Header />
-              <div
-                className="flex-1 overflow-y-auto p-2 sm:p-3 bg-[#e5ddd5]"
-                style={{
-                  backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
-                  backgroundRepeat: "repeat",
-                  backgroundSize: "400px"
-                }}
-              >
-                {messages.map((msg, idx) => (
-                  <ChatBubble key={idx} message={msg} />
-                ))}
-                {isTyping && <TypingIndicator />}
-                <div ref={chatEndRef} />
+            ) : (
+              <div className="relative w-full max-w-[340px] sm:max-w-[380px] h-[650px] sm:h-[750px] bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border-[6px] sm:border-[8px] border-gray-800 overflow-hidden flex flex-col">
+                <div className="bg-[#075e54] h-6 sm:h-8 w-full flex items-center justify-center relative z-20">
+                  <div className="w-20 h-3 sm:w-24 sm:h-4 bg-black rounded-b-xl absolute top-0"></div>
+                </div>
+                <Header />
+                <div
+                  className="flex-1 overflow-y-auto p-2 sm:p-3 bg-[#e5ddd5]"
+                  style={{
+                    backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
+                    backgroundRepeat: "repeat",
+                    backgroundSize: "400px"
+                  }}
+                >
+                  {messages.map((msg, idx) => (
+                    <ChatBubble key={idx} message={msg} />
+                  ))}
+                  {isTyping && <TypingIndicator />}
+                  <div ref={chatEndRef} />
+                </div>
+                <div className="z-10">
+                  <WhatsAppInput />
+                </div>
+                <div className="bg-white h-5 sm:h-6 w-full flex justify-center items-center">
+                  <div className="w-24 h-1 sm:w-32 sm:h-1 bg-gray-300 rounded-full"></div>
+                </div>
               </div>
-              <div className="z-10">
-                <WhatsAppInput />
-              </div>
-              <div className="bg-white h-5 sm:h-6 w-full flex justify-center items-center">
-                <div className="w-24 h-1 sm:w-32 sm:h-1 bg-gray-300 rounded-full"></div>
-              </div>
-            </div>
-          ) : (
+            )) : (
             // PROSPECTING: TWO COLUMN LAYOUT
             <div className="w-full">
               {/* INDICADOR DE FLUJO */}
@@ -641,87 +696,129 @@ export default function AureFlowDemo() {
                   </div>
                 </div>
 
-                {/* COLUMNA 2: CHAT DE CAPTACIÓN */}
+                {/* COLUMNA 2: VISUALIZACIÓN DINÁMICA (MOCKUPS) */}
                 <div className="w-full lg:max-w-[420px] flex flex-col gap-3 md:gap-4">
-                  <div className="bg-white p-3 md:p-4 rounded-xl shadow border border-gray-100 flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <div className="bg-blue-100 p-1.5 md:p-2 rounded-lg">
-                        <MessageSquare size={16} className="text-blue-600 md:w-4 md:h-4" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wide">Paso 2</p>
-                        <p className="text-xs md:text-sm font-bold text-gray-800">Contacto Automático</p>
-                      </div>
+                  {/* SELECTOR DE ESCENARIO PROSPECTING */}
+                  <div className="bg-white p-3 rounded-xl shadow border border-gray-100">
+                    <div className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wide mb-2">
+                      Etapas de Captación
                     </div>
-                    <div className="flex gap-1.5 md:gap-2">
-                      <button onClick={handleCaptacionReset} className="p-1.5 md:p-2 text-gray-500 hover:bg-gray-100 rounded-full" title="Reiniciar">
-                        <RotateCcw size={16} className="md:w-4 md:h-4" />
+                    <div className="grid grid-cols-3 gap-2">
+                      <button
+                        onClick={() => setProspectingScenario('scanning')}
+                        className={`px-2 py-1.5 rounded-lg text-xs font-bold border transition-all ${prospectingScenario === 'scanning' ? 'bg-blue-50 border-blue-500 text-blue-700' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'}`}
+                      >
+                        1. Rastreo
                       </button>
                       <button
-                        onClick={() => setIsCaptacionPlaying(!isCaptacionPlaying)}
-                        className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-white transition-all shadow-md active:scale-95 text-xs md:text-sm whitespace-nowrap ${isCaptacionPlaying ? 'bg-amber-500 hover:bg-amber-600' : 'bg-blue-600 hover:bg-blue-700'}`}
+                        onClick={() => setProspectingScenario('outreach')}
+                        className={`px-2 py-1.5 rounded-lg text-xs font-bold border transition-all ${prospectingScenario === 'outreach' ? 'bg-green-50 border-green-500 text-green-700' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'}`}
                       >
-                        {isCaptacionPlaying ? <><Pause size={12} className="md:w-3.5 md:h-3.5" /> Pausar</> : <><Play size={12} className="md:w-3.5 md:h-3.5" /> Iniciar</>}
+                        2. Contacto
+                      </button>
+                      <button
+                        onClick={() => setProspectingScenario('tracking')}
+                        className={`px-2 py-1.5 rounded-lg text-xs font-bold border transition-all ${prospectingScenario === 'tracking' ? 'bg-amber-50 border-amber-500 text-amber-700' : 'bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100'}`}
+                      >
+                        3. Tracking
                       </button>
                     </div>
                   </div>
 
-                  <div className="relative w-full h-[600px] lg:h-[680px] bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border-[6px] sm:border-[8px] border-gray-800 overflow-hidden flex flex-col">
-                    <div className="bg-[#075e54] h-6 sm:h-8 w-full flex items-center justify-center relative z-20">
-                      <div className="w-20 h-3 sm:w-24 sm:h-4 bg-black rounded-b-xl absolute top-0"></div>
+                  {/* CONTENIDO DINÁMICO */}
+                  {prospectingScenario === 'scanning' && (
+                    <div className="relative w-full h-[600px] lg:h-[680px] animate-fade-in">
+                      <ScrapingMockup />
                     </div>
+                  )}
 
-                    {/* Header Chat Captación */}
-                    <div className="bg-[#075e54] text-white p-2 sm:p-3 flex items-center justify-between shadow-md z-10">
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        <ArrowLeft size={16} className="cursor-pointer sm:w-5 sm:h-5" />
-                        <div className="relative">
-                          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold text-sm sm:text-base">
-                            V
+                  {prospectingScenario === 'tracking' && (
+                    <div className="relative w-full h-[600px] lg:h-[680px] animate-fade-in">
+                      <AdvisorDashboardMockup />
+                    </div>
+                  )}
+
+                  {prospectingScenario === 'outreach' && (
+                    <div className="bg-white p-3 md:p-4 rounded-xl shadow border border-gray-100 flex flex-col gap-4">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <div className="bg-blue-100 p-1.5 md:p-2 rounded-lg">
+                            <MessageSquare size={16} className="text-blue-600 md:w-4 md:h-4" />
                           </div>
-                          <div className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-400 rounded-full border-2 border-[#075e54]"></div>
+                          <div>
+                            <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-wide">Paso 2</p>
+                            <p className="text-xs md:text-sm font-bold text-gray-800">Contacto Automático</p>
+                          </div>
                         </div>
-                        <div className="leading-tight">
-                          <h3 className="font-semibold text-sm sm:text-base">Victoria Simonini</h3>
-                          <p className="text-[10px] sm:text-xs text-green-100 opacity-90">en línea</p>
+                        <div className="flex gap-1.5 md:gap-2">
+                          <button onClick={handleCaptacionReset} className="p-1.5 md:p-2 text-gray-500 hover:bg-gray-100 rounded-full" title="Reiniciar">
+                            <RotateCcw size={16} className="md:w-4 md:h-4" />
+                          </button>
+                          <button
+                            onClick={() => setIsCaptacionPlaying(!isCaptacionPlaying)}
+                            className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full font-bold text-white transition-all shadow-md active:scale-95 text-xs md:text-sm whitespace-nowrap ${isCaptacionPlaying ? 'bg-amber-500 hover:bg-amber-600' : 'bg-blue-600 hover:bg-blue-700'}`}
+                          >
+                            {isCaptacionPlaying ? <><Pause size={12} className="md:w-3.5 md:h-3.5" /> Pausar</> : <><Play size={12} className="md:w-3.5 md:h-3.5" /> Iniciar</>}
+                          </button>
                         </div>
                       </div>
-                      <div className="flex gap-3 sm:gap-4 pr-2">
-                        <Video size={16} className="sm:w-5 sm:h-5" />
-                        <Phone size={16} className="sm:w-5 sm:h-5" />
-                        <MoreVertical size={16} className="sm:w-5 sm:h-5" />
+
+                      <div className="relative w-full h-[500px] lg:h-[580px] bg-gray-900 rounded-[2.5rem] sm:rounded-[3rem] shadow-2xl border-[6px] sm:border-[8px] border-gray-800 overflow-hidden flex flex-col mx-auto max-w-[340px]">
+                        <div className="bg-[#075e54] h-6 sm:h-8 w-full flex items-center justify-center relative z-20">
+                          <div className="w-20 h-3 sm:w-24 sm:h-4 bg-black rounded-b-xl absolute top-0"></div>
+                        </div>
+
+                        {/* Header Chat Captación */}
+                        <div className="bg-[#075e54] text-white p-2 sm:p-3 flex items-center justify-between shadow-md z-10">
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <ArrowLeft size={16} className="cursor-pointer sm:w-5 sm:h-5" />
+                            <div className="relative">
+                              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 flex items-center justify-center text-gray-700 font-bold text-sm sm:text-base">
+                                V
+                              </div>
+                              <div className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-green-400 rounded-full border-2 border-[#075e54]"></div>
+                            </div>
+                            <div className="leading-tight">
+                              <h3 className="font-semibold text-sm sm:text-base">Victoria Simonini</h3>
+                              <p className="text-[10px] sm:text-xs text-green-100 opacity-90">en línea</p>
+                            </div>
+                          </div>
+                          <div className="flex gap-3 sm:gap-4 pr-2">
+                            <Video size={16} className="sm:w-5 sm:h-5" />
+                            <Phone size={16} className="sm:w-5 sm:h-5" />
+                            <MoreVertical size={16} className="sm:w-5 sm:h-5" />
+                          </div>
+                        </div>
+
+                        <div
+                          className="flex-1 overflow-y-auto p-2 sm:p-3 bg-[#e5ddd5]"
+                          style={{
+                            backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
+                            backgroundRepeat: "repeat",
+                            backgroundSize: "400px"
+                          }}
+                        >
+                          {captacionMessages.map((msg, idx) => (
+                            <ChatBubble key={idx} message={msg} />
+                          ))}
+                          {isCaptacionTyping && <TypingIndicator />}
+                          <div ref={captacionEndRef} />
+                        </div>
+
+                        <div className="z-10">
+                          <WhatsAppInput />
+                        </div>
+                        <div className="bg-white h-5 sm:h-6 w-full flex justify-center items-center">
+                          <div className="w-24 h-1 sm:w-32 sm:h-1 bg-gray-300 rounded-full"></div>
+                        </div>
                       </div>
                     </div>
-
-                    <div
-                      className="flex-1 overflow-y-auto p-2 sm:p-3 bg-[#e5ddd5]"
-                      style={{
-                        backgroundImage: "url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png')",
-                        backgroundRepeat: "repeat",
-                        backgroundSize: "400px"
-                      }}
-                    >
-                      {captacionMessages.map((msg, idx) => (
-                        <ChatBubble key={idx} message={msg} />
-                      ))}
-                      {isCaptacionTyping && <TypingIndicator />}
-                      <div ref={captacionEndRef} />
-                    </div>
-
-                    <div className="z-10">
-                      <WhatsAppInput />
-                    </div>
-                    <div className="bg-white h-5 sm:h-6 w-full flex justify-center items-center">
-                      <div className="w-24 h-1 sm:w-32 sm:h-1 bg-gray-300 rounded-full"></div>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
           )}
-
         </div>
-
       </div>
 
       {/* FOOTER CTA */}

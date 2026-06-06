@@ -28,7 +28,7 @@ export default function Loading() {
                                 <div key={i} className="bg-[#0F172A] border border-[#1E293B] rounded-2xl overflow-hidden h-[450px] animate-pulse">
                                     {/* Image Placeholder */}
                                     <div className="h-48 bg-[#1E293B] w-full"></div>
-                                    
+
                                     {/* Content Placeholder */}
                                     <div className="p-6 space-y-4">
                                         <div className="flex gap-2">
@@ -38,7 +38,7 @@ export default function Loading() {
                                         <div className="h-8 w-full bg-[#1E293B] rounded-lg"></div>
                                         <div className="h-4 w-full bg-[#1E293B] rounded"></div>
                                         <div className="h-4 w-2/3 bg-[#1E293B] rounded"></div>
-                                        
+
                                         <div className="pt-4 flex items-center gap-3">
                                             <div className="h-10 w-10 bg-[#1E293B] rounded-full"></div>
                                             <div className="flex-1 space-y-2">

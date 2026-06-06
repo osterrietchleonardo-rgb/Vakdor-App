@@ -1,10 +1,22 @@
 import React from 'react';
-import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ParticleField } from '@/components/effects/ParticleField';
-import { ArrowRight, Bot, Building2, Users, Zap, Trophy, Clock, AlertTriangle, DollarSign, TrendingDown } from 'lucide-react';
 import { NewsletterSection } from '@/components/NewsletterSection';
+import {
+  Calendar,
+  ArrowRight,
+  EyeOff,
+  BarChart3,
+  FileStack,
+  Gauge,
+  Zap,
+  FileText,
+  GraduationCap,
+  CheckCircle2,
+} from 'lucide-react';
+
+const CALL_URL = 'https://www.vakdor.com/call';
 
 export default function HomePage() {
   return (
@@ -15,174 +27,173 @@ export default function HomePage() {
       <Header />
 
       <main className="flex-1 relative z-10">
-        {/* Hero Section - Belfort: Straight Line + Halbert: Emotional Hook */}
-        <section className="min-h-screen flex items-center justify-center pt-24 pb-16 px-4">
+        {/* ============================================
+            1. HERO
+            ============================================ */}
+        <section className="min-h-screen flex items-center justify-center pt-32 pb-16 px-4">
           <div className="max-w-5xl mx-auto text-center">
-            {/* Accent Quote - Ogilvy: Big Idea */}
-            <p className="font-accent text-[#B87333] text-lg md:text-xl mb-6 animate-fade-in">
-              "Cada Lead Perdido es una Comisión que se Evapora"
+            {/* Pre-Título (Filtro) */}
+            <p className="font-accent text-[#B87333] text-base md:text-lg mb-6 uppercase tracking-widest animate-fade-in">
+              Exclusivo para Alta Dirección Inmobiliaria
             </p>
 
-            {/* Main Title - Halbert/Belfort: Pain + Transformation */}
+            {/* Titular Principal (H1) */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#F8FAFC] mb-6 leading-tight animate-fade-in-up">
-              Mientras Vos Dormís, tu Competencia Cierra.
-              <span className="block text-gradient-copper">¿Y si Pudieras Escalar</span>
-              sin Sacrificar tu Vida?
+              Rompé la Dependencia Operativa.
+              <span className="block text-gradient-copper">Asumí el Control Integral.</span>
             </h1>
 
-            {/* Subtitle - Sugarman: Slippery Slide */}
+            {/* Subtítulo (H2) */}
             <p className="text-lg md:text-xl text-[#94A3B8] mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <span className="text-[#B87333] font-semibold">Sistemas de IA</span> que trabajan 24/7 para que vos te enfoques en lo que mejor hacés: cerrar ventas y liderar tu equipo.
-              <span className="text-white font-medium">Sin más tareas repetitivas. Sin más leads perdidos.</span>
+              <span className="text-[#B87333] font-semibold">PRISMA</span> es el Sistema Operativo centralizado con IA que conecta tu CRM <span className="text-white font-medium">(Tokko Broker)</span> con tu <span className="text-white font-medium">WhatsApp</span>. Estandarizamos tus procesos, auditamos la performance de tus asesores y le damos trazabilidad matemática a tu agencia para que tu rentabilidad escale, no tu carga horaria.
             </p>
 
-            {/* Segmentador Buttons - Caples: Specific Benefits */}
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-              <Link
-                href="/asesor-top"
-                className="kinetic-card p-8 rounded-2xl text-left group"
+            {/* CTA Principal */}
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <a
+                href={CALL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#B87333] to-[#5C3D2E] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Users className="text-white" size={28} />
-                </div>
-                <h2 className="text-xl md:text-2xl font-bold text-[#F8FAFC] mb-2">
-                  SOY ASESOR TOP
-                </h2>
-                <p className="text-[#94A3B8] text-sm mb-4">
-                  Quiero que la IA <span className="text-[#B87333] font-semibold">Responda, Califique y Agende por Mí</span>. Yo Solo Me Presento a Cerrar.
-                </p>
-                <span className="inline-flex items-center gap-2 text-[#B87333] font-semibold text-sm group-hover:gap-3 transition-all">
-                  CONOCER AUREFLOW <ArrowRight size={16} />
-                </span>
-              </Link>
-
-              <Link
-                href="/inmobiliaria"
-                className="kinetic-card p-8 rounded-2xl text-left group"
-              >
-                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#B87333] to-[#5C3D2E] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Building2 className="text-white" size={28} />
-                </div>
-                <h2 className="text-xl md:text-2xl font-bold text-[#F8FAFC] mb-2">
-                  DIRIJO UNA INMOBILIARIA
-                </h2>
-                <p className="text-[#94A3B8] text-sm mb-4">
-                  Necesito un <span className="text-[#B87333] font-semibold">Partner Tecnológico</span>: Leads Recuperados, Captación Automática y Performance en Tiempo Real.
-                </p>
-                <span className="inline-flex items-center gap-2 text-[#B87333] font-semibold text-sm group-hover:gap-3 transition-all">
-                  VER LAS SOLUCIONES <ArrowRight size={16} />
-                </span>
-              </Link>
+                <Calendar size={20} />
+                Ver el Sistema en Vivo (Agendar Diagnóstico)
+              </a>
             </div>
           </div>
         </section>
 
-        {/* Problem Section - Cialdini: Authority + Data */}
+        {/* ============================================
+            2. AGITACIÓN DEL PROBLEMA — La "Caja Negra"
+            ============================================ */}
         <section className="py-20 px-4 bg-[#0F172A]/50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-center text-[#F8FAFC] mb-4">
-              ¿Cuánto Dinero Estás Dejando <span className="text-gradient-copper">Sobre la Mesa?</span>
+              La falta de trazabilidad te obliga a <span className="text-gradient-copper">liderar a ciegas.</span>
             </h2>
             <p className="text-[#94A3B8] text-center mb-12 max-w-2xl mx-auto">
-              Mientras otros sectores escalan con tecnología, el inmobiliario sigue atrapado en procesos que queman equipos y pierden clientes.
+              Tu agencia opera como una caja negra: entra tu inversión, salen resultados, pero vos no tenés idea de lo que pasa en el medio. Y eso, en el fondo, te quita el sueño.
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  icon: Clock,
-                  title: 'El Tiempo es Dinero',
-                  description: 'Responder las mismas preguntas una y otra vez te roba horas que podrías usar para cerrar negocios o escalar tu equipo.',
-                  stat: '20+ hrs',
-                  statLabel: 'perdidas por semana'
+                  icon: EyeOff,
+                  title: 'Inversión Ciega',
+                  description: 'Pagás fortunas en Zonaprop y Meta Ads, pero la atención ocurre en los celulares personales de tus asesores. No sabés a qué hora contestan, qué dicen ni por qué se enfría una operación. Estás financiando un proceso que no podés ver.',
                 },
                 {
-                  icon: TrendingDown,
-                  title: 'Leads que Nadie Siguió',
-                  description: 'Un tercio de tu inversión en marketing desaparece porque falta seguimiento. Vakdor los recupera automáticamente.',
-                  stat: '33%',
-                  statLabel: 'leads perdidos'
+                  icon: BarChart3,
+                  title: 'El Relato de Fin de Mes',
+                  description: 'Llega el cierre y tu única fuente de verdad es lo que tu equipo decide contarte. Tomás decisiones sobre tu dinero a partir de la "sensación" del mercado y de excusas, no de hechos. En el fondo, sospechás que te estás perdiendo algo.',
                 },
                 {
-                  icon: AlertTriangle,
-                  title: 'La Ventaja es de Minutos',
-                  description: 'Cuando tardás 4 horas en responder, tu competencia que usa tecnología ya cerró la cita.',
-                  stat: '∞',
-                  statLabel: 'oportunidades perdidas'
+                  icon: FileStack,
+                  title: 'Sos Esclavo de la Operación',
+                  description: 'Tasaciones, marketing, cruzar demanda: cientos de horas manuales que terminan recayendo en vos. Dejaste de dirigir tu agencia para apagar incendios. Tu tiempo físico se volvió el techo del negocio… y de tu propia vida.',
                 },
               ].map((item, index) => (
-                <div
-                  key={index}
-                  className="kinetic-card p-6 rounded-2xl text-center"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-[#1E293B] flex items-center justify-center mx-auto mb-4">
+                <div key={index} className="kinetic-card p-8 rounded-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-[#1E293B] flex items-center justify-center mb-5">
                     <item.icon className="text-[#B87333]" size={24} />
                   </div>
-                  <div className="text-3xl font-bold text-[#B87333] mb-1">{item.stat}</div>
-                  <div className="text-xs text-[#64748B] uppercase tracking-wider mb-4">{item.statLabel}</div>
-                  <h3 className="font-bold text-[#F8FAFC] text-lg mb-2">{item.title}</h3>
-                  <p className="text-[#94A3B8] text-sm">{item.description}</p>
+                  <h3 className="font-bold text-[#F8FAFC] text-lg mb-3">{item.title}</h3>
+                  <p className="text-[#94A3B8] text-sm leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </div>
+          </div>
+        </section>
 
-            {/* Hopkins: Objection Handling */}
-            <div className="max-w-2xl mx-auto mt-12 bg-[#020617]/80 border border-[#B87333]/30 rounded-xl p-6">
-              <p className="text-[#B87333] font-bold mb-2">"No tengo tiempo para implementar algo nuevo..."</p>
-              <p className="text-[#94A3B8] text-sm">
-                Ese es precisamente el problema. Estás tan ocupado apagando incendios que no podés construir el sistema que los prevenga.
-                <span className="text-white font-medium"> Vakdor se implementa sin interrumpir tu operación actual.</span>
+        {/* ============================================
+            3. EL GIRO — El Cambio de Paradigma
+            ============================================ */}
+        <section className="py-20 px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-8 leading-tight">
+              Tu problema no es la retención de talento. <span className="text-gradient-copper">Es la falta de arquitectura.</span>
+            </h2>
+            <div className="kinetic-card rounded-2xl p-8 md:p-10 border-l-2 border-[#B87333]/40">
+              <p className="text-lg md:text-xl text-[#CBD5E1] leading-relaxed">
+                El voluntarismo no escala. Si querés crecer sin multiplicar tus costos fijos ni consumir tu vida apagando incendios operativos, tenés que dejar de depender del criterio humano. Es hora de conectar los cables sueltos de tu inmobiliaria bajo un <span className="text-white font-semibold">único panel de control.</span>
               </p>
             </div>
           </div>
         </section>
 
-        {/* Solution Section - Kennedy: Unique Position */}
-        <section className="py-20 px-4">
+        {/* ============================================
+            4. LA SOLUCIÓN — El Sistema PRISMA
+            ============================================ */}
+        <section className="py-20 px-4 bg-[#0F172A]/50">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
-              <p className="font-accent text-[#B87333] text-lg mb-4">Soluciones para Cada Necesidad</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-4">
-                No Vendemos Software. <span className="text-gradient-copper">Instalamos Resultados.</span>
+              <p className="font-accent text-[#B87333] text-lg mb-4">El Sistema PRISMA</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-6 leading-tight">
+                El Sistema Operativo que convierte el caos en una <span className="text-gradient-copper">Línea de Ensamble.</span>
               </h2>
-              <p className="text-[#94A3B8] max-w-2xl mx-auto">
-                Tu data, tus reglas. La IA hace el trabajo de bajo valor cognitivo mientras vos te enfocás en lo que la máquina no puede hacer: cerrar acuerdos complejos y liderar equipos.
+              <p className="text-[#94A3B8] max-w-3xl mx-auto">
+                PRISMA no es un chatbot. Es un SaaS integral que se ubica por encima de tus herramientas actuales para darte <span className="text-white font-medium">gobernanza total.</span>
+              </p>
+            </div>
+
+            {/* Video Demo de PRISMA */}
+            <div className="max-w-4xl mx-auto mb-16">
+              <div className="relative rounded-2xl overflow-hidden border border-[#B87333]/30 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.7)] shadow-[#B87333]/10">
+                {/* Glow */}
+                <div className="absolute -inset-4 bg-[#B87333]/20 blur-3xl -z-10 rounded-full" />
+                <video
+                  className="w-full h-auto block bg-[#020617]"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  poster="/videos/prisma-poster.png"
+                >
+                  <source src="/videos/prisma-demo.mp4" type="video/mp4" />
+                  Tu navegador no soporta la reproducción de video.
+                </video>
+              </div>
+              <p className="text-center text-xs text-[#64748B] mt-3 italic">
+                PRISMA en acción: del lead a la trazabilidad total bajo un único panel de control.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {[
                 {
-                  icon: Bot,
-                  title: 'AureFlow: Tu Asistente 24/7',
-                  description: 'Para asesores: La IA responde consultas, califica leads y agenda visitas por WhatsApp mientras dormís. Vos solo te presentás a cerrar.',
+                  icon: Zap,
+                  tag: 'Módulo 1',
+                  title: 'Cero Fugas',
+                  description: 'Dejá de ver cómo cada peso que invertís en marketing se evapora. PRISMA atiende, pre-califica y perfila cada lead que entra en menos de 2 minutos, cualquier día y a cualquier hora. Conectamos el punto ciego entre tu publicidad y tu CRM: ni una sola oportunidad vuelve a enfriarse por falta de respuesta.',
                 },
                 {
-                  icon: Users,
-                  title: 'Recuperador de Leads',
-                  description: 'Reactivá automáticamente leads que no compraron. El sistema les avisa cuando aparece una propiedad que matchea. No perdés más oportunidades.',
+                  icon: Gauge,
+                  tag: 'Módulo 2',
+                  title: 'Trazabilidad y Performance',
+                  description: 'Se acabó el liderazgo a ciegas y el "relato de fin de mes". Desde tu panel de director tenés la verdad en tiempo real: sabés exactamente qué asesor marca el ritmo y quién deja enfriar las operaciones. Volvés a tomar decisiones con datos duros y a dormir tranquilo.',
                 },
                 {
-                  icon: Building2,
-                  title: 'Captación de Propiedades',
-                  description: 'Para inmobiliarias: La IA rastrea portales y contacta dueños directos antes que la competencia. 5+ exclusivas al mes en piloto automático.',
+                  icon: FileText,
+                  tag: 'Módulo 3',
+                  title: 'Eliminación de Burocracia',
+                  description: 'Recuperá tu tiempo y tu vida. La IA cruza la demanda con tu stock en segundos, genera los contratos y estandariza el marketing de todo tu equipo con un clic. La máquina arma la marca; tu gente cierra. Tu agenda deja de ser el techo de crecimiento del negocio.',
                 },
                 {
-                  icon: Trophy,
-                  title: 'Performance + Capacitación',
-                  description: 'Dashboard de rendimiento en tiempo real + Tutor IA que entrena a tus nuevos asesores. Control total sin micromanagement.',
+                  icon: GraduationCap,
+                  tag: 'Módulo 4',
+                  title: 'Clonamos tu Cerebro (Tutor IA)',
+                  description: 'Que un asesor renuncie deja de ser una herida. El Tutor y el Consultor IA asisten y entrenan a tu equipo 24/7 con tu propia metodología de venta. El conocimiento ya no se va por la puerta: queda centralizado en tu empresa, para siempre.',
                 },
               ].map((item, index) => (
-                <div
-                  key={index}
-                  className="kinetic-card p-8 rounded-2xl flex gap-6"
-                >
+                <div key={index} className="kinetic-card p-8 rounded-2xl flex gap-6">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#B87333] to-[#5C3D2E] flex items-center justify-center flex-shrink-0">
                     <item.icon className="text-white" size={24} />
                   </div>
                   <div>
+                    <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#B87333] mb-2">{item.tag}</span>
                     <h3 className="font-bold text-[#F8FAFC] text-xl mb-2">{item.title}</h3>
-                    <p className="text-[#94A3B8]">{item.description}</p>
+                    <p className="text-[#94A3B8] leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -190,29 +201,61 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* CTA Section - Cialdini: Scarcity + Bencivenga: Irresistibility */}
-        <section className="py-20 px-4 bg-gradient-to-b from-[#0F172A]/50 to-[#020617]">
-          <div className="max-w-3xl mx-auto text-center">
-            <p className="font-accent text-[#B87333] text-lg mb-4">¿Listo para Dejar de Perder Dinero?</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-6">
-              Descubrí Cuánto Estás Dejando Sobre la Mesa
-            </h2>
-            <p className="text-[#94A3B8] mb-8 max-w-xl mx-auto">
-              En una auditoría de 30 minutos analizamos tu operación actual, identificamos las fugas de leads y diseñamos un plan concreto para tu situación. <span className="text-white font-medium">Ya seas asesor top o dirijas una inmobiliaria.</span>
-            </p>
-            <a
-              href="https://www.vakdor.com/call"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
-            >
-              Agendar Auditoría Estratégica Gratuita
-            </a>
-            <p className="text-sm text-[#64748B] mt-4">
-              ✅ 90 días de garantía - Si no lográs el ROI proyectado, te devolvemos tu inversión.
-            </p>
+        {/* ============================================
+            5. CALIFICACIÓN — El Filtro
+            ============================================ */}
+        <section className="py-20 px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10">
+              <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-4 leading-tight">
+                PRISMA opera a nivel Enterprise. <span className="text-gradient-copper">No es para cualquier agencia.</span>
+              </h2>
+            </div>
+
+            <div className="kinetic-card rounded-2xl p-8 md:p-10 space-y-5">
+              {[
+                'Exclusivo para inmobiliarias operando con Tokko Broker.',
+                'Equipos comerciales de 5 o más asesores.',
+                'Directores que exigen trazabilidad real sobre su inversión en marketing.',
+                'Líderes dispuestos a cambiar excusas por datos duros.',
+              ].map((item, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <CheckCircle2 size={24} className="text-[#B87333] mt-0.5 flex-shrink-0" />
+                  <p className="text-[#CBD5E1] text-base md:text-lg">{item}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
+
+        {/* ============================================
+            6. CIERRE Y CTA FINAL
+            ============================================ */}
+        <section className="py-16 md:py-24 px-4 bg-gradient-to-br from-[#020617] via-[#0F172A] to-[#020617] relative overflow-hidden">
+          {/* Glow effect */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-96 h-96 bg-[#B87333]/20 rounded-full blur-3xl" />
+          </div>
+          <div className="max-w-3xl mx-auto text-center relative z-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#F8FAFC] mb-6 leading-tight">
+              ¿Listo para dejar de ser empleado de tu propia agencia?
+            </h2>
+            <p className="text-lg text-[#94A3B8] mb-8 max-w-2xl mx-auto leading-relaxed">
+              Sistematizamos el control integral de tu agencia en formato <span className="text-white font-medium">"Llave en Mano"</span>. Implementación en <span className="text-[#B87333] font-semibold">72 horas</span>, sin que vos ni tu equipo tengan que configurar nada ni tocar una línea de código. Recuperá el control hoy mismo.
+            </p>
+            <a
+              href={CALL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
+            >
+              <Calendar size={20} />
+              Agendar Diagnóstico Operativo (Ver PRISMA en Vivo)
+              <ArrowRight size={18} />
+            </a>
+          </div>
+        </section>
+
         {/* Newsletter Section */}
         <NewsletterSection source="home" />
       </main>

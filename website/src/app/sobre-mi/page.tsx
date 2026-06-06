@@ -2,7 +2,7 @@ import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ParticleField } from '@/components/effects/ParticleField';
-import { CheckCircle2, Target, Heart, Lightbulb, Shield, Award } from 'lucide-react';
+import { CheckCircle2, Heart, Lightbulb, Shield, Award } from 'lucide-react';
 
 export default function SobreMiPage() {
     return (
@@ -14,13 +14,24 @@ export default function SobreMiPage() {
                 {/* Hero - Halbert: Dramatic + Ziglar: Empathy */}
                 <section className="pt-32 pb-16 px-4">
                     <div className="max-w-4xl mx-auto text-center">
-                        <p className="font-accent text-[#B87333] text-lg mb-4">La Historia Detrás</p>
+                        <p className="font-accent text-[#B87333] text-lg mb-4">La Historia Detrás de PRISMA</p>
                         <h1 className="text-4xl md:text-5xl font-extrabold text-[#F8FAFC] mb-6">
-                            La Historia de un Problema que <span className="text-gradient-copper">Nadie Quiso Resolver.</span>
+                            No construí un software. Construí la <span className="text-gradient-copper">arquitectura</span> que el sector se negaba a tener.
                         </h1>
-                        <p className="text-xl text-[#94A3B8]">
-                            Y Por Qué Tuvimos que Construir la Solución.
+                        <p className="text-xl text-[#94A3B8] mb-8">
+                            Por qué dejé de parchar inmobiliarias y empecé a darles un Sistema Operativo.
                         </p>
+
+                        {/* Founder signature */}
+                        <div className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-[#0F172A]/80 border border-[#B87333]/30">
+                            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#B87333] to-[#5C3D2E] flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                                LO
+                            </div>
+                            <div className="text-left leading-tight">
+                                <p className="text-[#F8FAFC] font-bold text-sm">Leonardo Osterrietch</p>
+                                <p className="text-[#94A3B8] text-xs">Founder &amp; CEO de Vakdor · Creador de PRISMA IA</p>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
@@ -30,28 +41,26 @@ export default function SobreMiPage() {
                         <div className="space-y-8 text-[#CBD5E1]">
                             {/* The Pain - Ziglar: Empathy */}
                             <div className="kinetic-card p-8 rounded-2xl">
-                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">El Problema que Vi</h2>
+                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">El patrón que no pude ignorar</h2>
                                 <p className="mb-6 text-lg leading-relaxed">
-                                    En 2022 trabajé con una inmobiliaria en Buenos Aires. Vi lo que nadie quiere ver.
+                                    Desde 2022 me obsesioné con una pregunta: ¿por qué el sector inmobiliario, que mueve semejante volumen de dinero, sigue operando con la tecnología del pasado? Cuanto más lo analizaba, más se repetía el mismo patrón. Uno que casi nadie se anima a admitir.
                                 </p>
                                 <blockquote className="border-l-4 border-[#B87333] pl-6 my-6 italic text-lg">
-                                    "Vi a asesores top que se despertaban a las 3 AM porque llegó un lead y no podían dejarlo sin responder.
-                                    Vi a directores invirtiendo <span className="text-[#B87333] font-semibold">50 mil dólares</span> en marketing
+                                    "Asesores top despertándose a las 3 AM porque entró un lead y no podían dejarlo sin responder.
+                                    Directores invirtiendo <span className="text-[#B87333] font-semibold">50 mil dólares</span> en marketing
                                     y perdiendo el 60% de esos leads porque nadie hacía seguimiento.
                                     <br /><br />
-                                    Me pregunté: <span className="text-white">¿Por qué el sector que construye el futuro sigue operando
-                                        con la tecnología del pasado?</span>"
+                                    La conclusión fue incómoda: <span className="text-white">no era un problema de gente ni de esfuerzo. Era la ausencia total de un sistema. El sector lideraba a ciegas y lo había normalizado.</span>"
                                 </blockquote>
                             </div>
 
                             {/* The Discovery */}
                             <div className="kinetic-card p-8 rounded-2xl">
-                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">El Descubrimiento</h2>
+                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">De la teoría a la prueba</h2>
                                 <p className="mb-4">
-                                    Empecé a probar IA conversacional, modelos de clasificación de leads, scraping de portales.
-                                    En 6 meses armé un prototipo que automatizaba el 80% del trabajo repetitivo.
+                                    No me quedé en el diagnóstico. Me metí en el código: IA conversacional, modelos de clasificación de leads, scraping de portales, integración con CRM. En 6 meses tenía un prototipo funcionando que automatizaba el 80% del trabajo repetitivo de una mesa comercial.
                                 </p>
-                                <p className="mb-4">Lo probé con 5 asesores. Los resultados fueron claros:</p>
+                                <p className="mb-4">Lo puse a operar con 5 asesores reales. Sin promesas: con números medibles.</p>
                                 <ul className="space-y-3 mb-4">
                                     <li className="flex items-center gap-3">
                                         <CheckCircle2 className="text-[#B87333] flex-shrink-0" size={20} />
@@ -59,26 +68,25 @@ export default function SobreMiPage() {
                                     </li>
                                     <li className="flex items-center gap-3">
                                         <CheckCircle2 className="text-[#B87333] flex-shrink-0" size={20} />
-                                        <span><span className="text-[#B87333] font-bold">15 horas</span> semanales ahorradas</span>
+                                        <span><span className="text-[#B87333] font-bold">15 horas</span> semanales ahorradas por asesor</span>
                                     </li>
                                     <li className="flex items-center gap-3">
                                         <CheckCircle2 className="text-[#B87333] flex-shrink-0" size={20} />
                                         <span><span className="text-[#B87333] font-bold">0 leads</span> perdidos por horario</span>
                                     </li>
                                 </ul>
-                                <p className="text-[#B87333] font-semibold text-lg">Ahí nació Vakdor.</p>
+                                <p className="text-[#B87333] font-semibold text-lg">Eso que empezó como un prototipo hoy es PRISMA.</p>
                             </div>
 
                             {/* The Mission - Kennedy: Differentiation */}
                             <div className="kinetic-card p-8 rounded-2xl border-2 border-[#B87333]/30">
-                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">La Misión: No Vendemos Software.</h2>
-                                <h3 className="text-xl text-[#B87333] font-semibold mb-4">Instalamos un Sistema de Control Total.</h3>
+                                <h2 className="text-2xl font-bold text-[#F8FAFC] mb-4">Mi convicción: el voluntarismo no escala.</h2>
+                                <h3 className="text-xl text-[#B87333] font-semibold mb-4">Por eso construí un Sistema Operativo, no otro software más.</h3>
                                 <p className="mb-4 text-lg">
-                                    Vakdor es tu infraestructura de ventas autónoma. Te damos el control total sin depender
-                                    de desarrolladores, ni de CRMs rígidos.
+                                    PRISMA se ubica por encima de tus herramientas actuales —conecta tu CRM (Tokko Broker) con WhatsApp— y le da gobernanza y trazabilidad matemática a tu agencia. Control integral, sin depender del criterio humano ni de desarrolladores externos.
                                 </p>
                                 <p className="text-white font-semibold text-xl">
-                                    Tu data, tus reglas.
+                                    Tu data, tus reglas. Tu agencia, bajo un único panel de control.
                                 </p>
                             </div>
                         </div>
@@ -86,29 +94,29 @@ export default function SobreMiPage() {
                         {/* Pillars - Cialdini: Authority + Mary Kay: Recognition */}
                         <div className="mt-16">
                             <h2 className="text-2xl md:text-3xl font-bold text-[#F8FAFC] mb-8 text-center">
-                                Nuestros Pilares
+                                Cómo Trabajo
                             </h2>
                             <div className="grid md:grid-cols-2 gap-6">
                                 {[
                                     {
                                         icon: Shield,
                                         title: 'Transparencia Radical',
-                                        description: 'Si Vakdor no es la solución para tu operación, te lo decimos en la primera llamada. No vendemos por vender.'
+                                        description: 'Si PRISMA no es la solución para tu operación, te lo decimos en el primer diagnóstico. No vendemos por vender: calificamos antes de implementar.'
                                     },
                                     {
-                                        icon: Target,
-                                        title: 'Resultados Garantizados',
-                                        description: '90 días de garantía. Si no lográs el ROI que proyectamos, te devolvemos tu inversión. Así de simple.'
+                                        icon: Award,
+                                        title: 'Decisiones por Datos, no por Sensación',
+                                        description: 'Todo lo que afirmamos se respalda con trazabilidad: cada lead, cada conversación y la performance exacta de cada asesor quedan registrados. Datos duros, no relatos de fin de mes.'
                                     },
                                     {
                                         icon: Heart,
                                         title: 'Acompañamiento Estratégico',
-                                        description: 'No sos un número. Nuestro equipo optimiza tu sistema semanalmente para asegurar la máxima performance.'
+                                        description: 'No sos un número. Implementamos en formato Llave en Mano y optimizamos tu sistema de forma continua para sostener la máxima performance.'
                                     },
                                     {
                                         icon: Lightbulb,
                                         title: 'Innovación Continua',
-                                        description: 'Cada mes la herramienta mejora. Sos early adopter de tecnología que tus competidores no tienen.'
+                                        description: 'PRISMA evoluciona todos los meses. Operás con una arquitectura de IA que tus competidores todavía no tienen.'
                                     },
                                 ].map((value, index) => (
                                     <div key={index} className="kinetic-card p-6 rounded-2xl">
@@ -132,7 +140,7 @@ export default function SobreMiPage() {
                         <p className="font-accent text-[#B87333] text-lg mb-4">¿Querés saber más?</p>
                         <h2 className="text-3xl font-bold text-[#F8FAFC] mb-6">Hablemos de Tu Operación</h2>
                         <p className="text-[#94A3B8] mb-8">
-                            Una auditoría estratégica de 30 minutos donde vemos cómo aplica el sistema a tu caso específico.
+                            Un Diagnóstico Operativo de 30 minutos donde analizamos tu caso y te muestro PRISMA en vivo. Sin humo: si no aplica a tu agencia, te lo digo.
                         </p>
                         <a
                             href="https://www.vakdor.com/call"
@@ -140,8 +148,11 @@ export default function SobreMiPage() {
                             rel="noopener noreferrer"
                             className="inline-block cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
                         >
-                            Agendar Auditoría Estratégica
+                            Agendar Diagnóstico Operativo
                         </a>
+                        <p className="text-sm text-[#64748B] mt-6">
+                            — Leonardo Osterrietch, Founder &amp; CEO de Vakdor · Creador de PRISMA IA
+                        </p>
                     </div>
                 </section>
             </main>

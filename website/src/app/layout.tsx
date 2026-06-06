@@ -25,11 +25,11 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: "Vakdor | IA para Inmobiliarias y Asesores",
+    default: "Vakdor PRISMA | El Sistema Operativo con IA para Inmobiliarias",
     template: "%s | Vakdor"
   },
-  description: "El Partner Tecnológico del Sector Inmobiliario. Automatiza la captación de propiedades, el seguimiento de leads y la capacitación de tu equipo con IA.",
-  keywords: ["IA inmobiliaria", "automatización inmobiliaria", "captación propiedades", "CRM inmobiliario", "asesores inmobiliarios"],
+  description: "PRISMA es el Sistema Operativo centralizado con IA que conecta tu CRM (Tokko Broker) con WhatsApp. Trazabilidad total, control de performance de asesores y automatización de procesos para inmobiliarias Enterprise.",
+  keywords: ["sistema operativo inmobiliario", "IA inmobiliaria", "Tokko Broker", "trazabilidad de leads", "performance de asesores", "automatización inmobiliaria", "CRM inmobiliario"],
   authors: [{ name: "Vakdor" }],
   creator: "Vakdor",
   openGraph: {
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     locale: "es_AR",
     url: "https://www.vakdor.com",
     siteName: "Vakdor",
-    title: "Vakdor | IA para Inmobiliarias y Asesores",
-    description: "El Partner Tecnológico del Sector Inmobiliario. Automatiza la captación de propiedades, el seguimiento de leads y la capacitación de tu equipo con IA.",
+    title: "Vakdor PRISMA | El Sistema Operativo con IA para Inmobiliarias",
+    description: "El Sistema Operativo centralizado con IA que conecta tu CRM (Tokko Broker) con WhatsApp. Trazabilidad matemática para tu agencia: control de asesores, speed-to-lead y cero burocracia.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vakdor | IA para Inmobiliarias y Asesores",
-    description: "El Partner Tecnológico del Sector Inmobiliario.",
+    title: "Vakdor PRISMA | El Sistema Operativo con IA para Inmobiliarias",
+    description: "Trazabilidad matemática para tu agencia. Conectamos Tokko Broker con WhatsApp bajo un único panel de control.",
   },
   robots: {
     index: true,
@@ -102,3 +102,4 @@ export default function RootLayout({
     </html>
   );
 }
+

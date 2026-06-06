@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Sobre Vakdor - La Historia",
-    description: "Conocé la historia detrás de Vakdor y por qué construimos la solución para el sector inmobiliario. Transparencia radical, resultados garantizados.",
+    title: "Sobre Vakdor - La Historia detrás de PRISMA",
+    description: "Leonardo Osterrietch, Founder & CEO de Vakdor y creador de PRISMA IA, cuenta por qué construyó el Sistema Operativo que le da trazabilidad matemática y control integral a las inmobiliarias.",
     alternates: { canonical: '/sobre-mi' },
 };
 
