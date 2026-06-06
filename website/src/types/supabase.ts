@@ -86,7 +86,7 @@ export interface Database {
                 };
             };
         };
-        Views: {};
+        Views: Record<string, never>;
         Functions: {
             increment_views: {
                 Args: {
@@ -95,7 +95,7 @@ export interface Database {
                 Returns: void;
             };
         };
-        Enums: {};
+        Enums: Record<string, never>;
     };
 }
 

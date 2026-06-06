@@ -17,7 +17,7 @@ export function ScrapingMockup() {
             setScannedCount(prev => prev + Math.floor(Math.random() * 5));
         }, 100);
 
-        let timeouts: NodeJS.Timeout[] = [];
+        const timeouts: NodeJS.Timeout[] = [];
         SCRAPED_PROPERTIES.forEach((prop, index) => {
             const timeout = setTimeout(() => {
                 setFoundProperties(prev => {

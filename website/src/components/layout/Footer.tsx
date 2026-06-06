@@ -24,7 +24,7 @@ export function Footer({ hideCTA = false }: FooterProps) {
                             El Partner Tecnológico del Sector Inmobiliario. Automatiza y escala tu negocio con IA.
                         </p>
                         <p className="font-accent text-[#B87333] text-sm italic font-semibold">
-                            "Donde el legado se encuentra con el algoritmo"
+                            &quot;Donde el legado se encuentra con el algoritmo&quot;
                         </p>
                     </div>
 

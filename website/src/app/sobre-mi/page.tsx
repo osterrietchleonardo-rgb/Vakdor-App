@@ -46,11 +46,11 @@ export default function SobreMiPage() {
                                     Desde 2022 me obsesioné con una pregunta: ¿por qué el sector inmobiliario, que mueve semejante volumen de dinero, sigue operando con la tecnología del pasado? Cuanto más lo analizaba, más se repetía el mismo patrón. Uno que casi nadie se anima a admitir.
                                 </p>
                                 <blockquote className="border-l-4 border-[#B87333] pl-6 my-6 italic text-lg">
-                                    "Asesores top despertándose a las 3 AM porque entró un lead y no podían dejarlo sin responder.
+                                    &quot;Asesores top despertándose a las 3 AM porque entró un lead y no podían dejarlo sin responder.
                                     Directores invirtiendo <span className="text-[#B87333] font-semibold">50 mil dólares</span> en marketing
                                     y perdiendo el 60% de esos leads porque nadie hacía seguimiento.
                                     <br /><br />
-                                    La conclusión fue incómoda: <span className="text-white">no era un problema de gente ni de esfuerzo. Era la ausencia total de un sistema. El sector lideraba a ciegas y lo había normalizado.</span>"
+                                    La conclusión fue incómoda: <span className="text-white">no era un problema de gente ni de esfuerzo. Era la ausencia total de un sistema. El sector lideraba a ciegas y lo había normalizado.</span>&quot;
                                 </blockquote>
                             </div>
 

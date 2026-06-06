@@ -112,7 +112,9 @@ export default function InmobiliariaPage() {
     // Reset when tab changes
     useEffect(() => {
         if (activeTab === 'contacto') {
-            handleReset();
+            setTimeout(() => {
+                handleReset();
+            }, 0);
         }
     }, [activeTab]);
 
@@ -136,7 +138,7 @@ export default function InmobiliariaPage() {
 
                         {/* Hopkins: Objection Handling - Injected */}
                         <div className="max-w-2xl mx-auto bg-[#0F172A]/80 border border-[#B87333]/30 rounded-xl p-6 mb-8">
-                            <p className="text-[#B87333] font-bold mb-2">"¿Es muy caro?"</p>
+                            <p className="text-[#B87333] font-bold mb-2">&quot;¿Es muy caro?&quot;</p>
                             <p className="text-[#94A3B8] text-sm">
                                 El costo de <span className="text-white">no</span> tener este sistema es de $120,000 USD al año.
                                 La pregunta no es si podés pagar Vakdor, sino <span className="text-white font-medium">si podés permitirte seguir perdiendo ese dinero</span>.

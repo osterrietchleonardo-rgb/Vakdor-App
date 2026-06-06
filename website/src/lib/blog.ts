@@ -40,7 +40,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
 }
 
 export async function incrementPostViews(id: string): Promise<void> {
-    // @ts-ignore
+    // @ts-expect-error
     await supabase.rpc('increment_views', { post_id: id });
 }
 

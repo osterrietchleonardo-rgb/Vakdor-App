@@ -48,7 +48,7 @@ export function ParticleField() {
         particlesRef.current = particles;
     }, []);
 
-    const animate = useCallback(() => {
+    const animate = useCallback(function animateFrame() {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
@@ -121,7 +121,7 @@ export function ParticleField() {
             }
         }
 
-        animationRef.current = requestAnimationFrame(animate);
+        animationRef.current = requestAnimationFrame(animateFrame);
     }, []);
 
     useEffect(() => {

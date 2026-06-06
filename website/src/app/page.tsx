@@ -241,7 +241,7 @@ export default function HomePage() {
               ¿Listo para dejar de ser empleado de tu propia agencia?
             </h2>
             <p className="text-lg text-[#94A3B8] mb-8 max-w-2xl mx-auto leading-relaxed">
-              Sistematizamos el control integral de tu agencia en formato <span className="text-white font-medium">"Llave en Mano"</span>. Implementación en <span className="text-[#B87333] font-semibold">72 horas</span>, sin que vos ni tu equipo tengan que configurar nada ni tocar una línea de código. Recuperá el control hoy mismo.
+              Sistematizamos el control integral de tu agencia en formato <span className="text-white font-medium">&quot;Llave en Mano&quot;</span>. Implementación en <span className="text-[#B87333] font-semibold">72 horas</span>, sin que vos ni tu equipo tengan que configurar nada ni tocar una línea de código. Recuperá el control hoy mismo.
             </p>
             <a
               href={CALL_URL}

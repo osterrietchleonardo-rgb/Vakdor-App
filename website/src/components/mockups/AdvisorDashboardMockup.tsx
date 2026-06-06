@@ -79,7 +79,7 @@ export function AdvisorDashboardMockup() {
                             <div className="text-right">
                                 <div className="w-20 h-8 relative">
                                     <svg className="w-full h-full text-blue-500 fill-current opacity-20" viewBox="0 0 100 40" preserveAspectRatio="none">
-                                        <path d={`M0,40 L10,${30 + Math.random() * 10} L30,${20 + Math.random() * 10} L50,${10 + Math.random() * 10} L70,${20 + Math.random() * 10} L90,${5 + Math.random() * 10} L100,40 Z`} />
+                                        <path d={`M0,40 L10,${30 + (index % 5) * 2} L30,${20 + (index % 4) * 2.5} L50,${10 + (index % 3) * 3} L70,${20 + (index % 2) * 4} L90,${5 + (index % 6) * 1.5} L100,40 Z`} />
                                     </svg>
                                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
                                         <MoreHorizontal size={16} className="text-slate-400" />

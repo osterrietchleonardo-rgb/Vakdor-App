@@ -1,5 +1,5 @@
 import React from 'react';
-import { User, Phone, Mail, Calendar, Clock, DollarSign, MapPin, Tag, CheckCircle2, MessageSquare, PhoneCall, Bot, ChevronRight } from 'lucide-react';
+import { Phone, Mail, Calendar, Clock, DollarSign, MapPin, Tag, CheckCircle2, MessageSquare, PhoneCall, Bot, ChevronRight } from 'lucide-react';
 import { CRM_DATA } from '@/data/mockData';
 
 export function CrmMockup() {
@@ -118,14 +118,14 @@ export function CrmMockup() {
                         {/* Vertical Line */}
                         <div className="absolute left-[11px] top-1 bottom-1 w-[1px] bg-gray-200"></div>
 
-                        {activityLogs.map((log: any, idx: number) => {
-                            const icons: any = {
+                        {activityLogs.map((log: { type: string; text: string; time: string }, idx: number) => {
+                            const icons: Record<string, React.ReactNode> = {
                                 whatsapp: <MessageSquare size={10} className="text-white" />,
                                 bot: <Bot size={10} className="text-white" />,
                                 call: <PhoneCall size={10} className="text-white" />,
                                 system: <CheckCircle2 size={10} className="text-white" />
                             };
-                            const colors: any = {
+                            const colors: Record<string, string> = {
                                 whatsapp: 'bg-green-500',
                                 bot: 'bg-indigo-500',
                                 call: 'bg-blue-500',
