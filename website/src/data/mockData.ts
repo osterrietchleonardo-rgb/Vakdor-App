@@ -866,4 +866,297 @@ La captación automática no reemplaza tu experiencia tasando y negociando. Lo q
         views: 1560,
         is_published: true
     },
+    {
+        id: '5',
+        title: 'Cómo Automatizar una Inmobiliaria: Guía Completa 2026',
+        meta_description: 'Perdés horas en tareas que un sistema debería hacer solo. Guía 2026 para automatizar tu inmobiliaria con IA: leads, seguimiento y control en 72hs.',
+        category: 'Automatización',
+        read_time_minutes: 8,
+        published_at: '2026-06-23T10:00:00Z',
+        slug: 'como-automatizar-inmobiliaria',
+        featured_image_url: '/blog-automatizar-inmobiliaria.png',
+        created_at: '2026-06-23T10:00:00Z',
+        updated_at: '2026-06-23T10:00:00Z',
+        author: 'Equipo Vakdor',
+        content: `## ¿Qué significa automatizar una inmobiliaria?
+
+**Automatizar una inmobiliaria** significa que las tareas repetitivas —responder leads, hacer seguimiento, capacitar y medir— las haga un sistema, no tus horas. En esta guía 2026 vas a ver qué se puede automatizar, en qué orden conviene hacerlo y cómo lograrlo conectando tus herramientas actuales con inteligencia artificial.
+
+Automatizar una inmobiliaria es delegar en un sistema con IA los procesos que hoy consumen el tiempo de tu equipo y el tuyo: la atención inmediata de consultas, el seguimiento de cada lead, la capacitación de asesores y el control de la performance.
+
+No se trata de "poner un bot". Se trata de cambiar la arquitectura de tu operación para que funcione de forma trazable y sin depender del esfuerzo manual de las personas.
+
+## Por qué automatizar (y por qué ahora)
+
+El cliente inmobiliario de 2026 elige por velocidad, no por marca. Si tardás más de unos minutos en responder, la probabilidad de calificar ese lead se desploma. La automatización no es un lujo: es lo que decide si el dinero que invertís en pauta se convierte en visitas o se evapora.
+
+Además, la automatización ataca la raíz de la **dependencia operativa**: mientras tu facturación dependa de tus horas físicas, tu agencia tiene un techo. Un sistema que trabaja 24/7 rompe ese techo.
+
+## Qué se puede automatizar en una inmobiliaria (en orden de impacto)
+
+No todo se automatiza de golpe. Este es el orden que más resultados da.
+
+### 1. La atención y calificación de leads
+
+Es la automatización de mayor impacto. Una atención inteligente conectada a tus portales, Tokko Broker y WhatsApp responde en segundos, las 24 horas, califica al cliente (qué busca, presupuesto, cuándo quiere visitar) y le entrega al asesor el contacto listo para cerrar.
+
+Resultado: dejás de perder leads por lentitud y de quemar tu inversión en marketing.
+
+### 2. El seguimiento de cada oportunidad
+
+La mayoría de las ventas se caen en el seguimiento, no en el primer contacto. Automatizar el seguimiento garantiza que ningún lead quede olvidado en una caja negra, sin que tu equipo tenga que recordar manualmente a quién escribirle.
+
+### 3. La capacitación y las respuestas internas
+
+Sistematizá tus protocolos y reglas de negocio en un tutor con IA que responda las dudas de tus asesores al instante. Así reducís el onboarding de semanas a 72 horas y el conocimiento queda en tu agencia, no en la cabeza de cada persona.
+
+### 4. El control y las métricas
+
+Automatizá la medición. Un tablero en tiempo real te muestra el tiempo de primera respuesta, el porcentaje de leads que avanza a visita y la actividad de cada asesor, sin que tengas que preguntarle a nadie.
+
+## Cómo automatizar tu inmobiliaria paso a paso
+
+### Paso 1: Centralizá, no agregues más herramientas sueltas
+
+El error común es sumar apps que no se hablan entre sí. La automatización real necesita un sistema central que integre lo que ya usás. La **integración Tokko Broker WhatsApp** con IA es la base: ahí entran y se mueven tus leads.
+
+### Paso 2: Conectá la IA a tus herramientas actuales
+
+No tirés a la basura lo que ya funciona. Un buen **software para inmobiliarias con IA** se monta sobre tu stack actual y le agrega la capa de automatización e inteligencia, sin obligarte a migrar todo.
+
+### Paso 3: Activá por etapas y medí
+
+Empezá por la atención de leads (máximo impacto), seguí con seguimiento y capacitación, y cerrá con el tablero de control. Medí cada etapa para ver el retorno real.
+
+## Qué es PRISMA: el sistema para automatizar tu inmobiliaria
+
+PRISMA es el sistema operativo centralizado con IA que automatiza tu inmobiliaria conectando Tokko Broker y WhatsApp. En una sola plataforma resuelve las cuatro automatizaciones clave: atención y calificación de leads, seguimiento implacable, capacitación con un tutor IA y un tablero de control con la performance de tu equipo en tiempo real.
+
+No es desarrollo a medida ni "un bot más": es un SaaS ya probado que configuramos para tu agencia con un onboarding guiado. Queda operativo en menos de 72 horas, sin esfuerzo técnico de tu parte.
+
+## Preguntas frecuentes sobre automatización inmobiliaria
+
+### ¿Cómo se automatiza una inmobiliaria?
+
+Se automatiza conectando las herramientas actuales (como Tokko Broker y WhatsApp) a un sistema con IA que responde y califica leads las 24 horas, hace el seguimiento, capacita a los asesores y mide la performance. Conviene empezar por la atención de leads, que es lo de mayor impacto.
+
+### ¿Qué tareas de una inmobiliaria se pueden automatizar?
+
+Se pueden automatizar la respuesta y calificación de consultas, el seguimiento de cada lead, la capacitación de asesores con un tutor IA y la medición de métricas en un tablero en tiempo real. Lo que se automatiza es lo repetitivo, para que el asesor se enfoque en cerrar.
+
+### ¿Necesito cambiar de CRM para automatizar mi inmobiliaria?
+
+No necesariamente. Un buen software de automatización con IA se integra sobre tus herramientas actuales, como Tokko Broker, en lugar de obligarte a migrar todo. PRISMA, por ejemplo, se monta sobre tu stack y le agrega la capa de IA.
+
+### ¿Cuánto cuesta y cuánto tarda automatizar una inmobiliaria?
+
+Con un SaaS como PRISMA no hay desarrollo desde cero: el sistema ya existe y se configura sobre tus herramientas en menos de 72 horas con un onboarding guiado, lo que baja drásticamente el costo y el tiempo frente a una solución a medida.
+
+## Conclusión: automatizá para recuperar tu tiempo y tu rentabilidad
+
+Automatizar una inmobiliaria no es ponerle tecnología por moda: es eliminar la dependencia operativa que te tiene haciendo tareas que un sistema debería resolver solo. Cuando la atención, el seguimiento, la capacitación y el control funcionan sin tu esfuerzo, recuperás tu tiempo y multiplicás el retorno de cada lead.
+
+PRISMA automatiza tu inmobiliaria conectando Tokko Broker y WhatsApp con IA, en menos de 72 horas. ¿Querés ver qué podés automatizar primero en tu agencia? Pedí tu diagnóstico.`,
+        seo_keywords: ['cómo automatizar una inmobiliaria', 'automatización para agencias inmobiliarias', 'software para inmobiliarias con IA', 'integración Tokko Broker WhatsApp', 'CRM inmobiliario con inteligencia artificial'],
+        views: 0,
+        is_published: true
+    },
+    {
+        id: '6',
+        title: 'Dependencia Operativa en Inmobiliarias: Qué Es y Cómo Eliminarla (Guía 2026)',
+        meta_description: 'Si tu inmobiliaria se frena cuando no estás, tenés dependencia operativa. Descubrí qué es, por qué te frena el crecimiento y cómo eliminarla.',
+        category: 'Estrategia',
+        read_time_minutes: 9,
+        published_at: '2026-06-23T10:00:00Z',
+        slug: 'dependencia-operativa-inmobiliarias',
+        featured_image_url: '/blog-dependencia-operativa.png',
+        created_at: '2026-06-23T10:00:00Z',
+        updated_at: '2026-06-23T10:00:00Z',
+        author: 'Equipo Vakdor',
+        content: `La **dependencia operativa** es la razón silenciosa por la que tu inmobiliaria no crece, aunque factures bien. Es cuando la operación deja de funcionar si vos no estás encima. En esta guía vas a entender qué es, por qué tu tiempo se volvió el techo de tu agencia, y cómo eliminarla con sistemas en lugar de más esfuerzo.
+
+## ¿Qué es la dependencia operativa en una inmobiliaria?
+
+La dependencia operativa es la condición en la que la facturación de tu agencia depende directamente de tus horas físicas. Si tenés que auditar leads, derivar consultas, capacitar asesores y revisar el WhatsApp de tu equipo para que las cosas pasen, no tenés una empresa: tenés un autoempleo bien pago.
+
+La prueba es simple: si te tomás dos semanas sin el celular en la mano, ¿tu inmobiliaria sigue produciendo igual? Si la respuesta te incomoda, ya tenés tu diagnóstico.
+
+## Las 3 señales de que dependés de vos (no de tu sistema)
+
+No es una sensación. La dependencia operativa deja huellas concretas en tu día a día. Estas son las tres más comunes.
+
+### 1. Sos el cuello de botella de las decisiones
+
+Tu equipo te interrumpe quince veces al día para preguntarte lo mismo: qué comisión cobrar, cuál es el protocolo de captación, cómo tratar a este perfil de cliente.
+
+Cada interrupción es una señal de que el conocimiento de tu negocio vive en tu cabeza, no en un sistema. Y lo que vive en tu cabeza no escala: tiene el límite estricto de tus horas.
+
+### 2. Liderás por sensaciones, no por datos
+
+En los comités escuchás frases como "el mercado está duro" o "estamos contactando a todos". Pero cuando cruzás los números reales, la historia es otra: leads olvidados en Tokko Broker, seguimientos de WhatsApp cortados a la mitad, propiedades premium sin una sola acción comercial en semanas.
+
+Si no tenés **trazabilidad de ventas inmobiliarias** en tiempo real, no estás dirigiendo: estás adivinando.
+
+### 3. Tu crecimiento se come tu tiempo
+
+Cada nuevo asesor te suma horas de capacitación. Cada nueva campaña te suma horas de auditoría. Crecés en facturación, pero también en caos. Llega un punto donde sumar gente ya no te da más rentabilidad: te da más cosas que supervisar.
+
+## Por qué la dependencia operativa frena tu crecimiento
+
+El problema de fondo no es la rotación de asesores, ni la falta de leads, ni que el mercado esté complicado. El problema es estructural: tu agencia funciona a fuerza de voluntarismo y memoria, no de procesos sistematizados.
+
+Cuando el negocio depende de personas (incluido vos), pasan tres cosas:
+
+- **Tu tiempo se vuelve el techo.** No podés facturar más de lo que tus horas permiten supervisar.
+- **El conocimiento se fuga.** Cuando un asesor se va, se lleva la cartera y el saber operativo que nunca quedó registrado.
+- **El error se repite.** Sin un sistema que estandarice, cada persona improvisa a su manera y vos corregís lo mismo una y otra vez.
+
+Por eso contratar más administrativos no resuelve nada. Estás comprando personas para hacer el trabajo de un sistema que no existe. Tapás el agujero con plata y sumás una capa más de burocracia que también tenés que supervisar.
+
+## Cómo eliminar la dependencia operativa: de personas a sistemas
+
+La salida no es trabajar más horas ni ser mejor "apaga incendios". Es un cambio de arquitectura: convertir tu operación en un **sistema operativo para agencias inmobiliarias** que funcione sin tu esfuerzo físico.
+
+### Paso 1: Sistematizá el conocimiento
+
+Sacá el método de tu cabeza y de los PDFs que nadie lee. Digitalizá tus protocolos, reglas de negocio y manuales en un sistema que responda a tus asesores las 24 horas. El objetivo: que un asesor nuevo sea productivo en 72 horas sin que vos abras la boca.
+
+### Paso 2: Automatizá la atención y el seguimiento
+
+El cliente inmobiliario de hoy no tiene lealtad de marca: tiene lealtad por la velocidad. Gana quien responde primero. Una atención inteligente conectada a Tokko Broker y WhatsApp responde en segundos, califica al lead y se lo entrega al asesor listo para la visita.
+
+Así dejás de perder el dinero que invertís en pauta por leads que nadie atiende a tiempo.
+
+### Paso 3: Iluminá la caja negra con datos
+
+Reemplazá las planillas y las reuniones eternas por un tablero de control que mida la performance real de cada asesor y el recorrido de cada lead. Tiempo de primera respuesta, porcentaje de leads que avanzan a visita, asesores que actualizan el CRM.
+
+Cuando liderás con datos duros, los debates subjetivos desaparecen y empezás a tomar decisiones financieras racionales.
+
+## Qué es PRISMA y cómo elimina tu dependencia operativa
+
+PRISMA es el sistema operativo centralizado con IA que conecta tus herramientas actuales (Tokko Broker y WhatsApp) para que tu inmobiliaria funcione sin depender de tus horas.
+
+En lugar de venderte "un bot más", PRISMA hace tres cosas a la vez: automatiza la atención y el seguimiento de leads, estandariza el conocimiento de tu negocio en un tutor con IA, y te entrega un tablero de control con la performance matemática de tu equipo en tiempo real.
+
+El setup es guiado (lo configuramos nosotros sobre el sistema ya probado) y queda operativo en menos de 72 horas. No construimos software a medida: adaptamos un SaaS que ya existe a tu agencia para que lo uses el mismo día.
+
+## Preguntas frecuentes sobre la dependencia operativa
+
+### ¿Qué es la dependencia operativa en una inmobiliaria?
+
+Es cuando la facturación de la agencia depende de las horas físicas del dueño. Si la operación se frena cuando el director no está supervisando, derivando o capacitando, hay dependencia operativa. El síntoma clave es no poder desconectarse sin que el negocio caiga.
+
+### ¿Cómo sé si mi agencia depende demasiado de mí?
+
+Hacé la prueba de las dos semanas: si te vas sin el celular y la producción cae, dependés de vos. Otras señales son tu equipo preguntándote lo mismo todos los días, liderar por sensaciones sin datos y que cada asesor nuevo te consuma horas de capacitación.
+
+### ¿Contratar más gente reduce la dependencia operativa?
+
+No. Sumar administrativos sin un sistema solo tapa el agujero con plata y agrega más personas que supervisar. La dependencia se elimina sistematizando procesos, no agregando headcount. El sistema escala; las horas de las personas, no.
+
+### ¿Se puede escalar una inmobiliaria sin depender de los asesores?
+
+Sí, pero requiere convertir el conocimiento y la operación en sistemas. Cuando los procesos viven en una plataforma (atención, seguimiento, capacitación y métricas), la salida de un asesor deja de ser una crisis y el crecimiento deja de comerse tu tiempo.
+
+## Conclusión: tu tiempo no puede ser el techo de tu agencia
+
+La dependencia operativa es el meta-problema que está debajo de casi todos los dolores de una inmobiliaria: los leads que se enfrían, la capacitación interminable, el liderazgo a ciegas. Mientras tu negocio dependa de tu energía física, vas a tener un techo de cristal.
+
+La buena noticia: se elimina con sistemas, no con más horas. PRISMA convierte tu operación en un sistema trazable que funciona sin vos.
+
+¿Querés saber cuánto depende tu inmobiliaria de tu presencia? Hacé el diagnóstico con PRISMA y recuperá el control de tu operación.`,
+        seo_keywords: ['dependencia operativa inmobiliaria', 'agencia inmobiliaria sin depender de asesores', 'cómo escalar una agencia inmobiliaria', 'sistema operativo para agencias inmobiliarias', 'trazabilidad de ventas inmobiliarias'],
+        views: 0,
+        is_published: true
+    },
+    {
+        id: '7',
+        title: 'Cómo Escalar una Agencia Inmobiliaria sin Depender de Asesores (ni de tu Tiempo)',
+        meta_description: 'Escalás sumando gente y solo sumás caos. Aprendé cómo escalar tu inmobiliaria sin depender de tus asesores ni de tu tiempo, con sistemas e IA.',
+        category: 'Estrategia',
+        read_time_minutes: 8,
+        published_at: '2026-06-23T10:00:00Z',
+        slug: 'como-escalar-agencia-inmobiliaria',
+        featured_image_url: '/blog-escalar-agencia-inmobiliaria.png',
+        created_at: '2026-06-23T10:00:00Z',
+        updated_at: '2026-06-23T10:00:00Z',
+        author: 'Equipo Vakdor',
+        content: `Para **escalar una agencia inmobiliaria** de verdad, el camino no es sumar más asesores ni trabajar más horas. Es construir sistemas que funcionen sin vos. En esta guía vas a ver por qué contratar gente no es escalar, cuál es el límite real de tu crecimiento, y cómo armar una inmobiliaria que crezca sin depender de las personas.
+
+## La respuesta corta: escalar es multiplicar resultados, no horas
+
+Escalás cuando podés crecer en facturación sin crecer en la misma proporción en esfuerzo, caos y supervisión. Si cada cliente nuevo te suma horas de trabajo, no estás escalando: estás agrandando un autoempleo. La clave es pasar de un negocio que depende de personas a uno que depende de sistemas.
+
+## Por qué contratar más asesores no es escalar
+
+El reflejo natural cuando entra más trabajo es sumar gente. Pero más asesores significan más leads que repartir, más performance que auditar, más capacitación que dar y más conflictos que mediar.
+
+Llega un punto donde el siguiente asesor no te da más rentabilidad: te da más cosas que controlar. Estás comprando personas para hacer el trabajo de un sistema que no existe. Y cuando esa persona se va, se lleva la cartera y el conocimiento que nunca quedó registrado.
+
+Escalar agregando headcount es tapar un agujero con plata. Funciona un tiempo, hasta que el caos vuelve a alcanzarte, solo que ahora con una nómina más cara.
+
+## El límite real de tu crecimiento: tu propio tiempo
+
+Si para que tu agencia funcione tenés que auditar leads, derivar consultas y capacitar al equipo, entonces tu tiempo físico es el techo de tu facturación. Esto se llama **dependencia operativa**, y es el verdadero freno de la mayoría de las inmobiliarias que no logran dar el salto.
+
+Mientras dependas de tus horas, hay un número de operaciones que tu agencia nunca va a superar, por más leads que compres. No tenés un problema de demanda: tenés un problema de arquitectura.
+
+## Cómo escalar una inmobiliaria sin depender de las personas
+
+Escalar de verdad es convertir todo lo que hoy depende de vos en un sistema que funcione solo. Estos son los tres pilares.
+
+### 1. Estandarizá el conocimiento (no dependas de "asesores estrella")
+
+Un sistema predecible de asesores promedio le gana siempre a un equipo de estrellas inconsistentes. La diferencia la hace el proceso, no el carisma.
+
+Digitalizá tu método, tus protocolos y tus reglas de negocio en un sistema con IA que capacite y responda dudas las 24 horas. Así un asesor nuevo produce en 72 horas y, cuando alguien se va, el conocimiento se queda en tu agencia, no en su cabeza.
+
+### 2. Automatizá la atención para no perder lo que ya pagaste
+
+No necesitás más leads: necesitás exprimir los que ya pagaste. El cliente de hoy elige por velocidad, no por marca. Si tardás horas en responder, ya perdiste.
+
+Una atención automatizada conectada a Tokko Broker y WhatsApp responde en segundos, califica al cliente y le pasa al asesor el contacto listo para la visita. Mismo presupuesto de marketing, el doble de retorno.
+
+### 3. Medí la performance con datos, no con sensaciones
+
+No podés mejorar lo que no medís. Para escalar necesitás un tablero que te muestre, sin preguntarle a nadie, el tiempo de respuesta de cada asesor, el porcentaje de leads que avanzan a visita y dónde se cae cada operación.
+
+Cuando dirigís con datos, dejás de evaluar a la gente por lo ocupada que parece y empezás a decidir con números exactos. Esa previsibilidad es lo que te permite escalar sin caos.
+
+## Qué es PRISMA y cómo te ayuda a escalar
+
+PRISMA es el sistema operativo centralizado con IA que conecta Tokko Broker y WhatsApp para que tu agencia crezca sin depender de tus horas.
+
+Automatiza la atención y el seguimiento de leads, estandariza el conocimiento de tu negocio en un tutor con IA y te da un tablero con la performance real de tu equipo en tiempo real. En lugar de sumar personas para sostener el caos, sumás un sistema que escala con vos.
+
+El onboarding es guiado y queda operativo en menos de 72 horas. No es desarrollo a medida: es un SaaS ya probado que configuramos para tu inmobiliaria.
+
+## Preguntas frecuentes sobre cómo escalar una inmobiliaria
+
+### ¿Cómo se escala una agencia inmobiliaria?
+
+Se escala convirtiendo la operación en sistemas que funcionan sin el dueño: estandarizar el conocimiento, automatizar la atención de leads y medir la performance con datos. El objetivo es crecer en facturación sin crecer en la misma proporción en esfuerzo y supervisión.
+
+### ¿Conviene contratar más asesores para crecer?
+
+Sumar asesores sin sistemas multiplica el caos: más leads que repartir, más performance que auditar y más conocimiento que se fuga cuando alguien renuncia. Primero sistematizá la operación; después el equipo escala sobre una base sólida, no sobre tu tiempo.
+
+### ¿Se puede tener una inmobiliaria que funcione sin el dueño?
+
+Sí, si el conocimiento y los procesos viven en un sistema y no en la cabeza de las personas. Cuando la atención, el seguimiento, la capacitación y las métricas están automatizados, el negocio sigue produciendo aunque el director no esté presente.
+
+### ¿Cuánto tarda en sistematizarse una agencia con PRISMA?
+
+El onboarding de PRISMA es guiado y deja la operación funcionando en menos de 72 horas, porque es un SaaS ya desarrollado que se configura sobre tus herramientas actuales (Tokko Broker y WhatsApp), no un desarrollo desde cero.
+
+## Conclusión: escalá con sistemas, no con horas
+
+Escalar una agencia inmobiliaria no es sumar gente hasta que el caos te alcance. Es construir una operación que funcione sin depender de tus asesores ni de tu tiempo. Mientras tu energía física sea el techo, vas a tener un límite de crecimiento por más que inviertas en marketing.
+
+PRISMA convierte tu operación en un sistema trazable que escala con vos. ¿Querés ver cuánto depende tu agencia de tu presencia hoy? Hacé el diagnóstico y empezá a escalar sin caos.`,
+        seo_keywords: ['cómo escalar una agencia inmobiliaria', 'agencia inmobiliaria sin depender de asesores', 'dependencia operativa inmobiliaria', 'automatización para agencias inmobiliarias', 'sistema de gestión inmobiliaria'],
+        views: 0,
+        is_published: true
+    },
 ];

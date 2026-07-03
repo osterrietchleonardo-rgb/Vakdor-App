@@ -13,9 +13,17 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             <div
                 className="h-48 bg-gradient-to-br from-[#B87333] to-[#5C3D2E] relative overflow-hidden"
             >
-                <div className="w-full h-full flex items-center justify-center">
-                    <span className="text-4xl font-black text-white/20 select-none">Vakdor</span>
-                </div>
+                {post.featured_image_url ? (
+                    <img
+                        src={post.featured_image_url}
+                        alt={post.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                        <span className="text-4xl font-black text-white/20 select-none">Vakdor</span>
+                    </div>
+                )}
             </div>
             <div className="p-5 flex-1 flex flex-col">
                 <div className="flex items-center gap-3 text-xs text-[#94A3B8] mb-3">
