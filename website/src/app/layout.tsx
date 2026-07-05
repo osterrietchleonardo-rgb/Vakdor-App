@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Fraunces } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -60,6 +61,37 @@ export const metadata: Metadata = {
 
 import { BackgroundLogo } from '@/components/effects/BackgroundLogo';
 
+// Datos estructurados globales (schema.org) — SEO (rich results) + GEO (que las IAs entiendan y citen el sitio).
+const siteSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Vakdor',
+    url: 'https://www.vakdor.com',
+    logo: 'https://www.vakdor.com/logo.png',
+    description:
+      'Vakdor desarrolla PRISMA, el Sistema Operativo con IA para inmobiliarias que conecta el CRM Tokko Broker con WhatsApp.',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Vakdor PRISMA',
+    url: 'https://www.vakdor.com',
+    inLanguage: 'es-AR',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'PRISMA',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web',
+    inLanguage: 'es-AR',
+    description:
+      'Sistema Operativo con IA para inmobiliarias: conecta el CRM Tokko Broker con WhatsApp para dar trazabilidad de leads, controlar la performance de los asesores y automatizar procesos (análisis de mercado/ACM, contratos, seguimiento, marketing y capacitación).',
+    publisher: { '@type': 'Organization', name: 'Vakdor', url: 'https://www.vakdor.com' },
+  },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -105,6 +137,7 @@ export default function RootLayout({
         </noscript>
         {/* End Google Tag Manager (noscript) */}
         <BackgroundLogo />
+        <JsonLd data={siteSchema} />
         {children}
         <Analytics />
       </body>

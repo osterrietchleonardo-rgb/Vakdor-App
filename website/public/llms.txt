@@ -1,0 +1,38 @@
+# Vakdor — PRISMA
+
+> PRISMA es el Sistema Operativo con Inteligencia Artificial para inmobiliarias. Conecta el CRM Tokko Broker con WhatsApp en un único panel para dar trazabilidad total de los leads, controlar la performance de los asesores y automatizar los procesos de la agencia (análisis de mercado, contratos, seguimiento, marketing y capacitación del equipo). Lo desarrolla Vakdor.
+
+## Qué es
+- Producto: PRISMA (software SaaS), desarrollado por la empresa Vakdor.
+- Para quién: directores y dueños de inmobiliarias con 5 o más asesores que operan con Tokko Broker.
+- Integraciones: Tokko Broker (CRM) y WhatsApp (API oficial de Meta).
+- Implementación: llave en mano en 72 horas, sin escribir código.
+
+## Qué resuelve (datos reales de una agencia de 60 asesores)
+- Análisis Comparativo de Mercado (ACM): de ~2 horas a mano a 5 segundos, con porcentaje de comparabilidad.
+- Seguimiento de leads: de ~30 seguimientos sobre 400 consultas a seguimiento automático 24/7 de todos.
+- Generación de contratos: de 30 minutos a 5 minutos, con el PDF listo para firmar.
+- Búsqueda de propiedades en la cartera propia y la red de colaboración: de 2 a 3 horas a 10 minutos, ordenado por % de coincidencia.
+- Contenido de marketing con la marca de la agencia: de horas sin consistencia a 3 versiones estandarizadas en 5 minutos.
+- Tracking de performance: de analizar asesor por asesor a un tablero en tiempo real con ranking automático.
+- Onboarding y procesos: del conocimiento en la cabeza del director a un chat con IA que asiste a cada asesor.
+
+## Módulos principales
+- Dashboard y Tracking Performance: KPIs, ranking de asesores y objetivos vs. alcanzado.
+- Pipeline / CRM unificado: leads de Tokko y conversaciones de WhatsApp en un solo tablero.
+- Asesor IA en WhatsApp: atención y seguimiento automático de leads 24/7.
+- ACM (Análisis Comparativo de Mercado): comparables con % de comparabilidad y checklist.
+- Buscador IA: busca sobre la cartera propia y la red de colaboración, con % de match.
+- Marketing IA: genera 3 variantes de copy e imágenes con la identidad de la marca.
+- Contratos IA: plantillas propias convertidas a contratos en PDF.
+- Tutor IA y Biblioteca de Conocimiento: capacitan al equipo con la metodología de la agencia.
+- Pulso de Mercado: datos reales del mercado inmobiliario argentino (precios de cierre, dólar, escrituras).
+
+## Enlaces
+- Sitio principal: https://www.vakdor.com
+- Agendar un diagnóstico: https://www.vakdor.com/call
+- Blog: https://www.vakdor.com/blog
+
+## Contacto
+- Empresa: Vakdor
+- Acción principal: agendar un Diagnóstico Operativo gratuito en https://www.vakdor.com/call

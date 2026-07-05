@@ -91,15 +91,15 @@ export default function CallPage() {
                                         ))}
                                     </div>
                                     <div className="text-sm font-medium text-white">
-                                        Inmobiliarias líderes ya operan con PRISMA
+                                        Ya operan con PRISMA, incluida una inmobiliaria de lujo referente de Leading Real Estate Companies of the World (60 asesores).
                                     </div>
                                 </div>
                                 <p className="text-xs text-slate-500">
                                     * Cupos limitados por mes para garantizar implementaciones Llave en Mano de calidad.
                                 </p>
-                                {/* Caples: Specific Data */}
-                                <p className="text-xs text-[#B87333] mt-2 font-medium">
-                                    📊 Cada lead atendido, pre-calificado y registrado en menos de 2 minutos. Cero fugas.
+                                {/* Prueba concreta: antes vs después */}
+                                <p className="text-xs text-[#B87333] mt-3 font-medium">
+                                    ACM: 2 hs → 5 seg · Contrato: 30 min → 5 min · Seguimiento automático 24/7 · Tracking en tiempo real.
                                 </p>
                             </div>
                         </div>

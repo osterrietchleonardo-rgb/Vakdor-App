@@ -21,10 +21,10 @@ export function Footer({ hideCTA = false }: FooterProps) {
                             </div>
                         </Link>
                         <p className="!text-slate-200 text-sm leading-relaxed mb-4 font-medium">
-                            El Partner Tecnológico del Sector Inmobiliario. Automatiza y escala tu negocio con IA.
+                            El Sistema Operativo con IA para inmobiliarias. Trazabilidad, control de tu equipo y rentabilidad que escala.
                         </p>
                         <p className="font-accent text-[#B87333] text-sm italic font-semibold">
-                            &quot;Donde el legado se encuentra con el algoritmo&quot;
+                            &quot;Recuperá el control y multiplicá tu rentabilidad.&quot;
                         </p>
                     </div>
 
@@ -36,8 +36,6 @@ export function Footer({ hideCTA = false }: FooterProps) {
                         <nav className="flex flex-col gap-3">
                             {[
                                 { href: '/', label: 'Inicio' },
-                                { href: '/asesor-top', label: 'Para Asesores' },
-                                { href: '/inmobiliaria', label: 'Para Inmobiliarias' },
                                 { href: '/blog', label: 'Blog' },
                                 { href: '/sobre-mi', label: 'Sobre Mí' },
                             ].map((link) => (

@@ -76,6 +76,9 @@ export default function SobreMiPage() {
                                     </li>
                                 </ul>
                                 <p className="text-[#B87333] font-semibold text-lg">Eso que empezó como un prototipo hoy es PRISMA.</p>
+                                <p className="mt-4 leading-relaxed">
+                                    Hoy, una de las inmobiliarias de <span className="text-white font-semibold">lujo</span> más reconocidas del país —referente de <span className="text-white font-semibold">Leading Real Estate Companies of the World</span>— opera sus <span className="text-white font-semibold">60 asesores</span> con PRISMA.
+                                </p>
                             </div>
 
                             {/* The Mission - Kennedy: Differentiation */}
