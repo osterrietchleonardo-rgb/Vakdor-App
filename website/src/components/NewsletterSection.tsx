@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { trackLead } from '@/lib/analytics';
 
 interface NewsletterSectionProps {
     source?: string;
@@ -41,6 +42,7 @@ export function NewsletterSection({ source = 'website' }: NewsletterSectionProps
             }
 
             setStatus('success');
+            if (!data.duplicate) trackLead(source);
             setMessage(
                 data.duplicate
                     ? '¡Ya estás registrado! Tu mes gratis de PRISMA ya está reservado.'

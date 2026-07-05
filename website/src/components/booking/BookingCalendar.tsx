@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Cal, { getCalApi } from "@calcom/embed-react";
+import { trackSchedule } from '@/lib/analytics';
 
 export function BookingCalendar() {
     useEffect(() => {
@@ -11,6 +12,11 @@ export function BookingCalendar() {
                 styles: { branding: { brandColor: "#B87333" } },
                 hideEventTypeDetails: false,
                 layout: "month_view"
+            });
+            // Dispara la conversión cuando el visitante concreta la reserva.
+            cal("on", {
+                action: "bookingSuccessful",
+                callback: () => trackSchedule(),
             });
         })();
     }, []);
