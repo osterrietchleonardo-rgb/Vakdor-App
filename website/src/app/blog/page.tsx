@@ -43,7 +43,7 @@ export default async function BlogPage() {
                             Blog <span className="text-gradient-copper">Vakdor</span>
                         </h1>
                         <p className="text-lg text-[#94A3B8]">
-                            Estrategias, casos de éxito y guías para escalar tu negocio inmobiliario con IA
+                            Ideas concretas para dejar de liderar a ciegas: control, trazabilidad y automatización para tu inmobiliaria.
                         </p>
                     </div>
                 </section>

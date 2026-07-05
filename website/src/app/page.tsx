@@ -3,6 +3,9 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ParticleField } from '@/components/effects/ParticleField';
 import { NewsletterSection } from '@/components/NewsletterSection';
+import { AntesDespuesSection } from '@/components/AntesDespuesSection';
+import { FAQSection } from '@/components/FAQSection';
+import { JsonLd } from '@/components/seo/JsonLd';
 import {
   Calendar,
   ArrowRight,
@@ -19,6 +22,43 @@ import {
 const CALL_URL = 'https://www.vakdor.com/call';
 
 export default function HomePage() {
+  const faqs = [
+    {
+      question: '¿Qué es PRISMA exactamente?',
+      answer: 'PRISMA es un Sistema Operativo con IA para inmobiliarias. Se conecta por encima de tu CRM (Tokko Broker) y de tu WhatsApp para darte trazabilidad total de los leads, control de la performance de cada asesor y automatización de los procesos: análisis de mercado, contratos, seguimiento, marketing y capacitación del equipo.',
+    },
+    {
+      question: '¿Tengo que cambiar mi CRM o mis herramientas?',
+      answer: 'No. PRISMA se ubica por encima de lo que ya usás: se integra con Tokko Broker y con tu WhatsApp sin que tengas que migrar ni reemplazar nada.',
+    },
+    {
+      question: '¿Cuánto tarda la implementación?',
+      answer: '72 horas, llave en mano. Nosotros configuramos PRISMA para tu agencia; ni vos ni tu equipo tienen que tocar una línea de código.',
+    },
+    {
+      question: '¿Para qué inmobiliarias es PRISMA?',
+      answer: 'Para directores de inmobiliarias con 5 o más asesores que operan con Tokko Broker y quieren control real y trazable sobre su operación y su inversión en marketing.',
+    },
+    {
+      question: '¿La IA reemplaza a mis asesores?',
+      answer: 'No. La IA se ocupa de la atención inmediata, el seguimiento y la carga operativa. Tu asesor recibe los leads ya calificados y listos para cerrar, y recupera el tiempo que hoy pierde en tareas repetitivas.',
+    },
+    {
+      question: '¿Cómo controlo la performance de mi equipo?',
+      answer: 'Con un tablero en tiempo real: ranking de asesores, objetivos vs. alcanzado y la trazabilidad de cada lead. Tomás decisiones con datos duros, no con el "relato de fin de mes".',
+    },
+  ];
+
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-[#020617] relative">
       {/* Particle Background */}
@@ -60,6 +100,13 @@ export default function HomePage() {
                 Ver el Sistema en Vivo (Agendar Diagnóstico)
               </a>
             </div>
+
+            {/* Prueba social inmediata */}
+            <p className="mt-8 text-sm text-[#94A3B8] animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              Ya lo usa una inmobiliaria de <span className="text-[#CBD5E1] font-medium">lujo</span>, referente de{' '}
+              <span className="text-[#CBD5E1] font-medium">Leading Real Estate Companies of the World</span>, con sus{' '}
+              <span className="text-[#CBD5E1] font-medium">60 asesores</span>.
+            </p>
           </div>
         </section>
 
@@ -202,6 +249,11 @@ export default function HomePage() {
         </section>
 
         {/* ============================================
+            4.5. RESULTADOS — Antes vs Después (prueba concreta)
+            ============================================ */}
+        <AntesDespuesSection />
+
+        {/* ============================================
             5. CALIFICACIÓN — El Filtro
             ============================================ */}
         <section className="py-20 px-4">
@@ -227,6 +279,12 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        {/* ============================================
+            5.5. PREGUNTAS FRECUENTES (FAQ visible + schema para SEO/GEO)
+            ============================================ */}
+        <FAQSection items={faqs} />
+        <JsonLd data={faqSchema} />
 
         {/* ============================================
             6. CIERRE Y CTA FINAL

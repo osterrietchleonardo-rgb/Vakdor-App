@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { supabase } from '@/lib/supabase';
 
 interface NewsletterSectionProps {
     source?: string;
@@ -25,29 +24,31 @@ export function NewsletterSection({ source = 'website' }: NewsletterSectionProps
         setMessage('');
 
         try {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const { error } = await (supabase as any)
-                .from('newsletter_subscribers')
-                .insert([{
-                    email: email.toLowerCase().trim(),
-                    source: source
-                }]);
+            const res = await fetch('/api/free-trial', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email.toLowerCase().trim(), source }),
+            });
+            const data = await res.json().catch(() => ({}));
 
-            if (error) {
-                if (error.code === '23505') {
-                    // Unique constraint violation - email already exists
-                    setStatus('success');
-                    setMessage('¡Ya estás registrado! Tu mes gratis de PRISMA ya está reservado.');
-                } else {
-                    throw error;
-                }
-            } else {
-                setStatus('success');
-                setMessage('¡Listo! Te contactamos para activar tu mes gratis de PRISMA.');
-                setEmail('');
+            if (res.status === 422) {
+                setStatus('error');
+                setMessage('Por favor, ingresá un email válido.');
+                return;
             }
+            if (!res.ok || !data.ok) {
+                throw new Error(data.error || 'request_failed');
+            }
+
+            setStatus('success');
+            setMessage(
+                data.duplicate
+                    ? '¡Ya estás registrado! Tu mes gratis de PRISMA ya está reservado.'
+                    : '¡Listo! Te contactamos para activar tu mes gratis de PRISMA.'
+            );
+            if (!data.duplicate) setEmail('');
         } catch (err) {
-            console.error('Newsletter subscription error:', err);
+            console.error('Free trial submit error:', err);
             setStatus('error');
             setMessage('Hubo un error. Por favor, intentá de nuevo.');
         }
