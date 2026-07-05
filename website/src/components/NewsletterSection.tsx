@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { trackLead } from '@/lib/analytics';
+import { trackLead, getGaClientId } from '@/lib/analytics';
 
 interface NewsletterSectionProps {
     source?: string;
@@ -28,7 +28,7 @@ export function NewsletterSection({ source = 'website' }: NewsletterSectionProps
             const res = await fetch('/api/free-trial', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email.toLowerCase().trim(), source }),
+                body: JSON.stringify({ email: email.toLowerCase().trim(), source, clientId: getGaClientId() }),
             });
             const data = await res.json().catch(() => ({}));
 

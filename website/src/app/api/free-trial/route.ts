@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
+import { sendGa4Event } from '@/lib/ga-server';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -8,7 +9,7 @@ export const dynamic = 'force-dynamic';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
-    let body: { email?: string; source?: string };
+    let body: { email?: string; source?: string; clientId?: string };
     try {
         body = await req.json();
     } catch {
@@ -17,6 +18,7 @@ export async function POST(req: Request) {
 
     const email = String(body?.email ?? '').toLowerCase().trim();
     const source = String(body?.source ?? 'website').slice(0, 60);
+    const clientId = typeof body?.clientId === 'string' ? body.clientId : undefined;
 
     if (!EMAIL_RE.test(email) || email.length > 254) {
         return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 422 });
@@ -77,6 +79,11 @@ export async function POST(req: Request) {
         } catch (e) {
             console.error('[free-trial] resend fetch failed:', e);
         }
+    }
+
+    // 3) Registrar la conversion en GA4 (server-side, confiable) si es un lead nuevo.
+    if (!duplicate) {
+        await sendGa4Event(clientId, 'generate_lead', { lead_source: source });
     }
 
     return NextResponse.json({ ok: true, duplicate });
