@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { trackLead, getGaClientId } from '@/lib/analytics';
+import { trackLead, getGaClientId, newEventId } from '@/lib/analytics';
 
 interface NewsletterSectionProps {
     source?: string;
@@ -24,11 +24,14 @@ export function NewsletterSection({ source = 'website' }: NewsletterSectionProps
         setStatus('loading');
         setMessage('');
 
+        // Mismo id para el evento del servidor (CAPI) y el del navegador (Pixel): Meta los une.
+        const eventId = newEventId();
+
         try {
             const res = await fetch('/api/free-trial', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email.toLowerCase().trim(), source, clientId: getGaClientId() }),
+                body: JSON.stringify({ email: email.toLowerCase().trim(), source, clientId: getGaClientId(), eventId }),
             });
             const data = await res.json().catch(() => ({}));
 
@@ -42,7 +45,7 @@ export function NewsletterSection({ source = 'website' }: NewsletterSectionProps
             }
 
             setStatus('success');
-            if (!data.duplicate) trackLead(source);
+            if (!data.duplicate) trackLead(source, eventId);
             setMessage(
                 data.duplicate
                     ? '¡Ya estás registrado! Tu mes gratis de PRISMA ya está reservado.'

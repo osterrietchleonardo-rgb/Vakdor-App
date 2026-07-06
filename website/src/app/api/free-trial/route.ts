@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { sendGa4Event } from '@/lib/ga-server';
+import { sendMetaCapiEvent, metaMatchFromRequest } from '@/lib/meta-capi';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -9,7 +10,7 @@ export const dynamic = 'force-dynamic';
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
-    let body: { email?: string; source?: string; clientId?: string };
+    let body: { email?: string; source?: string; clientId?: string; eventId?: string };
     try {
         body = await req.json();
     } catch {
@@ -19,6 +20,7 @@ export async function POST(req: Request) {
     const email = String(body?.email ?? '').toLowerCase().trim();
     const source = String(body?.source ?? 'website').slice(0, 60);
     const clientId = typeof body?.clientId === 'string' ? body.clientId : undefined;
+    const eventId = typeof body?.eventId === 'string' ? body.eventId : undefined;
 
     if (!EMAIL_RE.test(email) || email.length > 254) {
         return NextResponse.json({ ok: false, error: 'invalid_email' }, { status: 422 });
@@ -81,9 +83,17 @@ export async function POST(req: Request) {
         }
     }
 
-    // 3) Registrar la conversion en GA4 (server-side, confiable) si es un lead nuevo.
+    // 3) Registrar la conversion (server-side, confiable) si es un lead nuevo:
+    //    GA4 por Measurement Protocol + Meta por Conversions API (con email hasheado).
     if (!duplicate) {
         await sendGa4Event(clientId, 'generate_lead', { lead_source: source });
+        await sendMetaCapiEvent({
+            eventName: 'Lead',
+            eventId,
+            email,
+            customData: { content_name: source },
+            ...metaMatchFromRequest(req),
+        });
     }
 
     return NextResponse.json({ ok: true, duplicate });

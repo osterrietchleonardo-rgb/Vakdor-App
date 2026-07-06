@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server';
 import { sendGa4Event } from '@/lib/ga-server';
+import { sendMetaCapiEvent, metaMatchFromRequest } from '@/lib/meta-capi';
+
+// Traduce el evento interno al nombre estándar de Meta.
+const META_EVENT: Record<string, 'Lead' | 'Schedule'> = { schedule_call: 'Schedule' };
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -8,7 +12,7 @@ export const dynamic = 'force-dynamic';
 const ALLOWED = new Set(['schedule_call']);
 
 export async function POST(req: Request) {
-    let body: { event?: string; clientId?: string; params?: Record<string, unknown> };
+    let body: { event?: string; clientId?: string; eventId?: string; params?: Record<string, unknown> };
     try {
         body = await req.json();
     } catch {
@@ -21,7 +25,13 @@ export async function POST(req: Request) {
     }
 
     const clientId = typeof body?.clientId === 'string' ? body.clientId : undefined;
+    const eventId = typeof body?.eventId === 'string' ? body.eventId : undefined;
     await sendGa4Event(clientId, event, body?.params ?? {});
+
+    const metaEvent = META_EVENT[event];
+    if (metaEvent) {
+        await sendMetaCapiEvent({ eventName: metaEvent, eventId, ...metaMatchFromRequest(req) });
+    }
 
     return NextResponse.json({ ok: true });
 }
