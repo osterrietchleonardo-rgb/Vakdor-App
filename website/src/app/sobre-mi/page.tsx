@@ -1,8 +1,9 @@
 import React from 'react';
+import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ParticleField } from '@/components/effects/ParticleField';
-import { CheckCircle2, Heart, Lightbulb, Shield, Award } from 'lucide-react';
+import { CheckCircle2, Heart, Lightbulb, Shield, Award, Play } from 'lucide-react';
 
 export default function SobreMiPage() {
     return (
@@ -104,7 +105,7 @@ export default function SobreMiPage() {
                                     {
                                         icon: Shield,
                                         title: 'Transparencia Radical',
-                                        description: 'Si PRISMA no es la solución para tu operación, te lo decimos en el primer diagnóstico. No vendemos por vender: calificamos antes de implementar.'
+                                        description: 'Si PRISMA no es la solución para tu operación, te lo decimos en la primera evaluación. No vendemos por vender: calificamos antes de implementar.'
                                     },
                                     {
                                         icon: Award,
@@ -140,19 +141,18 @@ export default function SobreMiPage() {
                 {/* CTA - Belfort: Certainty */}
                 <section className="py-16 px-4">
                     <div className="max-w-3xl mx-auto text-center">
-                        <p className="font-accent text-[#B87333] text-lg mb-4">¿Querés saber más?</p>
-                        <h2 className="text-3xl font-bold text-[#F8FAFC] mb-6">Hablemos de Tu Operación</h2>
+                        <p className="font-accent text-[#B87333] text-lg mb-4">¿Querés ver el sistema por dentro?</p>
+                        <h2 className="text-3xl font-bold text-[#F8FAFC] mb-6">Mirá la Demostración Ejecutiva</h2>
                         <p className="text-[#94A3B8] mb-8">
-                            Un Diagnóstico Operativo de 30 minutos donde analizamos tu caso y te muestro PRISMA en vivo. Sin humo: si no aplica a tu agencia, te lo digo.
+                            Una presentación ejecutiva de 17 minutos donde analizamos el sistema funcionando en vivo y mostramos cómo eliminar la dependencia operativa.
                         </p>
-                        <a
-                            href="https://www.vakdor.com/call"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
+                        <Link
+                            href="/demostracion"
+                            className="inline-flex items-center gap-3 cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow font-bold"
                         >
-                            Agendar Diagnóstico Operativo
-                        </a>
+                            <Play size={20} className="fill-white" />
+                            Ver Demostración de PRISMA
+                        </Link>
                         <p className="text-sm text-[#64748B] mt-6">
                             — Leonardo Osterrietch, Founder &amp; CEO de Vakdor · Creador de PRISMA IA
                         </p>

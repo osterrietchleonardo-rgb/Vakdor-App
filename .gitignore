@@ -2,3 +2,9 @@
 .tmp/
 __pycache__/
 *.pyc
+
+# Claude Code MCP config (contains Supabase access token)
+.mcp.json
+.claude/
+skill.zip
+base64_img.txt

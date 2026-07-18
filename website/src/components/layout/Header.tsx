@@ -52,6 +52,8 @@ export function Header({ hideCTA = false }: HeaderProps) {
                     {/* Desktop Navigation */}
                     <nav className="hidden md:flex items-center gap-8">
                         {[
+                            { href: '/', label: 'Inicio' },
+                            { href: '/demostracion', label: 'Demostración' },
                             { href: '/blog', label: 'Blog' },
                             { href: '/sobre-mi', label: 'Sobre Mí' },
                         ].map((link) => (
@@ -70,15 +72,13 @@ export function Header({ hideCTA = false }: HeaderProps) {
                     {/* CTA Button */}
                     <div className="flex items-center gap-4">
                         {!hideCTA && (
-                            <a
-                                href="https://www.vakdor.com/call"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                href="/demostracion"
                                 className="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-[#B87333] to-[#9A5520] hover:from-[#A05A2C] hover:to-[#8B4513] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg hover:shadow-[#B87333]/40 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                             >
                                 <Calendar size={16} />
-                                <span>Agendar Demo</span>
-                            </a>
+                                <span>Ver Demostración</span>
+                            </Link>
                         )}
 
                         {/* Mobile Menu Button */}
@@ -96,6 +96,8 @@ export function Header({ hideCTA = false }: HeaderProps) {
                     <div className="md:hidden mt-4 pb-4 border-t border-[rgba(184,115,51,0.2)] pt-4 animate-fade-in">
                         <nav className="flex flex-col gap-4">
                             {[
+                                { href: '/', label: 'Inicio' },
+                                { href: '/demostracion', label: 'Demostración' },
                                 { href: '/blog', label: 'Blog' },
                                 { href: '/sobre-mi', label: 'Sobre Mí' },
                             ].map((link) => (
@@ -109,15 +111,14 @@ export function Header({ hideCTA = false }: HeaderProps) {
                                 </Link>
                             ))}
                             {!hideCTA && (
-                                <a
-                                    href="https://www.vakdor.com/call"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-gradient-to-r from-[#B87333] to-[#9A5520] text-white px-5 py-3 rounded-xl text-center text-sm mt-2 shadow-lg font-bold"
+                                <Link
+                                    href="/demostracion"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="bg-gradient-to-r from-[#B87333] to-[#9A5520] text-white px-5 py-3 rounded-xl text-center text-sm mt-2 shadow-lg font-bold block"
                                 >
                                     <Calendar size={16} className="inline mr-2" />
-                                    Agendar Demo
-                                </a>
+                                    Ver Demostración
+                                </Link>
                             )}
                         </nav>
                     </div>

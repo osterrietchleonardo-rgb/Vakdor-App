@@ -6,6 +6,7 @@ import { NewsletterSection } from '@/components/NewsletterSection';
 import { AntesDespuesSection } from '@/components/AntesDespuesSection';
 import { FAQSection } from '@/components/FAQSection';
 import { JsonLd } from '@/components/seo/JsonLd';
+import Link from 'next/link';
 import {
   Calendar,
   ArrowRight,
@@ -17,9 +18,10 @@ import {
   FileText,
   GraduationCap,
   CheckCircle2,
+  Play,
 } from 'lucide-react';
 
-const CALL_URL = 'https://www.vakdor.com/call';
+const DEMO_URL = '/demostracion';
 
 export default function HomePage() {
   const faqs = [
@@ -29,7 +31,7 @@ export default function HomePage() {
     },
     {
       question: '¿Tengo que cambiar mi CRM o mis herramientas?',
-      answer: 'No. PRISMA se ubica por encima de lo que ya usás: se integra con Tokko Broker y con tu WhatsApp sin que tengas que migrar ni reemplazar nada.',
+      answer: 'No. PRISMA se ubica por encima de lo que ya usás: se integra nativamente con tu CRM actual (Tokko Broker, CRM propio o cualquier plataforma del sector) y con tu WhatsApp sin que tengas que migrar ni reemplazar nada.',
     },
     {
       question: '¿Cuánto tarda la implementación?',
@@ -80,25 +82,23 @@ export default function HomePage() {
             {/* Titular Principal (H1) */}
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold text-[#F8FAFC] mb-6 leading-tight animate-fade-in-up">
               Rompé la Dependencia Operativa.
-              <span className="block text-gradient-copper">Asumí el Control Integral.</span>
+              <span className="block text-gradient-copper">Que Escale tu Rentabilidad, No tu Carga Horaria.</span>
             </h1>
 
             {/* Subtítulo (H2) */}
             <p className="text-lg md:text-xl text-[#94A3B8] mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <span className="text-[#B87333] font-semibold">PRISMA</span> es el Sistema Operativo centralizado con IA que conecta tu CRM <span className="text-white font-medium">(Tokko Broker)</span> con tu <span className="text-white font-medium">WhatsApp</span>. Estandarizamos tus procesos, auditamos la performance de tus asesores y le damos trazabilidad matemática a tu agencia para que tu rentabilidad escale, no tu carga horaria.
+              <span className="text-[#B87333] font-semibold">PRISMA</span> es el Sistema Operativo con IA que sistematiza los conocimientos y procesos de tu inmobiliaria. Se conecta nativamente sobre el <span className="text-white font-medium">CRM que tengas</span> (Tokko Broker, CRM propio o plataformas del sector) y tu <span className="text-white font-medium">WhatsApp</span> para eliminar el caos diario, auditar la performance de tus asesores y darle trazabilidad matemática a tu rentabilidad.
             </p>
 
             {/* CTA Principal */}
             <div className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-              <a
-                href={CALL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={DEMO_URL}
                 className="inline-flex items-center gap-3 cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
               >
-                <Calendar size={20} />
-                Ver el Sistema en Vivo (Agendar Diagnóstico)
-              </a>
+                <Play size={20} className="fill-white" />
+                Ver Demostración Ejecutiva (17 min)
+              </Link>
             </div>
 
             {/* Prueba social inmediata */}
@@ -266,7 +266,7 @@ export default function HomePage() {
 
             <div className="kinetic-card rounded-2xl p-8 md:p-10 space-y-5">
               {[
-                'Exclusivo para inmobiliarias operando con Tokko Broker.',
+                'Diseñado para inmobiliarias que operan con CRM (Tokko Broker, CRM propio o sistemas del sector).',
                 'Equipos comerciales de 5 o más asesores.',
                 'Directores que exigen trazabilidad real sobre su inversión en marketing.',
                 'Líderes dispuestos a cambiar excusas por datos duros.',
@@ -301,16 +301,14 @@ export default function HomePage() {
             <p className="text-lg text-[#94A3B8] mb-8 max-w-2xl mx-auto leading-relaxed">
               Sistematizamos el control integral de tu agencia en formato <span className="text-white font-medium">&quot;Llave en Mano&quot;</span>. Implementación en <span className="text-[#B87333] font-semibold">72 horas</span>, sin que vos ni tu equipo tengan que configurar nada ni tocar una línea de código. Recuperá el control hoy mismo.
             </p>
-            <a
-              href={CALL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={DEMO_URL}
               className="inline-flex items-center gap-3 cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
             >
-              <Calendar size={20} />
-              Agendar Diagnóstico Operativo (Ver PRISMA en Vivo)
+              <Play size={20} className="fill-white" />
+              Ver Demostración de PRISMA
               <ArrowRight size={18} />
-            </a>
+            </Link>
           </div>
         </section>
 

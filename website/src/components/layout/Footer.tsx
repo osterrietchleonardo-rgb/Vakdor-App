@@ -36,6 +36,7 @@ export function Footer({ hideCTA = false }: FooterProps) {
                         <nav className="flex flex-col gap-3">
                             {[
                                 { href: '/', label: 'Inicio' },
+                                { href: '/demostracion', label: 'Demostración' },
                                 { href: '/blog', label: 'Blog' },
                                 { href: '/sobre-mi', label: 'Sobre Mí' },
                             ].map((link) => (
@@ -109,14 +110,12 @@ export function Footer({ hideCTA = false }: FooterProps) {
                             </a>
                         </div>
                         {!hideCTA && (
-                            <a
-                                href="https://www.vakdor.com/call"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <Link
+                                href="/demostracion"
                                 className="inline-block cta-copper px-6 py-3 rounded-xl text-sm font-bold w-full text-center shadow-[0_4px_14px_0_rgba(184,115,51,0.39)] hover:shadow-[0_6px_20px_rgba(184,115,51,0.23)] hover:-translate-y-1 transition-all ease-linear !text-white"
                             >
-                                Agendar Llamada
-                            </a>
+                                Ver Demostración
+                            </Link>
                         )}
                     </div>
                 </div>
