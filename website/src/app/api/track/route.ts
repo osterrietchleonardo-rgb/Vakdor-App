@@ -2,14 +2,18 @@ import { NextResponse } from 'next/server';
 import { sendGa4Event } from '@/lib/ga-server';
 import { sendMetaCapiEvent, metaMatchFromRequest } from '@/lib/meta-capi';
 
-// Traduce el evento interno al nombre estándar de Meta.
-const META_EVENT: Record<string, 'Lead' | 'Schedule'> = { schedule_call: 'Schedule' };
+// Traduce el evento interno al nombre estándar de Meta para CAPI server-side.
+const META_EVENT: Record<string, 'Lead' | 'Schedule' | 'CompleteRegistration' | 'InitiateCheckout'> = { 
+    schedule_call: 'Schedule',
+    vsl_watch_100: 'CompleteRegistration',
+    click_agendar_cta: 'InitiateCheckout',
+};
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Solo eventos conocidos (evita que alguien inyecte eventos arbitrarios a GA4).
-const ALLOWED = new Set(['schedule_call']);
+// Solo eventos conocidos del funnel.
+const ALLOWED = new Set(['schedule_call', 'vsl_watch_100', 'click_agendar_cta']);
 
 export async function POST(req: Request) {
     let body: { event?: string; clientId?: string; eventId?: string; params?: Record<string, unknown> };

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { BookingCalendar } from "./BookingCalendar";
+import { trackLead, newEventId } from "@/lib/analytics";
 import { CheckCircle2, Sparkles, AlertCircle, ArrowRight, ShieldCheck, User, Mail, Phone, Building2, Layers, CheckSquare, Lock } from "lucide-react";
 
 export function PreFilterForm() {
@@ -44,6 +45,9 @@ export function PreFilterForm() {
       formData.properties !== "menos-150" &&
       formData.investmentReady === "si";
 
+    // Generar eventId compartido para deduplicar Pixel (navegador) con CAPI (servidor)
+    const leadEventId = newEventId();
+
     try {
       await fetch("/api/prefilter", {
         method: "POST",
@@ -51,8 +55,12 @@ export function PreFilterForm() {
         body: JSON.stringify({
           ...formData,
           qualified,
+          eventId: leadEventId,
         }),
       });
+
+      // Disparar Lead en el Pixel del navegador con el mismo eventId (dedupe con CAPI)
+      trackLead('prefilter_prisma', leadEventId);
 
       setIsQualified(qualified);
       setStatus("submitted");

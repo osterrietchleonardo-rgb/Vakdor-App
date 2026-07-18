@@ -117,14 +117,22 @@ export async function POST(req: Request) {
       }
     }
 
-    // 4. Evento Meta CAPI & GA4 si está calificado o es lead nuevo
-    await sendMetaCapiEvent({
-      eventName: 'Lead',
-      eventId,
-      email: cleanEmail,
-      customData: { content_name: 'prefilter', qualified },
-      ...metaMatchFromRequest(req),
-    });
+    // 4. Evento Meta CAPI & GA4 Measurement Protocol
+    await Promise.all([
+      sendMetaCapiEvent({
+        eventName: 'Lead',
+        eventId,
+        email: cleanEmail,
+        customData: { content_name: 'prefilter', qualified },
+        ...metaMatchFromRequest(req),
+      }),
+      sendGa4Event(undefined, 'generate_lead', {
+        lead_source: 'prefilter_prisma',
+        qualified: String(qualified),
+        advisors: advisors || '',
+        properties: properties || '',
+      }),
+    ]);
 
     return NextResponse.json({ ok: true, qualified });
   } catch (error) {

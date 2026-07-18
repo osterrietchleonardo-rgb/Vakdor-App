@@ -12,7 +12,7 @@ const API_VERSION = 'v21.0';
 const sha256 = (v: string) => crypto.createHash('sha256').update(v.trim().toLowerCase()).digest('hex');
 
 interface CapiInput {
-    eventName: 'Lead' | 'Schedule';
+    eventName: 'Lead' | 'Schedule' | 'CompleteRegistration' | 'InitiateCheckout' | string;
     eventId?: string; // compartido con el pixel del navegador (para el dedupe)
     eventSourceUrl?: string; // URL donde ocurrió el evento
     email?: string; // se hashea antes de enviar (NUNCA se manda en claro)

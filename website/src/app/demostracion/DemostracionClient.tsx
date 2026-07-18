@@ -6,6 +6,8 @@ import { VslVideoPlayer } from "@/components/vsl/VslVideoPlayer";
 import { FAQSection } from "@/components/FAQSection";
 import { Zap, Shield, TrendingUp, Lock, Unlock, CheckCircle2, ArrowDown, Sparkles, Award, Calendar, ArrowRight } from "lucide-react";
 
+import { trackViewDemostracion, trackVslWatch100, trackClickAgendarCTA } from "@/lib/analytics";
+
 interface DemostracionClientProps {
   videoUrl: string;
 }
@@ -16,8 +18,10 @@ export const DemostracionClient: React.FC<DemostracionClientProps> = ({ videoUrl
   const [isUnlocked, setIsUnlocked] = useState(false);
   const bookingRef = useRef<HTMLDivElement | null>(null);
 
-  // Verificar si ya fue visto 100% anteriormente
+  // Registrar visita a la demostración VSL y verificar si ya fue visto 100% anteriormente
   useEffect(() => {
+    trackViewDemostracion();
+
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
@@ -31,6 +35,7 @@ export const DemostracionClient: React.FC<DemostracionClientProps> = ({ videoUrl
 
   const handleVideoCompletion = () => {
     setIsUnlocked(true);
+    trackVslWatch100();
     // Smooth scroll al calendario al desbloquear
     setTimeout(() => {
       bookingRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -158,6 +163,7 @@ export const DemostracionClient: React.FC<DemostracionClientProps> = ({ videoUrl
               <div className="pt-4">
                 <Link
                   href="/call"
+                  onClick={() => trackClickAgendarCTA('demostracion_vsl')}
                   className="inline-flex items-center gap-3 bg-gradient-to-r from-[#B87333] via-[#D4A574] to-[#B87333] hover:from-[#A05A2C] hover:to-[#8B4513] text-white px-8 py-5 rounded-2xl text-lg md:text-xl font-extrabold shadow-[0_0_35px_rgba(184,115,51,0.4)] hover:shadow-[0_0_50px_rgba(184,115,51,0.6)] transition-all transform hover:-translate-y-1 active:translate-y-0"
                 >
                   <Calendar className="w-6 h-6 text-white" />
