@@ -73,7 +73,33 @@ export async function POST(req: Request) {
       }
     }
 
-    // 3. Evento Meta CAPI & GA4 si está calificado o es lead nuevo
+    // 3. Crear / Actualizar suscriptor en MailerLite (si MAILERLITE_API_KEY está configurada)
+    const mailerliteKey = process.env.MAILERLITE_API_KEY;
+    if (mailerliteKey) {
+      try {
+        await fetch('https://connect.mailerlite.com/api/subscribers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${mailerliteKey}`,
+          },
+          body: JSON.stringify({
+            email: cleanEmail,
+            fields: {
+              name: name || '',
+              phone: phone || '',
+              company: `${crm || 'CRM'} (${advisors || 'Asesores'} | ${properties || 'Propiedades'})`,
+            },
+            status: 'active',
+          }),
+        });
+      } catch (e) {
+        console.error('[prefilter] Error al sincronizar suscriptor en MailerLite:', e);
+      }
+    }
+
+    // 4. Evento Meta CAPI & GA4 si está calificado o es lead nuevo
     await sendMetaCapiEvent({
       eventName: 'Lead',
       eventId,
