@@ -9,6 +9,8 @@ export function PreFilterForm() {
     name: "",
     email: "",
     phone: "",
+    company: "",
+    website: "",
     advisors: "+15",
     properties: "+300",
     crm: "Tokko Broker",
@@ -29,8 +31,8 @@ export function PreFilterForm() {
     e.preventDefault();
     setErrorMessage("");
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
-      setErrorMessage("Por favor completá tu nombre, email y teléfono para evaluar la solicitud.");
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.company.trim()) {
+      setErrorMessage("Por favor completá tu nombre, email, teléfono y el nombre de la inmobiliaria.");
       return;
     }
 
@@ -80,7 +82,7 @@ export function PreFilterForm() {
             </h3>
 
             <p className="text-slate-300 text-sm md:text-base leading-relaxed">
-              Completá estas breves preguntas para verificar si tu empresa reúne las condiciones para la implementación de <strong className="text-white">PRISMA</strong> antes de seleccionar el horario en el calendario.
+              Completá estos datos estratégicos para verificar si tu empresa reúne las condiciones para la implementación de <strong className="text-white">PRISMA</strong> antes de seleccionar el horario en el calendario.
             </p>
           </div>
 
@@ -92,7 +94,7 @@ export function PreFilterForm() {
               </div>
             )}
 
-            {/* Datos Personales */}
+            {/* Datos Personales y de Contacto */}
             <div className="grid md:grid-cols-3 gap-4">
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
@@ -126,7 +128,7 @@ export function PreFilterForm() {
 
               <div className="space-y-2">
                 <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                  <Phone className="w-3.5 h-3.5 text-[#B87333]" /> WhatsApp / Teléfono *
+                  <Phone className="w-3.5 h-3.5 text-[#B87333]" /> WhatsApp / Celular *
                 </label>
                 <input
                   type="tel"
@@ -135,6 +137,38 @@ export function PreFilterForm() {
                   onChange={handleChange}
                   placeholder="+54 9 11 1234-5678"
                   required
+                  className="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#B87333] focus:ring-1 focus:ring-[#B87333] transition-all"
+                />
+              </div>
+            </div>
+
+            {/* Datos de la Inmobiliaria */}
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#B87333]" /> Nombre de la Inmobiliaria *
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Ej: Toribio Achával / Inmobiliaria Nordelta"
+                  required
+                  className="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#B87333] focus:ring-1 focus:ring-[#B87333] transition-all"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#B87333]" /> Sitio Web de la Inmobiliaria
+                </label>
+                <input
+                  type="text"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  placeholder="www.tuinmobiliaria.com"
                   className="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-700/80 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#B87333] focus:ring-1 focus:ring-[#B87333] transition-all"
                 />
               </div>

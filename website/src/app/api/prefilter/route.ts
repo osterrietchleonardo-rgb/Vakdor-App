@@ -11,7 +11,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, phone, advisors, properties, crm, investmentReady, qualified, eventId } = body;
+    const { name, email, phone, company, website, advisors, properties, crm, investmentReady, qualified, eventId } = body;
 
     const cleanEmail = String(email || '').toLowerCase().trim();
     if (!EMAIL_RE.test(cleanEmail)) {
@@ -73,7 +73,7 @@ export async function POST(req: Request) {
       }
     }
 
-    // 3. Crear / Actualizar suscriptor en MailerLite (si MAILERLITE_API_KEY está configurada)
+    // 3. Crear / Actualizar suscriptor en MailerLite (con Grupo 'Formulario Pre-Filtro PRISMA' y campos detallados)
     const mailerliteKey = process.env.MAILERLITE_API_KEY;
     if (mailerliteKey) {
       try {
@@ -89,8 +89,17 @@ export async function POST(req: Request) {
             fields: {
               name: name || '',
               phone: phone || '',
-              company: `${crm || 'CRM'} (${advisors || 'Asesores'} | ${properties || 'Propiedades'})`,
+              celular: phone || '',
+              company: company || '',
+              nombre_de_la_inmobiliaria: company || '',
+              sitio_web: website || '',
+              website_inmobiliaria: website || '',
+              asesores_comerciales: advisors || '',
+              propiedades_cartera: properties || '',
+              crm_actual: crm || '',
+              estado_calificacion: qualified ? 'CALIFICADO ✅' : 'EN CRECIMIENTO (PRE-FILTRO)',
             },
+            groups: ['193355544172431167'], // Grupo 'Formulario Pre-Filtro PRISMA'
             status: 'active',
           }),
         });
