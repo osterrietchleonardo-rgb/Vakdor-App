@@ -23,7 +23,7 @@ export const metadata = {
 
 export default function DemostracionPage() {
   const videoUrl =
-    "https://upggigryxdvcmnuwafyl.supabase.co/storage/v1/object/public/videos/vsl/vsl-vakdor-prisma.mp4";
+    "https://github.com/osterrietchleonardo-rgb/Vakdor-App/releases/download/v1.0.0/VSL-1080p-Crisp-Faststart.mp4";
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200 selection:bg-[#B87333]/30">
