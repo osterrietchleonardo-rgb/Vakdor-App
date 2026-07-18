@@ -37,8 +37,12 @@ export async function POST(req: Request) {
       const from = process.env.RESEND_FROM || 'PRISMA <onboarding@resend.dev>';
       const fecha = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });
       const estadoBadge = qualified 
-        ? '<span style="background:#10b981;color:#fff;padding:4px 10px;border-radius:20px;font-weight:bold;">CALIFICADO ✅</span>'
-        : '<span style="background:#f59e0b;color:#fff;padding:4px 10px;border-radius:20px;font-weight:bold;">EN CRECIMIENTO (PRE-FILTRO)</span>';
+        ? '<span style="background:#10b981;color:#fff;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:13px;">CALIFICADO ✅ (SE LE PERMITIÓ AGENDAR)</span>'
+        : '<span style="background:#f59e0b;color:#fff;padding:6px 12px;border-radius:20px;font-weight:bold;font-size:13px;">EN CRECIMIENTO ⏳ (NO AGENDÓ - LISTA ESPERA)</span>';
+
+      const permisoAgendarInfo = qualified
+        ? '<div style="background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;padding:12px;border-radius:8px;margin:16px 0;font-size:14px;"><strong>PERMITIDO AGENDAR: SÍ ✅</strong><br/>Este lead cumple con los requisitos (+10 asesores / +150 propiedades). Se le desplegó el calendario para seleccionar fecha y hora. Vos decidís en tu agenda si aceptás o cancelás la reunión.</div>'
+        : '<div style="background:#fffbeb;border:1px solid #fde68a;color:#92400e;padding:12px;border-radius:8px;margin:16px 0;font-size:14px;"><strong>PERMITIDO AGENDAR: NO ❌</strong><br/>Operación menor (&lt;10 asesores / &lt;150 propiedades). Se le mostró el mensaje de lista de prioridad y recursos iniciales.</div>';
 
       try {
         await fetch('https://api.resend.com/emails', {
@@ -51,20 +55,25 @@ export async function POST(req: Request) {
             from,
             to: [to],
             reply_to: cleanEmail,
-            subject: `[PRE-FILTRO ${qualified ? '✅ CALIFICADO' : 'PENDIENTE'}] Lead /call: ${name} (${cleanEmail})`,
+            subject: `[PRE-FILTRO ${qualified ? '✅ PERMITIDO AGENDAR' : '⏳ LISTA ESPERA'}] ${name || company || cleanEmail}`,
             html: `
-              <div style="font-family:Arial,sans-serif;color:#0F172A;max-width:560px;margin:0 auto;border:1px solid #e2e8f0;border-radius:12px;padding:24px;">
+              <div style="font-family:Arial,sans-serif;color:#0F172A;max-width:580px;margin:0 auto;border:1px solid #e2e8f0;border-radius:12px;padding:24px;">
                 <h2 style="color:#B87333;margin-top:0;">Nuevo Lead Pre-Filtrado para PRISMA</h2>
-                <p style="margin-bottom:16px;"><strong>Estado:</strong> ${estadoBadge}</p>
+                <p style="margin-bottom:12px;"><strong>Estado de Evaluación:</strong> ${estadoBadge}</p>
+                
+                ${permisoAgendarInfo}
+
                 <hr style="border:none;border-top:1px solid #e2e8f0;margin:16px 0;" />
                 <p style="margin:6px 0;"><strong>Nombre:</strong> ${name || 'N/A'}</p>
+                <p style="margin:6px 0;"><strong>Inmobiliaria:</strong> ${company || 'N/A'}</p>
+                <p style="margin:6px 0;"><strong>Sitio Web:</strong> ${website ? `<a href="${website.startsWith('http') ? website : 'https://' + website}">${website}</a>` : 'N/A'}</p>
                 <p style="margin:6px 0;"><strong>Email:</strong> ${cleanEmail}</p>
                 <p style="margin:6px 0;"><strong>Teléfono / WhatsApp:</strong> ${phone || 'N/A'}</p>
                 <p style="margin:6px 0;"><strong>Asesores en equipo:</strong> ${advisors || 'N/A'}</p>
                 <p style="margin:6px 0;"><strong>Propiedades en cartera:</strong> ${properties || 'N/A'}</p>
                 <p style="margin:6px 0;"><strong>CRM actual:</strong> ${crm || 'N/A'}</p>
                 <p style="margin:6px 0;"><strong>Decisión de inversión:</strong> ${investmentReady || 'N/A'}</p>
-                <p style="margin:6px 0;color:#64748B;font-size:12px;"><strong>Fecha:</strong> ${fecha}</p>
+                <p style="margin:12px 0 0;color:#64748B;font-size:12px;"><strong>Fecha de Registro:</strong> ${fecha}</p>
               </div>`,
           }),
         });

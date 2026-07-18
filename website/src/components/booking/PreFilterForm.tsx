@@ -38,10 +38,10 @@ export function PreFilterForm() {
 
     setStatus("loading");
 
-    // Lógica de Calificación
+    // Lógica de Calificación (Permite agendar a partir de 10+ asesores y 150+ propiedades)
     const qualified =
-      (formData.advisors === "15-30" || formData.advisors === "+15" || formData.advisors === "+30") &&
-      (formData.properties === "300-500" || formData.properties === "+300" || formData.properties === "+500") &&
+      formData.advisors !== "menos-10" &&
+      formData.properties !== "menos-150" &&
       formData.investmentReady === "si";
 
     try {
