@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ParticleField } from "@/components/effects/ParticleField";
-import { BookingCalendar } from "@/components/booking/BookingCalendar";
+import { PreFilterForm } from "@/components/booking/PreFilterForm";
 import { CheckCircle2, Zap, Shield, TrendingUp, Sparkles } from "lucide-react";
 import { NewsletterSection } from "@/components/NewsletterSection";
 
@@ -50,36 +50,8 @@ export default function CallPage() {
                         </p>
                     </div>
 
-                    {/* 2. Pre-Filtro Ejecutivo (Requisitos de Encaje Comercial) */}
-                    <div className="max-w-4xl mx-auto p-6 md:p-8 rounded-3xl bg-gradient-to-br from-slate-900/90 via-[#020617] to-[#0F172A] border border-[#B87333]/30 space-y-4 shadow-2xl backdrop-blur-sm">
-                        <h4 className="text-white font-bold text-base md:text-lg flex items-center justify-center gap-2">
-                            <Sparkles className="w-5 h-5 text-[#B87333]" />
-                            <span>Pre-requisitos de encaje para agendar esta sesión:</span>
-                        </h4>
-                        <div className="grid md:grid-cols-2 gap-4 text-sm text-slate-300 pt-2">
-                            <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                                <CheckCircle2 size={18} className="text-[#B87333] flex-shrink-0 mt-0.5" />
-                                <span><strong>Equipos consolidados</strong> de 15 o más asesores comerciales.</span>
-                            </div>
-                            <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                                <CheckCircle2 size={18} className="text-[#B87333] flex-shrink-0 mt-0.5" />
-                                <span><strong>Cartera activa</strong> de más de 300 propiedades captadas.</span>
-                            </div>
-                            <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                                <CheckCircle2 size={18} className="text-[#B87333] flex-shrink-0 mt-0.5" />
-                                <span><strong>Visión directiva</strong> y compromiso real con invertir para crecer y sistematizar.</span>
-                            </div>
-                            <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-950/60 border border-slate-800">
-                                <CheckCircle2 size={18} className="text-[#B87333] flex-shrink-0 mt-0.5" />
-                                <span>Operando con <strong>cualquier CRM</strong> (Tokko Broker, CRM propio o plataformas del sector).</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* 3. CALENDARIO HORIZONTAL DIRECCIÓN DIRECTA (Debajo del subtítulo y pre-requisitos) */}
-                    <div className="w-full bg-slate-900/40 border border-slate-800/80 rounded-3xl p-4 md:p-8 shadow-2xl backdrop-blur-md">
-                        <BookingCalendar />
-                    </div>
+                    {/* 2. Pre-Filtro Ejecutivo e Integración del Calendario */}
+                    <PreFilterForm />
 
                     {/* 4. Grilla de Pilares de Valor e Impacto (Debajo del Calendario) */}
                     <div className="grid md:grid-cols-3 gap-6 pt-6 border-t border-slate-800">
