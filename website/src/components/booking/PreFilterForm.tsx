@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BookingCalendar } from "./BookingCalendar";
-import { trackLead, newEventId } from "@/lib/analytics";
+import { trackLead, newEventId, trackViewPrefilterForm, trackViewCalendar, getTrackContext } from "@/lib/analytics";
 import { CheckCircle2, Sparkles, AlertCircle, ArrowRight, ShieldCheck, User, Mail, Phone, Building2, Layers, CheckSquare, Lock } from "lucide-react";
 
 export function PreFilterForm() {
@@ -21,6 +21,11 @@ export function PreFilterForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "submitted">("idle");
   const [isQualified, setIsQualified] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // Paso 5 del embudo: el visitante llegó al formulario de pre-filtro.
+  useEffect(() => {
+    trackViewPrefilterForm("call_page");
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -56,6 +61,8 @@ export function PreFilterForm() {
           ...formData,
           qualified,
           eventId: leadEventId,
+          // Contexto de GA4 para que el evento server-side se atribuya a esta sesión.
+          ...getTrackContext(),
         }),
       });
 
@@ -64,11 +71,14 @@ export function PreFilterForm() {
 
       setIsQualified(qualified);
       setStatus("submitted");
+      // Paso 7 del embudo: solo los calificados ven el calendario.
+      if (qualified) trackViewCalendar();
     } catch (err) {
       console.error("Error al enviar pre-filtro:", err);
       // Avanzar de todos modos para no bloquear al lead en caso de problema de red
       setIsQualified(qualified);
       setStatus("submitted");
+      if (qualified) trackViewCalendar();
     }
   };
 

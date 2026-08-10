@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
-import { sendGa4Event } from '@/lib/ga-server';
+import { sendGa4Events } from '@/lib/ga-server';
 import { sendMetaCapiEvent, metaMatchFromRequest } from '@/lib/meta-capi';
 
 export const runtime = 'nodejs';
@@ -12,6 +12,15 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
     const { name, email, phone, company, website, advisors, properties, crm, investmentReady, qualified, eventId } = body;
+    // Contexto de GA4 que manda el navegador: sin esto el evento queda huérfano
+    // (0 sesiones y página "(not set)") y no se puede armar el embudo.
+    const str = (v: unknown) => (typeof v === 'string' && v ? v : undefined);
+    const gaCtx = {
+      sessionId: str(body?.sessionId),
+      pageLocation: str(body?.pageLocation),
+      pageTitle: str(body?.pageTitle),
+    };
+    const gaClientId = str(body?.clientId);
 
     const cleanEmail = String(email || '').toLowerCase().trim();
     if (!EMAIL_RE.test(cleanEmail)) {
@@ -118,20 +127,31 @@ export async function POST(req: Request) {
     }
 
     // 4. Evento Meta CAPI & GA4 Measurement Protocol
+    // Paso 6 del embudo. `prefilter_no_calificado` va como evento propio (no como
+    // parámetro) para poder medirlo en GA4 sin depender de dimensiones personalizadas.
+    const ga4Params = {
+      lead_source: 'prefilter_prisma',
+      qualified: String(qualified),
+      advisors: advisors || '',
+      properties: properties || '',
+    };
+    const ga4Events: { name: string; params: Record<string, unknown> }[] = [
+      { name: 'prefilter_submit', params: ga4Params },
+      { name: 'generate_lead', params: ga4Params }, // evento recomendado de GA4 (histórico)
+    ];
+    if (!qualified) ga4Events.push({ name: 'prefilter_no_calificado', params: ga4Params });
+
+    const match = metaMatchFromRequest(req);
     await Promise.all([
       sendMetaCapiEvent({
         eventName: 'Lead',
         eventId,
         email: cleanEmail,
         customData: { content_name: 'prefilter', qualified },
-        ...metaMatchFromRequest(req),
+        ...match,
+        eventSourceUrl: gaCtx.pageLocation ?? match.eventSourceUrl,
       }),
-      sendGa4Event(undefined, 'generate_lead', {
-        lead_source: 'prefilter_prisma',
-        qualified: String(qualified),
-        advisors: advisors || '',
-        properties: properties || '',
-      }),
+      sendGa4Events(gaClientId, ga4Events, gaCtx),
     ]);
 
     return NextResponse.json({ ok: true, qualified });

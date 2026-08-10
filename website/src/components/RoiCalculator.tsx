@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Calculator, DollarSign, Users, Database, TrendingUp } from 'lucide-react';
+import { trackClickAgendarCTA } from '@/lib/analytics';
 
 export function RoiCalculator() {
     const [advisors, setAdvisors] = useState(10);
@@ -161,6 +162,7 @@ export function RoiCalculator() {
                     href="https://www.vakdor.com/call"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackClickAgendarCTA('roi_calculator')}
                     className="cta-copper inline-flex items-center gap-2 font-bold px-8 py-3 rounded-xl transition-all active:scale-95"
                 >
                     Validar estos Números en una Llamada →
