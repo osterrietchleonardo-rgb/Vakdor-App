@@ -2,21 +2,35 @@ import { NextResponse } from 'next/server';
 import { sendGa4Event } from '@/lib/ga-server';
 import { sendMetaCapiEvent, metaMatchFromRequest } from '@/lib/meta-capi';
 
-// Traduce el evento interno al nombre estándar de Meta para CAPI server-side.
-const META_EVENT: Record<string, 'Lead' | 'Schedule' | 'CompleteRegistration' | 'InitiateCheckout'> = { 
-    schedule_call: 'Schedule',
+// Traduce el evento interno del embudo al nombre que entiende Meta para CAPI server-side.
+// Los que no son eventos estándar de Meta viajan como evento personalizado.
+const META_EVENT: Record<string, string> = {
+    view_demostracion: 'ViewContent',
     vsl_watch_100: 'CompleteRegistration',
     click_agendar_cta: 'InitiateCheckout',
+    view_prefilter_form: 'ViewPrefilterForm',
+    view_calendar: 'ViewCalendar',
+    schedule_call: 'Schedule',
 };
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// Solo eventos conocidos del funnel.
-const ALLOWED = new Set(['schedule_call', 'vsl_watch_100', 'click_agendar_cta']);
+// Solo eventos conocidos del embudo.
+// `prefilter_submit` NO va acá: lo emite /api/prefilter, que además tiene el email
+// para el match de Meta (si se aceptara acá se contaría el Lead dos veces).
+const ALLOWED = new Set(Object.keys(META_EVENT));
 
 export async function POST(req: Request) {
-    let body: { event?: string; clientId?: string; eventId?: string; params?: Record<string, unknown> };
+    let body: {
+        event?: string;
+        clientId?: string;
+        sessionId?: string;
+        pageLocation?: string;
+        pageTitle?: string;
+        eventId?: string;
+        params?: Record<string, unknown>;
+    };
     try {
         body = await req.json();
     } catch {
@@ -28,14 +42,27 @@ export async function POST(req: Request) {
         return NextResponse.json({ ok: false, error: 'event_not_allowed' }, { status: 422 });
     }
 
-    const clientId = typeof body?.clientId === 'string' ? body.clientId : undefined;
-    const eventId = typeof body?.eventId === 'string' ? body.eventId : undefined;
-    await sendGa4Event(clientId, event, body?.params ?? {});
+    const str = (v: unknown) => (typeof v === 'string' && v ? v : undefined);
+    const clientId = str(body?.clientId);
+    const sessionId = str(body?.sessionId);
+    const pageLocation = str(body?.pageLocation);
+    const pageTitle = str(body?.pageTitle);
+    const eventId = str(body?.eventId);
+    const params = body?.params ?? {};
 
-    const metaEvent = META_EVENT[event];
-    if (metaEvent) {
-        await sendMetaCapiEvent({ eventName: metaEvent, eventId, ...metaMatchFromRequest(req) });
-    }
+    const match = metaMatchFromRequest(req);
+
+    await Promise.all([
+        sendGa4Event(clientId, event, params, { sessionId, pageLocation, pageTitle }),
+        sendMetaCapiEvent({
+            eventName: META_EVENT[event],
+            eventId,
+            customData: params,
+            ...match,
+            // La URL real de la página gana sobre el referer del request.
+            eventSourceUrl: pageLocation ?? match.eventSourceUrl,
+        }),
+    ]);
 
     return NextResponse.json({ ok: true });
 }

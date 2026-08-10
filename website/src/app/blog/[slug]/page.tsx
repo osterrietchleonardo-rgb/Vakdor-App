@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { CtaAgendarLink } from '@/components/CtaAgendarLink';
 import { getPostBySlug } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 import { Clock, User, ArrowLeft, Tag } from 'lucide-react';
@@ -154,12 +155,12 @@ export default async function BlogPostPage({ params }: PostPageProps) {
                         Ayudamos a inmobiliarias a automatizar sus procesos de venta y captación con IA.
                         Charlá 15 minutos con nosotros para ver cómo podemos ayudarte.
                     </p>
-                    <a
-                        href="https://www.vakdor.com/call"
+                    <CtaAgendarLink
+                        source="blog_post"
                         className="bg-[#020617] hover:bg-black text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg active:scale-95 inline-block"
                     >
                         Agendar Llamada Estratégica
-                    </a>
+                    </CtaAgendarLink>
                 </div>
             </section>
 
