@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { BookingCalendar } from "./BookingCalendar";
-import { trackLead, newEventId, trackViewPrefilterForm, trackViewCalendar, getTrackContext } from "@/lib/analytics";
+import { trackLead, newEventId, trackViewPrefilterForm, trackViewCalendar, trackPrefilterNoCalificado, getTrackContext } from "@/lib/analytics";
 import { CheckCircle2, Sparkles, AlertCircle, ArrowRight, ShieldCheck, User, Mail, Phone, Building2, Layers, CheckSquare, Lock } from "lucide-react";
 
 export function PreFilterForm() {
@@ -72,13 +72,16 @@ export function PreFilterForm() {
       setIsQualified(qualified);
       setStatus("submitted");
       // Paso 7 del embudo: solo los calificados ven el calendario.
+      // Al que no califica lo contamos aparte: no es una fuga, es el filtro haciendo su trabajo.
       if (qualified) trackViewCalendar();
+      else trackPrefilterNoCalificado('prefilter_prisma');
     } catch (err) {
       console.error("Error al enviar pre-filtro:", err);
       // Avanzar de todos modos para no bloquear al lead en caso de problema de red
       setIsQualified(qualified);
       setStatus("submitted");
       if (qualified) trackViewCalendar();
+      else trackPrefilterNoCalificado('prefilter_prisma');
     }
   };
 

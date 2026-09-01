@@ -120,6 +120,19 @@ export function trackLead(source: string, eventId?: string) {
     window.fbq?.('track', 'Lead', { content_name: source }, eventId ? { eventID: eventId } : undefined);
 }
 
+/**
+ * Métrica aparte: llenó el formulario y el pre-filtro NO le abrió el calendario.
+ * Es evento propio (no un parámetro de `prefilter_submit`) para poder contarlo en GA4
+ * sin registrar dimensiones personalizadas. No es una fuga a corregir con copy:
+ * es filtrado a propósito, y saber cuánta gente cae acá dice si el filtro está bien puesto.
+ */
+export function trackPrefilterNoCalificado(source: string = 'prefilter_prisma') {
+    if (typeof window === 'undefined') return;
+    const eventId = newEventId();
+    (window.dataLayer = window.dataLayer || []).push({ event: 'prefilter_no_calificado', lead_source: source, event_id: eventId });
+    sendTrack('prefilter_no_calificado', eventId, { lead_source: source });
+}
+
 /** Paso 7: Se le desbloqueó el calendario (solo leads calificados). */
 export function trackViewCalendar() {
     if (typeof window === 'undefined') return;
