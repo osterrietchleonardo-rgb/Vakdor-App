@@ -9,6 +9,7 @@ const META_EVENT: Record<string, string> = {
     vsl_watch_100: 'CompleteRegistration',
     click_agendar_cta: 'InitiateCheckout',
     view_prefilter_form: 'ViewPrefilterForm',
+    prefilter_no_calificado: 'PrefilterNoCalificado',
     view_calendar: 'ViewCalendar',
     schedule_call: 'Schedule',
 };
