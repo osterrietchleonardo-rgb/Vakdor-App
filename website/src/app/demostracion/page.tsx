@@ -8,13 +8,14 @@ import { DemostracionClient } from "./DemostracionClient";
 export const metadata = {
   title: "Demostración Exclusiva: El Sistema Operativo PRISMA | Vakdor",
   description:
-    "Mirá la demostración ejecutiva de 17 minutos de PRISMA. Descubrí cómo conectar Tokko Broker con WhatsApp para eliminar la dependencia operativa en tu inmobiliaria.",
+    "Mirá en 7 minutos PRISMA funcionando: super agentes que atienden, siguen y derivan cada consulta, con cada decisión a la vista. Conectado a Tokko Broker y a tu WhatsApp.",
   alternates: { canonical: "/demostracion" },
   openGraph: {
     title: "Demostración Exclusiva: El Sistema Operativo PRISMA | Vakdor",
     description:
       "Descubrí cómo eliminar la dependencia operativa y darle trazabilidad matemática a tu inmobiliaria.",
     url: "https://vakdor.com/demostracion",
+    images: [{ url: "/demostracion-portada.jpg", width: 1920, height: 1080 }],
     siteName: "Vakdor PRISMA",
     locale: "es_AR",
     type: "website",
@@ -22,8 +23,9 @@ export const metadata = {
 };
 
 export default function DemostracionPage() {
-  const videoUrl =
-    "https://github.com/osterrietchleonardo-rgb/Vakdor-App/releases/download/v1.0.0/VSL-1080p-Crisp-Faststart.mp4";
+  // Presentación de PRISMA para directores (v2, 6:46). Release público del repo Vakdor-App.
+  const videoUrl = "https://github.com/osterrietchleonardo-rgb/Vakdor-App/releases/download/v2.0.0/prisma-directores-v2.mp4";
+  const posterUrl = "/demostracion-portada.jpg";
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200 selection:bg-[#B87333]/30">
@@ -34,8 +36,8 @@ export default function DemostracionPage() {
         <Header hideCTA />
       </div>
 
-      <main className="relative z-40 pt-28 pb-20 px-4 md:px-6">
-        <DemostracionClient videoUrl={videoUrl} />
+      <main className="relative z-40 pt-24 md:pt-28 pb-20 px-4 md:px-6">
+        <DemostracionClient videoUrl={videoUrl} posterUrl={posterUrl} />
       </main>
 
       {/* Newsletter */}

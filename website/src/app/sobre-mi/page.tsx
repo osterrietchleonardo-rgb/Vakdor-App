@@ -144,7 +144,7 @@ export default function SobreMiPage() {
                         <p className="font-accent text-[#B87333] text-lg mb-4">¿Querés ver el sistema por dentro?</p>
                         <h2 className="text-3xl font-bold text-[#F8FAFC] mb-6">Mirá la Demostración Ejecutiva</h2>
                         <p className="text-[#94A3B8] mb-8">
-                            Una presentación ejecutiva de 17 minutos donde analizamos el sistema funcionando en vivo y mostramos cómo eliminar la dependencia operativa.
+                            Una presentación de 7 minutos con PRISMA funcionando, que contesta las preguntas que se hace cualquiera que dirige una inmobiliaria.
                         </p>
                         <Link
                             href="/demostracion"

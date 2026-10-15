@@ -97,7 +97,7 @@ export default function HomePage() {
                 className="inline-flex items-center gap-3 cta-copper px-8 py-4 rounded-xl text-lg animate-copper-glow"
               >
                 <Play size={20} className="fill-white" />
-                Ver Demostración Ejecutiva (17 min)
+                Ver Demostración Ejecutiva (7 min)
               </Link>
             </div>
 
