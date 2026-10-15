@@ -1,130 +1,102 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize, RotateCcw, Lock, CheckCircle2 } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize } from "lucide-react";
 
 interface VslVideoPlayerProps {
   videoUrl: string;
+  posterUrl?: string;
+  /** Se llama UNA vez por visita, solo si la persona vio de verdad casi todo el video. */
   onCompletion?: () => void;
   title?: string;
 }
 
-const STORAGE_KEY = "vakdor_vsl_progress_v1";
+// Cuánto del video tiene que haberse reproducido (no saltado) para contar como "lo vio entero".
+const VISTO_MINIMO = 0.9;
 
 export const VslVideoPlayer: React.FC<VslVideoPlayerProps> = ({
   videoUrl,
+  posterUrl,
   onCompletion,
-  title = "Demostración Ejecutiva PRISMA",
-}) => {  const videoRef = useRef<HTMLVideoElement | null>(null);
+  title = "Presentación de PRISMA",
+}) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const progressBarRef = useRef<HTMLDivElement | null>(null);
+
+  // Segundos realmente reproducidos: suma los avances chicos y descarta los saltos.
+  const segundosVistosRef = useRef(0);
+  const ultimoTiempoRef = useRef(0);
+  const completadoRef = useRef(false);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [maxTimeWatched, setMaxTimeWatched] = useState(0);
-  const [isCompleted, setIsCompleted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(1);
   const [showControls, setShowControls] = useState(true);
-  const [isSeekingWarning, setIsSeekingWarning] = useState(false);
+  const ocultarTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Cargar progreso previo de localStorage
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.maxTimeWatched) setMaxTimeWatched(parsed.maxTimeWatched);
-        if (parsed.isCompleted) {
-          setIsCompleted(true);
-          onCompletion?.();
-        }
-      }
-    } catch (e) {
-      console.error("Error al cargar progreso VSL:", e);
-    }
-  }, [onCompletion]);
-
-  // Actualizar metadatos del video
-  const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-      setDuration(videoRef.current.duration);
+  // Celular/tablet: no hay mouse que entre y salga. Los controles se muestran con un toque y se
+  // esconden solos a los 2,5 s mientras corre el video, para no tapar los subtítulos.
+  const esTactil = () => typeof window !== "undefined" && !window.matchMedia("(hover: hover)").matches;
+  const mostrarControlesUnRato = (reproduciendo = isPlaying) => {
+    setShowControls(true);
+    if (ocultarTimerRef.current) clearTimeout(ocultarTimerRef.current);
+    if (reproduciendo && esTactil()) {
+      ocultarTimerRef.current = setTimeout(() => setShowControls(false), 2500);
     }
   };
+  useEffect(() => () => {
+    if (ocultarTimerRef.current) clearTimeout(ocultarTimerRef.current);
+  }, []);
 
-  // Prevenir adelantado no visto (anti-forward seek si es 1ª vez), permitiendo libre seek si ya completó el 100%
-  const handleTimeUpdate = () => {
-    if (!videoRef.current) return;
-    const current = videoRef.current.currentTime;
-    
-    // Solo actualizar el estado de tiempo en React cuando cambia el segundo (evita 60 FPS de re-renders inútiles en el DOM)
-    if (Math.floor(current) !== Math.floor(currentTime)) {
-      setCurrentTime(current);
-    }
-
-    // Si NO ha completado el 100% y pretende adelantar más allá de lo ya visto (+ 2.5 seg de margen por buffering)
-    if (!isCompleted && current > maxTimeWatched + 2.5) {
-      videoRef.current.currentTime = maxTimeWatched;
-      setCurrentTime(maxTimeWatched);
-      setIsSeekingWarning(true);
-      setTimeout(() => setIsSeekingWarning(false), 2500);
-      return;
-    }
-
-    // Actualizar el máximo tiempo alcanzado
-    if (current > maxTimeWatched) {
-      setMaxTimeWatched(current);
-      try {
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({ maxTimeWatched: current, isCompleted })
-        );
-      } catch (e) {}
-    }
-
-    // Detectar 100% de reproducción (o a 3.5 seg del final)
-    if (duration > 0 && current >= duration - 3.5 && !isCompleted) {
-      setIsCompleted(true);
-      try {
-        localStorage.setItem(
-          STORAGE_KEY,
-          JSON.stringify({ maxTimeWatched: duration, isCompleted: true })
-        );
-      } catch (e) {}
+  const intentarCompletar = (alFinal: boolean) => {
+    if (completadoRef.current || duration <= 0 || !alFinal) return;
+    if (segundosVistosRef.current >= duration * VISTO_MINIMO) {
+      completadoRef.current = true;
       onCompletion?.();
     }
   };
 
-  // Handler para hacer clic en la línea de tiempo (Seek manual)
-  const handleTimelineClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!progressBarRef.current || !videoRef.current || duration <= 0) return;
-    const rect = progressBarRef.current.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const percentage = Math.max(0, Math.min(1, clickX / rect.width));
-    const targetTime = percentage * duration;
-
-    // Si ya completó el 100%, puede saltar a cualquier parte del video libremente
-    if (isCompleted) {
-      videoRef.current.currentTime = targetTime;
-      setCurrentTime(targetTime);
-      return;
-    }
-
-    // Si es la primera vez, puede retroceder a cualquier punto ya visto o adelantar hasta el máximo visto
-    if (targetTime <= maxTimeWatched + 2.5) {
-      videoRef.current.currentTime = targetTime;
-      setCurrentTime(targetTime);
-    } else {
-      // Intento de adelantar a zona no vista por primera vez
-      videoRef.current.currentTime = maxTimeWatched;
-      setCurrentTime(maxTimeWatched);
-      setIsSeekingWarning(true);
-      setTimeout(() => setIsSeekingWarning(false), 2500);
-    }
+  const leerDuracion = () => {
+    const d = videoRef.current?.duration;
+    if (d && isFinite(d)) setDuration(d);
   };
 
-  // Controles de reproducción
+  // Si el video cargó sus datos antes de que React se enganche, el evento ya pasó: leerlo al montar.
+  useEffect(() => {
+    leerDuracion();
+  }, []);
+
+  const handleTimeUpdate = () => {
+    if (!videoRef.current) return;
+    const current = videoRef.current.currentTime;
+    const delta = current - ultimoTiempoRef.current;
+    // Un avance chico (según la velocidad elegida) es reproducción; uno grande, un salto
+    if (delta > 0 && delta < 1.5 * (videoRef.current.playbackRate || 1)) segundosVistosRef.current += delta;
+    ultimoTiempoRef.current = current;
+
+    // Solo re-renderizar cuando cambia el segundo
+    if (Math.floor(current) !== Math.floor(currentTime)) setCurrentTime(current);
+
+    intentarCompletar(duration > 0 && current >= duration - 3.5);
+  };
+
+  const irA = (t: number) => {
+    if (!videoRef.current) return;
+    videoRef.current.currentTime = t;
+    ultimoTiempoRef.current = t;
+    setCurrentTime(t);
+  };
+
+  const handleTimelineClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!progressBarRef.current || duration <= 0) return;
+    const rect = progressBarRef.current.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    irA(pct * duration);
+  };
+
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (isPlaying) {
@@ -152,25 +124,21 @@ export const VslVideoPlayer: React.FC<VslVideoPlayerProps> = ({
     }
   };
 
-  // Pantalla Completa Fluida con Aceleración GPU
+  // Pantalla completa (en iPhone solo el <video> puede ir a pantalla completa)
   const toggleFullScreen = () => {
-    const target = containerRef.current || videoRef.current;
-    if (!target) return;
-    
-    if (!document.fullscreenElement) {
-      if (target.requestFullscreen) {
-        target.requestFullscreen().catch(() => {});
-      } else if ((target as any).webkitRequestFullscreen) {
-        (target as any).webkitRequestFullscreen();
-      }
-    } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
-      }
+    const target = containerRef.current;
+    const video = videoRef.current as (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {});
+      return;
+    }
+    if (target?.requestFullscreen) {
+      target.requestFullscreen().catch(() => {});
+    } else if (video?.webkitEnterFullscreen) {
+      video.webkitEnterFullscreen();
     }
   };
 
-  // Formatear segundos a MM:SS
   const formatTime = (seconds: number) => {
     if (isNaN(seconds) || seconds <= 0) return "00:00";
     const mins = Math.floor(seconds / 60);
@@ -178,112 +146,88 @@ export const VslVideoPlayer: React.FC<VslVideoPlayerProps> = ({
     return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
   };
 
-  const watchPercentage = duration > 0 ? Math.min(100, Math.round((maxTimeWatched / duration) * 100)) : 0;
-
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-4">
-      {/* Contenedor del Reproductor con Sovereign Styling */}
+    <div className="w-full max-w-5xl mx-auto">
       <div
         ref={containerRef}
         className="relative group w-full aspect-video rounded-2xl bg-[#020617] border border-[#B87333]/30 shadow-[0_0_50px_rgba(184,115,51,0.15)] overflow-hidden flex items-center justify-center selection:bg-transparent"
-        onMouseEnter={() => setShowControls(true)}
-        onMouseLeave={() => isPlaying && setShowControls(false)}
+        onMouseEnter={() => !esTactil() && setShowControls(true)}
+        onMouseLeave={() => isPlaying && !esTactil() && setShowControls(false)}
       >
         <video
           ref={videoRef}
           src={videoUrl}
+          poster={posterUrl}
+          title={title}
           playsInline
           preload="metadata"
-          onLoadedMetadata={handleLoadedMetadata}
+          onLoadedMetadata={leerDuracion}
+          onDurationChange={leerDuracion}
           onTimeUpdate={handleTimeUpdate}
+          onPlay={() => {
+            setIsPlaying(true);
+            mostrarControlesUnRato(true);
+          }}
+          onPause={() => {
+            setIsPlaying(false);
+            mostrarControlesUnRato(false);
+          }}
           onEnded={() => {
             setIsPlaying(false);
-            setIsCompleted(true);
-            onCompletion?.();
+            intentarCompletar(true);
           }}
-          onClick={togglePlay}
-          className="w-full h-full object-cover cursor-pointer"
+          // En el celular, si los controles están escondidos, el primer toque solo los muestra
+          onClick={() => (esTactil() && isPlaying && !showControls ? mostrarControlesUnRato() : togglePlay())}
+          className="w-full h-full object-contain cursor-pointer"
         />
 
-        {/* Overlay de advertencia si intenta adelantar en 1ª vez */}
-        {isSeekingWarning && (
-          <div className="absolute top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-slate-950/90 border border-[#B87333]/60 text-[#B87333] text-xs md:text-sm font-semibold flex items-center gap-2 backdrop-blur-md shadow-2xl animate-fade-in">
-            <Lock className="w-4 h-4 text-[#B87333] animate-bounce" />
-            <span>Podés retroceder o ver partes ya vistas. El adelantado a partes no vistas se habilita tras completarlo 100%.</span>
-          </div>
-        )}
-
-        {/* Play Button Overlay cuando está pausado */}
+        {/* Botón grande de reproducir cuando está en pausa */}
         {!isPlaying && (
           <button
             onClick={togglePlay}
-            className="absolute z-40 p-6 md:p-8 rounded-full bg-gradient-to-br from-[#B87333] to-[#5C3D2E] text-white shadow-[0_0_40px_rgba(184,115,51,0.5)] hover:scale-105 transition-all duration-300 group-hover:shadow-[0_0_60px_rgba(184,115,51,0.7)]"
-            aria-label="Reproducir Video"
+            className="absolute z-40 p-4 md:p-8 rounded-full bg-gradient-to-br from-[#B87333] to-[#5C3D2E] text-white shadow-[0_0_40px_rgba(184,115,51,0.5)] hover:scale-105 transition-all duration-300 group-hover:shadow-[0_0_60px_rgba(184,115,51,0.7)]"
+            aria-label="Reproducir video"
           >
-            <Play className="w-8 h-8 md:w-12 md:h-12 fill-white translate-x-0.5" />
+            <Play className="w-7 h-7 md:w-12 md:h-12 fill-white translate-x-0.5" />
           </button>
         )}
 
-        {/* Controles Inferiores */}
+        {/* Controles inferiores: compactos en el celular para no tapar el video */}
         <div
-          className={`absolute bottom-0 inset-x-0 z-40 bg-gradient-to-t from-[#020617] via-[#020617]/80 to-transparent p-4 md:p-6 transition-opacity duration-300 ${
+          className={`absolute bottom-0 inset-x-0 z-40 bg-gradient-to-t from-[#020617] via-[#020617]/70 to-transparent px-3 pb-2 pt-6 md:p-6 transition-opacity duration-300 ${
             showControls || !isPlaying ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
+          onClickCapture={() => esTactil() && mostrarControlesUnRato()}
         >
-          {/* Barra de Progreso Interactivamente Cliqueable (Anti-Seek 1ª vez / Libre al 100%) */}
-          <div className="space-y-2 mb-3">
+          <div
+            ref={progressBarRef}
+            onClick={handleTimelineClick}
+            className="relative w-full h-1.5 md:h-3 mb-2 md:mb-3 rounded-full bg-slate-800/80 overflow-hidden border border-slate-700/50 cursor-pointer"
+            title="Hacé clic para ir a cualquier parte"
+          >
             <div
-              ref={progressBarRef}
-              onClick={handleTimelineClick}
-              className="relative w-full h-3 rounded-full bg-slate-800/80 overflow-hidden border border-slate-700/50 cursor-pointer group/bar"
-              title={isCompleted ? "Hacé clic para saltar a cualquier parte" : "Hacé clic para retroceder o ir a lo visto"}
-            >
-              {/* Barra de lo máximo visto (Cobrizo) */}
-              <div
-                className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-[#B87333] to-[#D4A574] transition-all duration-200"
-                style={{ width: `${isCompleted ? 100 : watchPercentage}%` }}
-              />
-              {/* Indicador de tiempo actual */}
-              <div
-                className="absolute top-0 bottom-0 left-0 bg-white opacity-90 transition-all duration-150"
-                style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
-              />
-            </div>
-
-            <div className="flex justify-between items-center text-xs font-mono text-slate-400">
-              <span>{formatTime(currentTime)} / {formatTime(duration)}</span>
-              <span className="flex items-center gap-1.5 text-[#B87333] font-semibold">
-                {isCompleted ? (
-                  <>
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                    <span className="text-emerald-400">Completado 100% · Navegación Libre</span>
-                  </>
-                ) : (
-                  <>
-                    <Lock className="w-3 h-3" />
-                    <span>Progreso visto: {watchPercentage}%</span>
-                  </>
-                )}
-              </span>
-            </div>
+              className="absolute top-0 bottom-0 left-0 bg-gradient-to-r from-[#B87333] to-[#D4A574] transition-all duration-150"
+              style={{ width: `${(currentTime / (duration || 1)) * 100}%` }}
+            />
           </div>
 
-          {/* Botones de Control */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 md:gap-4">
               <button
                 onClick={togglePlay}
-                className="p-2 rounded-lg bg-slate-800/60 hover:bg-[#B87333]/20 text-white hover:text-[#B87333] transition-colors"
+                aria-label={isPlaying ? "Pausar" : "Reproducir"}
+                className="p-1.5 md:p-2 rounded-lg bg-slate-800/60 hover:bg-[#B87333]/20 text-white hover:text-[#B87333] transition-colors"
               >
-                {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 fill-white" />}
+                {isPlaying ? <Pause className="w-4 h-4 md:w-5 md:h-5" /> : <Play className="w-4 h-4 md:w-5 md:h-5 fill-white" />}
               </button>
 
-              <div className="flex items-center gap-2 group/vol">
+              <div className="flex items-center gap-2">
                 <button
                   onClick={toggleMute}
-                  className="p-2 rounded-lg bg-slate-800/60 hover:bg-[#B87333]/20 text-slate-300 hover:text-white transition-colors"
+                  aria-label={isMuted ? "Activar sonido" : "Silenciar"}
+                  className="p-1.5 md:p-2 rounded-lg bg-slate-800/60 hover:bg-[#B87333]/20 text-slate-300 hover:text-white transition-colors"
                 >
-                  {isMuted || volume === 0 ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+                  {isMuted || volume === 0 ? <VolumeX className="w-4 h-4 md:w-5 md:h-5" /> : <Volume2 className="w-4 h-4 md:w-5 md:h-5" />}
                 </button>
                 <input
                   type="range"
@@ -292,40 +236,24 @@ export const VslVideoPlayer: React.FC<VslVideoPlayerProps> = ({
                   step="0.05"
                   value={isMuted ? 0 : volume}
                   onChange={handleVolumeChange}
-                  className="w-16 md:w-24 accent-[#B87333] cursor-pointer"
+                  aria-label="Volumen"
+                  className="hidden md:block w-24 accent-[#B87333] cursor-pointer"
                 />
               </div>
+
+              <span className="text-[11px] md:text-xs font-mono text-slate-300">
+                {formatTime(currentTime)} / {formatTime(duration)}
+              </span>
             </div>
 
-            <div className="flex items-center gap-3">
-              <button
-                onClick={toggleFullScreen}
-                className="p-2 rounded-lg bg-slate-800/60 hover:bg-[#B87333]/20 text-slate-300 hover:text-white transition-colors"
-              >
-                <Maximize className="w-5 h-5" />
-              </button>
-            </div>
+            <button
+              onClick={toggleFullScreen}
+              aria-label="Pantalla completa"
+              className="p-1.5 md:p-2 rounded-lg bg-slate-800/60 hover:bg-[#B87333]/20 text-slate-300 hover:text-white transition-colors"
+            >
+              <Maximize className="w-4 h-4 md:w-5 md:h-5" />
+            </button>
           </div>
-        </div>
-      </div>
-
-      {/* Pie Informativo del Reproductor */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 bg-slate-900/60 border border-slate-800 rounded-xl p-3 px-4 backdrop-blur-sm">
-        <div className="flex items-center gap-2">
-          {isCompleted ? (
-            <>
-              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              <span className="text-slate-300 font-medium">¡Demostración completada al 100%! Podés adelantar o revisar cualquier parte del video libremente.</span>
-            </>
-          ) : (
-            <>
-              <Lock className="w-4 h-4 text-[#B87333]" />
-              <span>Podés retroceder para repasar lo visto. El adelantado libre se activa al completar la demostración.</span>
-            </>
-          )}
-        </div>
-        <div className="text-slate-500 font-mono">
-          HD 1080p · Audio Broadcast -14 LUFS
         </div>
       </div>
     </div>
