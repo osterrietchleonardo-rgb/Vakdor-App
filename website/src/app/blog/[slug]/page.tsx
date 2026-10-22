@@ -2,14 +2,28 @@ import React from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CtaAgendarLink } from '@/components/CtaAgendarLink';
-import { getPostBySlug } from '@/lib/blog';
+import { getPostBySlug, getPublishedPosts } from '@/lib/blog';
 import { notFound } from 'next/navigation';
 import { Clock, User, ArrowLeft, Tag } from 'lucide-react';
 import Link from 'next/link';
 import { marked } from 'marked';
 
-// Force dynamic rendering to always get fresh data from Supabase
-export const dynamic = 'force-dynamic';
+// Cada artículo se pregenera en el deploy y se vuelve a armar como mucho cada hora
+// (ISR). Un artículo publicado después del deploy se genera en su primera visita
+// y queda guardado (dynamicParams es true por defecto).
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+    try {
+        const posts = await getPublishedPosts();
+        return posts.map((post) => ({ slug: post.slug }));
+    } catch (e) {
+        // Si Supabase no responde durante el build, no se rompe el deploy:
+        // los artículos se generan en su primera visita.
+        console.error('generateStaticParams: no se pudieron listar los posts', e);
+        return [];
+    }
+}
 
 interface PostPageProps {
     params: Promise<{

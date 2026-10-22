@@ -15,8 +15,9 @@ export const metadata: Metadata = {
     alternates: { canonical: '/blog' },
 };
 
-// Force dynamic rendering to always get fresh data from Supabase
-export const dynamic = 'force-dynamic';
+// La lista se pregenera en el deploy y se vuelve a armar como mucho cada hora
+// (ISR): así la primera visita no espera el arranque en frío del servidor.
+export const revalidate = 3600;
 
 export default async function BlogPage() {
     let posts: BlogPost[] = [];
